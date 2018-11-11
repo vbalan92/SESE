@@ -1,0 +1,1 @@
+web: java -jar user-portal/target/HOTELRESERVATION-0.0.1-SNAPSHOT.jar --spring.config.location=user-portal/config/application-heroku.properties
