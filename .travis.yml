@@ -1,3 +1,7 @@
 language: java
 install: true
-script: (cd user-portal && mvn install)
+script: "(cd user-portal && mvn install)"
+deploy:
+  provider: heroku
+  api_key:
+    secure: A9G7tfLFAl/Yq5LydsyQFKD+ekBxVaQIsnz4aSHtn4FKC367nV9lvEkriPzok8eLWp5XXXfB5gTSPREPLPLp8Qq68xK0pJ6dd3bh3e89p9mAMGfU5ZcuZq03g9yJQH3MIY+afZqyLdurvgf0AmRHCslnFBx+AC6VJfcjsrguZ8yd1BjDKksnVn4j8KcKIQKXET6CIMdZiIzT6je6N6GmnEYoTA9LA2BaS4OC6QXUalAr0vNkRe7Ul5uqm6oBocwj/5SAAg8/maAlXwxYwScqIPpRZ4poe7ODRVepkvUkLlaMSLEl1AN8CQRkavPKAuzoFy8oG2wU34g8ietG1RhNO6fkFDiw2RkQObWydXYZjjkjZ4rMsUp8jnoSR6eyoacu3Psl2aHjf/MefzU0xF9PiUy04lQpZDPmQ1NdWZB4cxPFjg2gyjDtdB+hmOYrG+kRfS3PXluLCBPWDWhAOYp65P4JXCuecxIf/x+lL4V1q4ni20qu/yFI9ReTJjryj9qxV20Fv5AcHU9DKAgErWOPnG/LsYkSh7ppX6+c8PoDwRGD4j+Wj8efX0WlsoRa3YBW0qvpg7ms0skLIVc9zFpkfnGgbZIgahunyXy5m2M+E50J+oiwmnofxgPRsgde0jbOyagxGCLtAWr34lkK9XkOQAU04dHYi9Ged7CpDSoTFXA=
