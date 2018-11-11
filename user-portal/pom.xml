@@ -6,7 +6,6 @@
     <groupId>com.devglan</groupId>
     <artifactId>HOTELRESERVATION</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
 
     <name>HOTELRESERVATION</name>
     <description>Demo project for Spring Boot</description>
