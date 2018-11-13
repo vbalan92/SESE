@@ -5,7 +5,7 @@ import { Customer } from '../models/customer.model';
 import { CustomerService } from './customer.service';
 
 @Component({
-  templateUrl: './add-customer.component.html'
+  templateUrl: './details-customer.component.html'
 })
 export class AddCustomerComponent {
 
@@ -14,6 +14,16 @@ export class AddCustomerComponent {
   constructor(private router: Router, private customerService: CustomerService) {
 
   }
+
+  detailsCustomer(): void {
+    this.customerService.getCustomer(this.selectedCustomer)
+      .subscribe( data => {
+        this.gotoCustomers();
+        alert('Customer updated successfully.');
+      });
+
+  }
+
 
   updateCustomer(): void {
     this.customerService.updateCustomer(this.selectedCustomer)
