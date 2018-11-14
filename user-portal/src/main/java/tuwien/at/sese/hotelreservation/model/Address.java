@@ -1,5 +1,7 @@
 package tuwien.at.sese.hotelreservation.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 
 /**
@@ -9,9 +11,13 @@ import javax.persistence.Embeddable;
  *
  */
 @Embeddable
-public class Address {
+public class Address implements Serializable {
 
-    /** The bedeutung is not final because it has a setter. */
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/** The bedeutung is not final because it has a setter. */
 
     private String postlandschl;
     private String postleitzahl;

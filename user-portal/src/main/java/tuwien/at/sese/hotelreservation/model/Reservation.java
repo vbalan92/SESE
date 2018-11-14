@@ -1,5 +1,6 @@
 package tuwien.at.sese.hotelreservation.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +17,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "reservation")
-public class Reservation extends EntityId {
+public class Reservation extends EntityId implements Serializable {
 
-	@ManyToMany(mappedBy = "reservations", targetEntity = Customer.class)
-	private List<Customer> customers = new ArrayList<>();
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	
 	
 	@ManyToOne(targetEntity = Room.class)
     @JoinColumn(name = "room")
@@ -37,14 +42,7 @@ public class Reservation extends EntityId {
 	@Column
 	private int duration;
 
-    /**
-     * Gets the customers.
-     *
-     * @return the customers
-     */
-	public List<Customer> getCustomers() {
-		return customers;
-	}
+    
 
     /**
      * Gets the room.
@@ -75,15 +73,7 @@ public class Reservation extends EntityId {
 		return duration;
 	}
 
-    /**
-     * Sets the customers.
-     *
-     * @param customers the new customers
-     */
-	public void setCustomers(List<Customer> customers) {
-		this.customers = customers;
-	}
-
+    
     /**
      * Sets the room.
      *

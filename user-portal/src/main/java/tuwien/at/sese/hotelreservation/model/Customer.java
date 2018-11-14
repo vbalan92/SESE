@@ -1,5 +1,6 @@
 package tuwien.at.sese.hotelreservation.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -17,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "customer")
-public class Customer extends Person {
+public class Customer extends Person implements Serializable {
 
 
     @Column

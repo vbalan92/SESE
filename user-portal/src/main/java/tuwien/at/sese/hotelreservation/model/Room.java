@@ -1,5 +1,6 @@
 package tuwien.at.sese.hotelreservation.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -10,8 +11,13 @@ import javax.persistence.OneToMany;
  * The Class Room.
  */
 @Entity
-public class Room extends EntityId {
+public class Room extends EntityId implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private String name;
 	private String number;
 	private int maxOccupancy;
