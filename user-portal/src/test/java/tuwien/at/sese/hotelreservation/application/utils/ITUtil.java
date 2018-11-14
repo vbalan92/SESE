@@ -53,15 +53,16 @@ public class ITUtil {
      *
      * @return the reservation
      */
-    public static Reservation createDummyReservation() {
+    public static Reservation createDummyReservation(Room room) {
         Reservation reservation = new Reservation();
         Date date = new Date(System.currentTimeMillis());
 
         reservation.setBeginnDate(date);
-        reservation.setEndDate(Date.valueOf(LocalDate.from(date.toInstant()).plusDays(7)));
+        reservation.setEndDate(new Date(date.getYear(), date.getMonth(), date.getDay()+7));
         reservation.setCustomers(Arrays.asList(createDummyCustomer()));
         reservation.setRabatt("5");
-        reservation.setRoom(createDummyRoom());
+        reservation.setDuration(7);
+        reservation.setRoom(room);
 
         return reservation;
     }

@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,13 @@ public class CustomerPortalApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
+	
+	@Before
+	public void setup(){
+		Room room = ITUtil.createDummyRoom();
+		// create
+		roomRepository.save(room);
+	}
 
 	@Rollback(false)
 	@Test
@@ -65,9 +73,9 @@ public class CustomerPortalApplicationTests {
 		Assert.assertTrue("not empty", !founds.isEmpty());
 	}
 
-//	FIXME @ Abbas @Test
+	@Test
 	public void createReservation() {
-		Reservation reservation = ITUtil.createDummyReservation();
+		Reservation reservation = ITUtil.createDummyReservation(roomRepository.findAll().get(0));
 		// create
 		reservationRepository.save(reservation);
 
