@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 import { Customer } from '../models/customer.model';
 import {CustomerService} from './customer.service';
@@ -14,7 +14,6 @@ export class CustomerComponent implements OnInit {
   customers: Customer[];
 
   constructor(private router: Router, private customerService: CustomerService) {
-
   }
 
   ngOnInit() {
@@ -22,15 +21,21 @@ export class CustomerComponent implements OnInit {
       .subscribe( data => {
         this.customers = data;
       });
-  };
+  }
 
   deleteCustomer(customer: Customer): void {
     this.customerService.deleteCustomer(customer)
       .subscribe( data => {
         this.customers = this.customers.filter(u => u !== customer);
-      })
-  };
+      });
+  }
+
+  detailCustomer(customer: Customer): void {
+        this.gotoDetailsCustomers(customer);
+  }
+
+  gotoDetailsCustomers(customer: Customer) {
+    this.router.navigate(['/customerDetails' , customer.id]);
+  }
 
 }
-
-

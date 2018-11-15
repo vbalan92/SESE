@@ -53,7 +53,7 @@ public class CustomerPortalApplicationTests {
 		Reservation reservation = new Reservation();
 		reservation.setBeginnDate(new Date(1000));
 		reservation.setEndDate(new Date(1200));
-		reservation.getCustomers().add(alex);
+		
 
 		Room room = new Room();
 		room.setName("alex");

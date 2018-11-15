@@ -1,48 +1,58 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  ChangeDetectionStrategy, ChangeDetectorRef, Component, Directive, EventEmitter, Input, OnInit,
+  Output
+} from '@angular/core';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
-import { Customer } from '../models/customer.model';
-import { CustomerService } from './customer.service';
+import {Customer} from '../models/customer.model';
+import {CustomerService} from './customer.service';
+import {switchMap} from "rxjs/internal/operators";
+import {Observable} from "rxjs/index";
 
 @Component({
-  templateUrl: './details-customer.component.html'
+  templateUrl: './details-customer.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AddCustomerComponent {
 
-  selectedCustomer: Customer = new Customer();
+export class DetailsCustomerComponent implements OnInit {
+  selectedId: number;
+  selectedCustomer: Customer;
 
-  constructor(private router: Router, private customerService: CustomerService) {
-
+  constructor(private route: ActivatedRoute, private router: Router, private customerService: CustomerService,  private cd: ChangeDetectorRef) {
   }
 
-  detailsCustomer(): void {
-    this.customerService.getCustomer(this.selectedCustomer)
-      .subscribe( data => {
-        this.gotoCustomers();
-        alert('Customer updated successfully.');
-      });
-
+  ngOnInit() {
+    const id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.selectedId = id;
+    this.getCustomer(id);
+    this.cd.markForCheck();
   }
 
 
   updateCustomer(): void {
     this.customerService.updateCustomer(this.selectedCustomer)
-      .subscribe( data => {
+      .subscribe(data => {
         this.gotoCustomers();
         alert('Customer updated successfully.');
       });
-
   }
 
-  deleteCustomer(customer: Customer): void {
-    this.customerService.getCustomer(customer)
-      .subscribe( data => {
-        this.selectedCustomer = <Customer>data;
-      });
+
+  getCustomer(id): void {
+    this.customerService.getCustomerWithId(id).subscribe((customer: Customer) => {
+        this.selectedCustomer = customer;
+      },
+      (exception: any) => {
+        console.log('Error');
+      },
+      () => {
+        console.log('SERVICE CALL completed');
+      }
+    );
   }
 
   gotoCustomers() {
-    this.router.navigate(['/details']);
+    this.router.navigate(['/customerDetails']);
   }
 
 }

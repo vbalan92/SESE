@@ -59,7 +59,6 @@ public class ITUtil {
 
         reservation.setBeginnDate(date);
         reservation.setEndDate(new Date(date.getYear(), date.getMonth(), date.getDay()+7));
-        reservation.setCustomers(Arrays.asList(createDummyCustomer()));
         reservation.setRabatt("5");
         reservation.setDuration(7);
         reservation.setRoom(room);
