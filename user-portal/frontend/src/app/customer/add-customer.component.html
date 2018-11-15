@@ -17,6 +17,14 @@
   </div>
 
   <div class="form-group">
+    <label >Strasse:</label>
+    <input [(ngModel)]="customer.billAddress.strasse" placeholder="Street Str" name="street" class="form-control" id="street">
+    <input [(ngModel)]="customer.billAddress.hausnr" placeholder="003" name="hausnr" class="form-control" id="hausnr">
+    <input [(ngModel)]="customer.billAddress.postleitzahl" placeholder="003" name="PLZ" class="form-control" id="plz">
+    <input [(ngModel)]="customer.billAddress.ort" placeholder="003" name="PLZ" class="form-control" id="plz">
+  </div>
+
+  <div class="form-group">
     <label for="geburtsdatum">Geburtdatum:</label>
     <input [(ngModel)]="customer.geburtsdatum" placeholder="Geburts - Datum" name="geburtsdatum" class="form-control" id="geburtsdatum">
   </div>

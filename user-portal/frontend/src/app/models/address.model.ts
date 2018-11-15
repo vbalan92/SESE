@@ -5,4 +5,5 @@ export class Address {
   strasse: string;
   hausnr: string;
   tuernr: string;
+  ort: string;
 }

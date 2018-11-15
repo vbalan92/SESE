@@ -3,7 +3,6 @@ import {Room} from "../hotel-management/room-list/models/room";
 import {Reservation} from "./reservation.model";
 
 export class Customer {
-
   id: string;
   firstName: string;
   lastName: string;
@@ -15,7 +14,7 @@ export class Customer {
   geburtsdatum: string;
   notiz: string;
   firmenname: string;
-  address: Address;
+  billAddress: Address;
   room: Room;
   reservations: Reservation[];
 }

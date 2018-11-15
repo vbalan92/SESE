@@ -28,6 +28,9 @@ export class DetailsCustomerComponent implements OnInit {
     this.cd.markForCheck();
   }
 
+  change($event) {
+    this.selectedCustomer.fax = $event.target.value;
+  }
 
   updateCustomer(): void {
     this.customerService.updateCustomer(this.selectedCustomer)
