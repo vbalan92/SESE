@@ -18,14 +18,13 @@ export class DetailsCustomerComponent implements OnInit {
   selectedId: number;
   selectedCustomer: Customer;
 
-  constructor(private route: ActivatedRoute, private router: Router, private customerService: CustomerService,  private cd: ChangeDetectorRef) {
+  constructor(private route: ActivatedRoute, private router: Router, private customerService: CustomerService) {
   }
 
   ngOnInit() {
     const id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.selectedId = id;
     this.getCustomer(id);
-    this.cd.markForCheck();
   }
 
   change($event) {
