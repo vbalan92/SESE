@@ -1,0 +1,160 @@
+<div class="col-md-12">
+  <h2 class="text-center">Customer Detail</h2>
+  <form>
+
+
+    <div class="form-group">
+      <div class="col-md-3 pull-left">
+      <label for="firstName">First Name:</label>
+      </div>
+      <div class="col-md-3 pull-left" >
+      <input [(ngModel)]="model.firstName" placeholder="First Name" name="firstName" class="form-control"
+             id="firstName">
+      </div>
+
+      <div class="col-md-3 pull-left">
+      <label for="lastName">Last Name:</label>
+      </div>
+      <div class="col-md-3 pull-left">
+      <input [(ngModel)]="model.lastName" placeholder="Last name" name="lastName" class="form-control" id="lastName">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email address:{{model.email}}</label>
+      <input type="email" [(ngModel)]="model.email" (ngModelChange)="model.email=$event" placeholder="Email"
+             name="email" class="form-control" id="email">
+    </div>
+
+    <div class="form-group">
+      <label for="geburtsdatum">Geburtdatum:</label>
+      <input [(ngModel)]="model.birtdate" placeholder="Geburts - Datum" name="geburtsdatum" class="form-control"
+             id="geburtsdatum">
+    </div>
+    <!-- todo
+      <div class="form-group">
+        <label >Street / House Nr</label>
+        <div class="col-md-6">
+          <input [(ngModel)]="customer.billAddress.strasse" placeholder="Street Str" name="street" class="form-control" id="street">
+        </div>
+        <div class="col-md-6">
+          <input [(ngModel)]="customer.billAddress.hausnr" placeholder="003" name="hausnr" class="form-control" id="hausnr">
+        </div>
+      </div>
+      <div class="form-group">
+        <label >postleitzahl / ort</label>
+        <div class="col-md-6">
+          <input [(ngModel)]="customer.billAddress.postleitzahl" placeholder="003" name="PLZ" class="form-control" id="plz">
+        </div>
+        <div class="col-md-6">
+          <input [(ngModel)]="customer.billAddress.ort" placeholder="003" name="ort" class="form-control" id="ort">
+        </div>
+      </div>
+
+    -->
+    <div class="form-group">
+      <label for="firmenname">Firmenname:</label>
+      <input [(ngModel)]="model.firmenname" (ngModelChange)="model.firmenname=$event"
+             placeholder="Firmenname (Optional)" name="firmenname" class="form-control" id="firmenname">
+    </div>
+
+
+    <div class="form-group">
+      <label for="Rabatt">Rabatt:</label>
+      <input [(ngModel)]="model.rabatt" placeholder="Rabatt" name="rabatt" class="form-control" id="rabatt">
+    </div>
+
+    <div class="form-group">
+      <label for="notiz">Notiz:</label>
+      <textarea [(ngModel)]="model.notiz" placeholder="Notiz" name="notiz" class="form-control" id="notiz"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="telefonnummer">Telefonnummer:</label>
+      <input type="number" [(ngModel)]="model.phone" (ngModelChange)="model.phone=$event" placeholder="Telefonnummer"
+             name="telefonnummer" class="form-control" id="telefonnummer">
+    </div>
+
+    <div class="form-group">
+      <label for="fax">Fax :</label>
+      <input type="text" [(ngModel)]="model.fax" placeholder="Fax" name="fax" class="form-control" id="fax"
+             (ngModelChange)="change($event)">
+    </div>
+
+    <div class="form-group">
+      <label for="website">Website:</label>
+      <input type="text" [(ngModel)]="model.webadresse" placeholder="website" name="website" class="form-control"
+             id="website">
+    </div>
+    <div class="form-group m-lg4">
+      <button class="btn btn-success" (click)="show()" *ngIf="!showReservationBlock">More Details</button>
+    </div>
+    <div id="roomBlock" *ngIf="showRoomBlock">
+      <p>Room</p>
+      <div class="form-group">
+        <label for="roomName">Roomname :</label>
+        <input type="text" [(ngModel)]="model.room.name" placeholder="Name" name="roomName" class="form-control"
+               id="roomName">
+      </div>
+
+      <div class="form-group">
+        <label for="roomName">Id :</label>
+        <input type="text" [(ngModel)]="model.room.id" placeholder="id" name="id" class="form-control" id="id"
+               disabled="disabled">
+      </div>
+
+      <div class="form-group">
+        <label for="roomPrice">Price:</label>
+        <input type="text" [(ngModel)]="model.room.price" placeholder="price" name="roomPrice" class="form-control"
+               id="roomPrice">
+      </div>
+
+      <div class="form-group">
+        <label for="roomCapacity">Capacity:</label>
+        <input type="text" [(ngModel)]="model.room.capacity" placeholder="capacity" name="capacity" class="form-control"
+               id="roomCapacity">
+      </div>
+
+      <div class="form-group">
+        <label for="roomDescription">Description:</label>
+        <input type="text" [(ngModel)]="model.room.description" placeholder="description" name="capacity"
+               class="form-control" id="roomDescription">
+      </div>
+    </div>
+    <div id="reservation" *ngIf="showReservationBlock">
+      <p>TODO List Reservation</p>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th class="hidden">Id</th>
+          <th>Beginndate</th>
+          <th>EndDate</th>
+          <th>Duration</th>
+          <th>Rabatt</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let reservation of model.reservations">
+          <td class="hidden">{{reservation.id}}</td>
+          <td>{{reservation.beginnDate}}</td>
+          <td>{{reservation.endDate}}</td>
+          <td>{{reservation.duration}}</td>
+          <td>{{reservation.rabatt}}</td>
+          <td>
+            <button type="button" class="close" aria-label="Close" (click)="deleteReservation(reservation)">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-info" (click)="detailReservation(reservation)">
+              <span class="glyphicon glyphicon-info"></span> details
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <button class="btn btn-success" (click)="updateCustomer(model)">Update</button>
+  </form>
+</div>
