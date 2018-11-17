@@ -14,6 +14,7 @@ import {Address} from "../models/address.model";
 export class CustomerComponent implements OnInit {
 
   customers: Customer[];
+  cachedCustomers: Customer[];
   showDetail: boolean;
   selectedCustomer: Customer;
   searchCustomer: Customer;
@@ -27,16 +28,19 @@ export class CustomerComponent implements OnInit {
     this.customerService.getCustomers()
       .subscribe(data => {
         this.customers = data;
+        this.cachedCustomers = this.customers;
       });
   }
 
   search() {
-    if (this.searchCustomer.id) {
-      this.customers.filter(item => item.id === this.searchCustomer.id);
+    if (this.searchCustomer) {
+      this.customers = this.customers.filter(
+        item => item.email === this.searchCustomer.email || item.lastName === this.searchCustomer.lastName);
     }
-    if (this.searchCustomer.email) {
-      this.customers.filter(item => item.email === this.searchCustomer.email);
-    }
+  }
+
+  resetSearch() {
+    this.customers = this.cachedCustomers;
   }
 
 
@@ -52,7 +56,6 @@ export class CustomerComponent implements OnInit {
     this.selectedCustomer = customer;
 
   }
-
 
 
 }

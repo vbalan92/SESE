@@ -1,27 +1,29 @@
-<div class="col-md-6">
+<div>
   <div *ngIf="!showDetail">
     <h2> Customer Search</h2>
     <form>
-      <div class="form-group col-md-5 pull-left">
-        <label for="firstName">Number:</label>
-        <input [(ngModel)]="searchCustomer.id" placeholder="First Name" name="firstName" class="form-control"
-               id="firstName">
-      </div>
-
-      <div class="form-group col-md-5 pull-left">
-        <label for="lastName">Lastname:</label>
-        <input [(ngModel)]="searchCustomer.lastName" placeholder="Last name" name="lastName" class="form-control"
-               id="lastName">
-      </div>
       <div class="form-group">
-
-        <label for="email">Email address:</label>
+        <div class="col-md-3 pull-left">
+        <label for="lastName">Last Name:</label>
+        </div>
+        <div class="col-md-3 pull-left">
+        <input [(ngModel)]="searchCustomer.lastName" placeholder="Last Name" name="lastName" class="form-control"
+               id="lastName">
+        </div>
+        <div class="col-md-2 pull-left">
+        <label for="email">Email :</label>
+        </div>
+        <div class="col-md-3 pull-left">
         <input type="email" [(ngModel)]="searchCustomer.email" placeholder="Email" name="email" class="form-control"
                id="email">
-
+        </div>
       </div>
 
-      <button class="btn btn-success" (click)="search()">Search</button>
+      <button class="btn btn-success pull-left" (click)="search()">Search</button>
+
+
+      <button class="btn btn-success  pull-right" (click)="resetSearch()">ResetFilter</button>
+
     </form>
 
     <h3>Customer Results</h3>

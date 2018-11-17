@@ -34,8 +34,15 @@ export class DetailsCustomerComponent implements OnInit {
   }
 
   updateCustomer(): void {
-    this.customerService.updateCustomer(this.model);
-    this.showDetail.emit(true);
+    this.customerService.updateCustomer(this.model)
+      .subscribe(data => {
+        this.goToCustomers();
+        alert('Customer updated successfully.');
+      });
+  }
+
+  goToCustomers() {
+    this.router.navigate(['/customerlist']);
   }
 
 
