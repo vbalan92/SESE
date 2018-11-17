@@ -38,9 +38,10 @@ public class CustomerPortalApplicationTests {
 	public void contextLoads() {
 	}
 	
+	Room room = null;
 	@Before
 	public void setup(){
-		Room room = ITUtil.createDummyRoom();
+		 room = ITUtil.createDummyRoom();
 		// create
 		roomRepository.save(room);
 	}
@@ -50,6 +51,7 @@ public class CustomerPortalApplicationTests {
 	public void whenFindByName_thenReturnCustomer() {
 		// given
 		Customer alex = ITUtil.createDummyCustomer();
+		alex.setRoom(room);
 		Reservation reservation = new Reservation();
 		reservation.setBeginnDate(new Date(1000));
 		reservation.setEndDate(new Date(1200));
@@ -61,7 +63,7 @@ public class CustomerPortalApplicationTests {
 		room.setMaxOccupancy(2);
 		room.setPriceEZ(100.00);
 
-		// reservation.setRoom(room);
+		
 		alex.getReservations().add(reservation);
 
 		customerRepository.save(alex);

@@ -29,6 +29,7 @@ public class ITUtil {
         customer.setFirmenname("Firme");
         customer.setCustomerNumber("0001");
         customer.setBillAddress(createDummyAddress());
+       
         return customer;
     }
 
@@ -62,7 +63,7 @@ public class ITUtil {
         reservation.setRabatt("5");
         reservation.setDuration(7);
         reservation.setRoom(room);
-
+        
         return reservation;
     }
 

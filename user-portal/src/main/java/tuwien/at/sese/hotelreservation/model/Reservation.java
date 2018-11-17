@@ -24,8 +24,6 @@ public class Reservation extends EntityId implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
-	
 	@ManyToOne(targetEntity = Room.class)
     @JoinColumn(name = "room")
 	private Room room;
@@ -73,7 +71,8 @@ public class Reservation extends EntityId implements Serializable {
 		return duration;
 	}
 
-    
+   
+
     /**
      * Sets the room.
      *

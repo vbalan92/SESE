@@ -17,16 +17,27 @@
   </div>
 
   <div class="form-group">
-    <label >Strasse:</label>
-    <input [(ngModel)]="customer.billAddress.strasse" placeholder="Street Str" name="street" class="form-control" id="street">
-    <input [(ngModel)]="customer.billAddress.hausnr" placeholder="003" name="hausnr" class="form-control" id="hausnr">
-    <input [(ngModel)]="customer.billAddress.postleitzahl" placeholder="003" name="PLZ" class="form-control" id="plz">
-    <input [(ngModel)]="customer.billAddress.ort" placeholder="003" name="PLZ" class="form-control" id="plz">
+    <label for="geburtsdatum">Geburtdatum:</label>
+    <input [(ngModel)]="customer.birtdate" placeholder="Geburts - Datum" name="geburtsdatum" class="form-control" id="geburtsdatum">
   </div>
 
   <div class="form-group">
-    <label for="geburtsdatum">Geburtdatum:</label>
-    <input [(ngModel)]="customer.geburtsdatum" placeholder="Geburts - Datum" name="geburtsdatum" class="form-control" id="geburtsdatum">
+    <label >Street / House Nr</label>
+    <div class="col-md-6">
+    <input [(ngModel)]="customer.billAddress.strasse" placeholder="Street Str" name="street" class="form-control" id="street">
+    </div>
+    <div class="col-md-6">
+    <input [(ngModel)]="customer.billAddress.hausnr" placeholder="003" name="hausnr" class="form-control" id="hausnr">
+    </div>
+  </div>
+  <div class="form-group">
+    <label >postleitzahl / ort</label>
+    <div class="col-md-6">
+    <input [(ngModel)]="customer.billAddress.postleitzahl" placeholder="003" name="PLZ" class="form-control" id="plz">
+    </div>
+    <div class="col-md-6">
+    <input [(ngModel)]="customer.billAddress.ort" placeholder="003" name="ort" class="form-control" id="ort">
+    </div>
   </div>
 
 
@@ -48,7 +59,7 @@
 
   <div class="form-group">
     <label for="Telefonnummer">Telefonnummer:</label>
-    <input type="number" [(ngModel)]="customer.telefonnummer" placeholder="Telefonnummer" name="telefonnummer" class="form-control" id="telefonnummer">
+    <input type="number" [(ngModel)]="customer.phone" placeholder="Telefonnummer" name="telefonnummer" class="form-control" id="telefonnummer">
   </div>
 
   <div class="form-group">
@@ -58,7 +69,7 @@
 
   <div class="form-group">
     <label for="web">Web:</label>
-    <input type="text" [(ngModel)]="customer.web" placeholder="web" name="web" class="form-control" id="web">
+    <input type="text" [(ngModel)]="customer.webadresse" placeholder="web" name="web" class="form-control" id="web">
   </div>
 
   <button class="btn btn-success" (click)="createCustomer()"  >Create</button>

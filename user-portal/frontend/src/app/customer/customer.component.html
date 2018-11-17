@@ -1,33 +1,61 @@
 <div class="col-md-6">
-<h2> Customer Details</h2>
+  <div *ngIf="!showDetail">
+    <h2> Customer Search</h2>
+    <form>
+      <div class="form-group col-md-5 pull-left">
+        <label for="firstName">Number:</label>
+        <input [(ngModel)]="searchCustomer.id" placeholder="First Name" name="firstName" class="form-control"
+               id="firstName">
+      </div>
 
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th class="hidden">Id</th>
-    <th>FirstName</th>
-    <th>LastName</th>
-    <th>Email</th>
-    <th>Action</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let customer of customers">
-    <td class="hidden">{{customer.id}}</td>
-    <td>{{customer.firstName}}</td>
-    <td>{{customer.lastName}}</td>
-    <td>{{customer.email}}</td>
-    <td>
-      <button type="button" class="close" aria-label="Close" (click)="deleteCustomer(customer)">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </td>
-    <td>
-      <button type="button" class="btn btn-info" (click)="detailCustomer(customer)">
-        <span class="glyphicon glyphicon-info"></span> details
-      </button>
-    </td>
-  </tr>
-  </tbody>
-</table>
+      <div class="form-group col-md-5 pull-left">
+        <label for="lastName">Lastname:</label>
+        <input [(ngModel)]="searchCustomer.lastName" placeholder="Last name" name="lastName" class="form-control"
+               id="lastName">
+      </div>
+      <div class="form-group">
+
+        <label for="email">Email address:</label>
+        <input type="email" [(ngModel)]="searchCustomer.email" placeholder="Email" name="email" class="form-control"
+               id="email">
+
+      </div>
+
+      <button class="btn btn-success" (click)="search()">Search</button>
+    </form>
+
+    <h3>Customer Results</h3>
+    <table id="customerTable" class="table table-striped" *ngIf="!showDetail">
+      <thead>
+      <tr>
+        <th class="hidden">Id</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let customer of customers">
+        <td class="hidden">{{customer.id}}</td>
+        <td>{{customer.firstName}} {{customer.lastName}}</td>
+        <td>{{customer.billAddress.strasse}} / {{customer.billAddress.hausnr}} / {{customer.billAddress.postleitzahl}}
+          {{customer.billAddress.ort}}
+        </td>
+        <td>{{customer.email}}</td>
+        <td>
+          <button type="button" class="close" aria-label="Close" (click)="deleteCustomer(customer)">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-info" (click)="detailCustomer(customer)">
+            <span class="glyphicon glyphicon-info"></span> details
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+<app-details-customer-component *ngIf="showDetail" [model]="selectedCustomer"></app-details-customer-component>

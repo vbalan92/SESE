@@ -7,14 +7,14 @@ export class Customer {
   firstName: string;
   lastName: string;
   email: string;
-  telefonnummer: string;
+  phone: string;
   fax: string;
-  web: string;
+  webadresse: string;
   rabatt: string;
-  geburtsdatum: string;
+  birtdate: string;
   notiz: string;
   firmenname: string;
-  billAddress: Address;
+  billAddress: Address = new Address();
   room: Room;
   reservations: Reservation[];
 }
