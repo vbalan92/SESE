@@ -21,15 +21,21 @@
     </div>
 
     <div class="form-group">
-      <label for="email">Email address:{{model.email}}</label>
+      <div class="col-md-3 pull-left">
+      <label for="email">Email address:</label>
+      </div>
+      <div class="col-md-3 pull-left">
       <input type="email" [(ngModel)]="model.email" (ngModelChange)="model.email=$event" placeholder="Email"
              name="email" class="form-control" id="email">
-    </div>
+      </div>
+        <div class="col-md-3 pull-left">
 
-    <div class="form-group">
       <label for="geburtsdatum">Geburtdatum:</label>
-      <input [(ngModel)]="model.birtdate" placeholder="Geburts - Datum" name="geburtsdatum" class="form-control"
+        </div>
+      <div class="col-md-3 pull-left">
+          <input [(ngModel)]="model.birtdate" placeholder="Geburts - Datum" name="geburtsdatum" class="form-control"
              id="geburtsdatum">
+      </div>
     </div>
     <!-- todo
       <div class="form-group">
@@ -50,79 +56,111 @@
           <input [(ngModel)]="customer.billAddress.ort" placeholder="003" name="ort" class="form-control" id="ort">
         </div>
       </div>
-
     -->
     <div class="form-group">
+      <div class="col-md-3 pull-left">
       <label for="firmenname">Firmenname:</label>
+      </div>
+      <div class="col-md-3 pull-left">
       <input [(ngModel)]="model.firmenname" (ngModelChange)="model.firmenname=$event"
              placeholder="Firmenname (Optional)" name="firmenname" class="form-control" id="firmenname">
-    </div>
-
-
-    <div class="form-group">
+      </div>
+      <div class="col-md-3 pull-left">
       <label for="Rabatt">Rabatt:</label>
+      </div>
+      <div class="col-md-3 pull-left">
       <input [(ngModel)]="model.rabatt" placeholder="Rabatt" name="rabatt" class="form-control" id="rabatt">
+      </div>
     </div>
 
     <div class="form-group">
+      <div class="col-md-3 pull-left">
+        <label for="telefonnummer">Telefonnummer:</label>
+
+      </div>
+      <div class="col-md-3 pull-left">
+        <input type="number" [(ngModel)]="model.phone" (ngModelChange)="model.phone=$event" placeholder="Telefonnummer"
+               name="telefonnummer" class="form-control" id="telefonnummer">
+      </div>
+      <div class="col-md-3 pull-left">
+        <label for="fax">Fax :</label>
+      </div>
+      <div class="col-md-3 pull-left">
+        <input type="text" [(ngModel)]="model.fax" placeholder="Fax" name="fax" class="form-control" id="fax"
+               (ngModelChange)="change($event)">
+      </div>
+
+    </div>
+    <div class="form-group">
+      <div class="col-md-3 pull-left">
+        <label for="website">Website:</label>
+      </div>
+      <div class="col-md-3 pull-left">
+        <input type="text" [(ngModel)]="model.webadresse" placeholder="website" name="website" class="form-control"
+               id="website">
+      </div>
+      <div class="col-md-3 pull-left">
       <label for="notiz">Notiz:</label>
+      </div>
+      <div class="col-md-3 pull-left">
       <textarea [(ngModel)]="model.notiz" placeholder="Notiz" name="notiz" class="form-control" id="notiz"></textarea>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="telefonnummer">Telefonnummer:</label>
-      <input type="number" [(ngModel)]="model.phone" (ngModelChange)="model.phone=$event" placeholder="Telefonnummer"
-             name="telefonnummer" class="form-control" id="telefonnummer">
-    </div>
 
-    <div class="form-group">
-      <label for="fax">Fax :</label>
-      <input type="text" [(ngModel)]="model.fax" placeholder="Fax" name="fax" class="form-control" id="fax"
-             (ngModelChange)="change($event)">
-    </div>
-
-    <div class="form-group">
-      <label for="website">Website:</label>
-      <input type="text" [(ngModel)]="model.webadresse" placeholder="website" name="website" class="form-control"
-             id="website">
-    </div>
     <div class="form-group m-lg4">
       <button class="btn btn-success" (click)="show()" *ngIf="!showReservationBlock">More Details</button>
     </div>
     <div id="roomBlock" *ngIf="showRoomBlock">
-      <p>Room</p>
+      <h2 class="text-center">Room Details TODO</h2>
       <div class="form-group">
+        <div class="col-md-3 pull-left">
         <label for="roomName">Roomname :</label>
+        </div>
+        <div class="col-md-3 pull-left">
         <input type="text" [(ngModel)]="model.room.name" placeholder="Name" name="roomName" class="form-control"
                id="roomName">
-      </div>
+        </div>
 
-      <div class="form-group">
+
+        <div class="col-md-3 pull-left">
         <label for="roomName">Id :</label>
+        </div>
+        <div class="col-md-3 pull-left">
         <input type="text" [(ngModel)]="model.room.id" placeholder="id" name="id" class="form-control" id="id"
                disabled="disabled">
+        </div>
       </div>
 
       <div class="form-group">
+        <div class="col-md-3 pull-left">
         <label for="roomPrice">Price:</label>
+        </div>
+        <div class="col-md-3 pull-left">
         <input type="text" [(ngModel)]="model.room.price" placeholder="price" name="roomPrice" class="form-control"
                id="roomPrice">
-      </div>
-
-      <div class="form-group">
+        </div>
+        <div class="col-md-3 pull-left">
         <label for="roomCapacity">Capacity:</label>
+        </div>
+        <div class="col-md-3 pull-left">
         <input type="text" [(ngModel)]="model.room.capacity" placeholder="capacity" name="capacity" class="form-control"
                id="roomCapacity">
+        </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group clearfix">
+        <div class="col-md-3 pull-left">
         <label for="roomDescription">Description:</label>
-        <input type="text" [(ngModel)]="model.room.description" placeholder="description" name="capacity"
-               class="form-control" id="roomDescription">
+        </div>
+        <div class="col-md-9 pull-left">
+        <textarea type="text" [(ngModel)]="model.room.description" placeholder="description" name="capacity"
+                  class="form-control" id="roomDescription"></textarea>
+        </div>
       </div>
     </div>
     <div id="reservation" *ngIf="showReservationBlock">
-      <p>TODO List Reservation</p>
+      <h2 class="text-center">TODO List Reservation</h2>
       <table class="table table-striped">
         <thead>
         <tr>
