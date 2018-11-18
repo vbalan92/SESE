@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {CustomerComponent} from './customer/customer.component';
 import {AppRoutingModule} from './app.routing.module';
 import {CustomerService} from './customer/customer.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from "@angular/common/http";
 import {AddCustomerComponent} from './customer/add-customer.component';
 import {UiModule} from './ui/ui.module';
 import {ContactComponent} from './contact/contact.component';
@@ -16,7 +16,7 @@ import {DetailsCustomerComponent} from './customer/details-customer.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ReservationService} from './services/reservation.service';
 import {RoomService} from './hotel-management/room-list/service/room.service';
-
+import {httpInterceptorProviders} from './auth/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import {RoomService} from './hotel-management/room-list/service/room.service';
     HotelManagementModule,
     NgbModule.forRoot()
   ],
-  providers: [CustomerService, ReservationService, RoomService],
+  providers: [CustomerService, ReservationService, RoomService, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {

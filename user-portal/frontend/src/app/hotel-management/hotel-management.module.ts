@@ -10,6 +10,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 const routes: Routes = [
+  { path: 'management', component: RoomListComponent },
   { path: 'roomlist', component: RoomListComponent },
   { path: 'roomdetail', component: RoomDetailComponent },
   { path: 'roomdetail/:id', component: RoomDetailComponent },

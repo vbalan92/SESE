@@ -1,8 +1,5 @@
 package tuwien.at.sese.hotelreservation.application;
 
-import java.sql.Date;
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,29 +7,46 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import tuwien.at.sese.hotelreservation.application.utils.ITUtil;
+import tuwien.at.sese.hotelreservation.message.request.SignUpForm;
 import tuwien.at.sese.hotelreservation.model.Customer;
 import tuwien.at.sese.hotelreservation.model.Reservation;
+import tuwien.at.sese.hotelreservation.model.Role;
+import tuwien.at.sese.hotelreservation.model.RoleName;
 import tuwien.at.sese.hotelreservation.model.Room;
+import tuwien.at.sese.hotelreservation.model.User;
 import tuwien.at.sese.hotelreservation.repository.CustomerRepository;
 import tuwien.at.sese.hotelreservation.repository.ReservationRepository;
+import tuwien.at.sese.hotelreservation.repository.RoleRepository;
 import tuwien.at.sese.hotelreservation.repository.RoomRepository;
+import tuwien.at.sese.hotelreservation.repository.UserRepository;
+
+import javax.validation.Valid;
+import java.sql.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(properties = {"app.jwtSecret=secret", "app.jwtExpiration=2344342"})
 @EnableJpaRepositories(basePackages = "tuwien.at.sese.hotelreservation.reprository")
 public class CustomerPortalApplicationTests {
 
 	@Autowired
 	private CustomerRepository customerRepository;
-
 	@Autowired
 	private ReservationRepository reservationRepository;
-
 	@Autowired
 	private RoomRepository roomRepository;
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private RoleRepository roleRepository;
+	@Autowired
+	private PasswordEncoder encoder;
 
 	@Test
 	public void contextLoads() {
@@ -114,7 +128,59 @@ public class CustomerPortalApplicationTests {
 		Assert.assertTrue("not empty", !founds.isEmpty());
 
 	}
-	
+
+	@Test
+	public void createUser() {
+		final SignUpForm admin = new SignUpForm();
+		admin.setName("Admin");
+		admin.setUsername("admin");
+		admin.setEmail("admin@mail.com");
+		admin.setPassword("password");
+		admin.setRole(new HashSet<String>(){{add("admin");}});
+		createUser(admin);
+
+		final @Valid SignUpForm user = new SignUpForm();
+		user.setName("User");
+		user.setUsername("user");
+		user.setEmail("user@mail.com");
+		user.setPassword("password");
+		user.setRole(new HashSet<String>(){{add("user");}});
+		createUser(user);
+	}
+	void createUser(SignUpForm signUpRequest){
+		User user = new User(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail(),
+			encoder.encode(signUpRequest.getPassword()));
+
+		Set<String> strRoles = signUpRequest.getRole();
+		Set<Role> roles = new HashSet<>();
+
+		strRoles.forEach(role -> {
+			switch (role)
+			{
+				case "admin":
+					Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
+						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+					roles.add(adminRole);
+
+					break;
+				case "pm":
+					Role pmRole = roleRepository.findByName(RoleName.ROLE_PM)
+						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+					roles.add(pmRole);
+
+					break;
+				default:
+					Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+					roles.add(userRole);
+			}
+		});
+
+		user.setRoles(roles);
+		userRepository.save(user);
+	}
+
+
 	@Test
 	public void createRooms() {
 		List<Room> rooms = ITUtil.createDummyRooms();

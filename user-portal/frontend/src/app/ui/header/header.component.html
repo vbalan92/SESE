@@ -6,16 +6,43 @@
       <a class="nav-item nav-link" routerLink="/roomlist">Zimmer</a>
       <a class="nav-item nav-link" routerLink="/customerlist">Kunden</a>
       <a class="nav-item nav-link" routerLink="/contact">Kontakt</a>
+      <a *ngIf="authority === 'admin'" class="nav-item nav-link" routerLink="/management">Verwaltung</a>
+
     </div>
   </div>
   <div class="navbar-expand ml-auto navbar-nav">
     <div class="navbar-nav">
-      <form class="form-inline">
-        <div class="form-group">
-          <input [(ngModel)]="login" placeholder="email@address" name="login" class="form-control" id="login">
-          <a class="nav-item nav-link" href="#">Anmeldung</a>
-        </div>
+      <form class="form-inline" #loginForm="ngForm">
+        <label class="sr-only" for="login">Login</label>
+        <input *ngIf="!isLoggedIn"
+               [(ngModel)]="form.username"
+               placeholder="email@address"
+               name="login"
+               class="form-control"
+               id="login"
+               required>
+
+        <label class="sr-only" for="password">Password</label>
+        <input *ngIf="!isLoggedIn"
+               [(ngModel)]="form.password"
+               type="password"
+               placeholder="password"
+               name="password"
+               class="form-control"
+               id="password"
+               required>
+
+        <button *ngIf="!isLoggedIn"
+                type="submit"
+                class="btn btn-primary"
+                (click)="onSubmit()"
+                [attr.disabled]="loginForm.invalid ? '' : null">
+          Anmeldung
+        </button>
+        <span *ngIf="isLoggedIn" style="color:white;">{{loggedInUser}}</span>
+        <button *ngIf="isLoggedIn" class="btn btn-secondary" (click)="logout()">Logout</button>
       </form>
     </div>
   </div>
+
 </nav>
