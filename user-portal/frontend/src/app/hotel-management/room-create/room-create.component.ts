@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {Location} from "@angular/common";
-import {CreateRoomForm, Room} from "../room-list/models/room";
-import {ROOMS} from "../room-list/models/mock-room";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {RoomService} from "../room-list/service/room.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {CreateRoomForm, Room} from '../room-list/models/room';
+import {RoomService} from '../room-list/service/room.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-room-detail',
@@ -15,14 +13,12 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 export class CreateRoomComponent implements OnInit {
 
 
-
   rooms: Room[];
   private room: Room;
   private roomForm: FormGroup;
 
   constructor(private router: Router,
               private fb: FormBuilder,
-              private modalService: NgbModal,
               private roomService: RoomService) {
   }
 
@@ -48,5 +44,7 @@ export class CreateRoomComponent implements OnInit {
     this.initAuctionCreateForm(this.room);
   }
 
+  ngOnDestroy(): void {
+  }
 
 }

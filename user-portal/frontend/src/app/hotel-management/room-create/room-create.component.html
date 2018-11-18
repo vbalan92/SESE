@@ -3,15 +3,12 @@
 </button>
 <br/>
 <br/>
-<ng-template #content let-d="dismiss" let-c="close">
-  <div class="modal-header">
+<ng-template>
+  <div class="header">
     <h4 class="modal-title" id="modal-basic-title">Zimmer erstellen</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
   </div>
-  <div class="modal-body">
-    <form [formGroup]="createRoomForm" (ngSubmit)="createRoom()">
+  <div>
+    <form [formGroup]="roomForm" >
       <div class="form-group row">
         <label for="name" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
@@ -19,7 +16,8 @@
                  class="form-control"
                  id="name"
                  placeholder="name"
-                 formControlName="name">
+                 formControlName="name"
+                  [formControl] ="roomForm.name">
         </div>
       </div>
       <div class="form-group row">
@@ -29,7 +27,8 @@
                  class="form-control"
                  id="description"
                  placeholder="description"
-                 formControlName="description">
+                 formControlName="description"
+          >
         </div>
       </div>
 
@@ -107,12 +106,13 @@
           </div>
         </div>
       </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline" (click)="d()">Cancel</button>
-    <button type="button" class="btn btn-primary" (click)="c()"
+
+
+
+    <button type="button" class="btn btn-outline" >Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="onCreateRoom()"
             [attr.disabled]="roomForm.valid ? null : ''">Create
     </button>
+    </form>
   </div>
 </ng-template>

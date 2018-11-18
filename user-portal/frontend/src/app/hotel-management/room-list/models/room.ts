@@ -14,6 +14,8 @@ export class Room {
   mainPicture: string;
   capacity: number;
   price: number;
+  createdAt: string;
+  createdFrom: string;
 }
 
 export class CreateRoomForm {
@@ -23,6 +25,8 @@ export class CreateRoomForm {
   capacity: FormControl;
   description: FormControl;
   mainPicture: FormControl;
+  createdAt: FormControl;
+  createFrom: FormControl;
 
   constructor(private auction: Room, private fb: FormBuilder) {
     this.name = this.fb.control(this.auction.name, Validators.required);
