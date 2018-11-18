@@ -4,8 +4,8 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link active" routerLink="/home">Home</a>
       <a class="nav-item nav-link" routerLink="/roomlist">Zimmer</a>
-      <a class="nav-item nav-link" routerLink="/customerlist">Kunden</a>
       <a class="nav-item nav-link" routerLink="/contact">Kontakt</a>
+      <a *ngIf="authority === 'admin'" class="nav-item nav-link" routerLink="/customerlist">Kunden</a>
       <a *ngIf="authority === 'admin'" class="nav-item nav-link" routerLink="/management">Verwaltung</a>
 
     </div>

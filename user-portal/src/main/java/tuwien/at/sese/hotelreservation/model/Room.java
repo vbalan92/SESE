@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 
 /**
@@ -23,6 +26,8 @@ public class Room extends EntityId implements Serializable{
 	private String number;
 	private int capacity;
 	private double price;
+	@Column
+	@Enumerated(EnumType.STRING)
 	private RoomType type;
 	private String description;
 	private String mainPicture;

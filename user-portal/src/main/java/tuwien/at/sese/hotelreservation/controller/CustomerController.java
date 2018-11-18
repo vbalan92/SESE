@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +35,7 @@ public class CustomerController {
      * @return Customer
      */
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('ADMIN')")
     public Customer create(@RequestBody Customer customer){
         return customerService.create(customer);
     }
@@ -46,6 +48,7 @@ public class CustomerController {
      */
     
     @GetMapping(path = {"/{id}"},produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('ADMIN')")
     public Customer findOne(@PathVariable("id") Long id){
         return customerService.findById(id);
     }
@@ -58,6 +61,7 @@ public class CustomerController {
      * @return the customer
      */
     @PutMapping(path = {"/{id}"},produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('ADMIN')")
     public Customer update(@PathVariable("id") Long id, @RequestBody Customer customer){
         customer.setId(id);
         return customerService.update(customer);
@@ -70,6 +74,7 @@ public class CustomerController {
      * @return the customer
      */
     @DeleteMapping(path ={"/{id}"},produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('ADMIN')")
     public Customer delete(@PathVariable("id") Long id) {
         return customerService.delete(id);
     }
@@ -80,6 +85,7 @@ public class CustomerController {
      * @return the list
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Customer> findAll(){
         return customerService.findAll();
     }

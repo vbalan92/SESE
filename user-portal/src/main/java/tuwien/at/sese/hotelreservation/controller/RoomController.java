@@ -3,6 +3,7 @@ package tuwien.at.sese.hotelreservation.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +35,7 @@ public class RoomController {
      * @return the room
      */
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public Room create(@RequestBody Room room) {
         return roomService.create(room);
     }
@@ -57,6 +59,7 @@ public class RoomController {
      * @return the room
      */
     @PutMapping(path = {"/{id}"})
+    @PreAuthorize("hasRole('ADMIN')")
     public Room update(@PathVariable("id") Long id, @RequestBody Room room) {
         room.setId(id);
         return roomService.update(room);
@@ -69,6 +72,7 @@ public class RoomController {
      * @return the room
      */
     @DeleteMapping(path ={"/{id}"})
+    @PreAuthorize("hasRole('ADMIN')")
     public Room delete(@PathVariable("id") Long id) {
         return roomService.delete(id);
     }

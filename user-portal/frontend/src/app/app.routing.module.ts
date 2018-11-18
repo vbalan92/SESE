@@ -11,6 +11,7 @@ import {CreateRoomComponent} from "./hotel-management/room-create/room-create.co
 const routes: Routes = [
   {path: 'customers', component: CustomerComponent},
   {path: 'add', component: AddCustomerComponent},
+  {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'customerDetails/:id', component: DetailsCustomerComponent},

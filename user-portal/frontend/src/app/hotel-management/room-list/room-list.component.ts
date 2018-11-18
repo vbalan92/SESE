@@ -3,6 +3,7 @@ import {Room} from "./models/room";
 import {ROOMS} from "./models/mock-room";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RoomService} from "./service/room.service";
+import {TokenStorageService} from "../../auth/token-storage.service";
 
 @Component({
   selector: 'app-room-list',
@@ -12,14 +13,17 @@ import {RoomService} from "./service/room.service";
 export class RoomListComponent implements OnInit {
 
   availableRooms: Room[];
+  isLoggedIn: boolean;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private roomService: RoomService) {
+              private roomService: RoomService,
+              private token: TokenStorageService) {
   }
 
   ngOnInit() {
     this.createRooms();
+    this.isLoggedIn = this.token.getAuthorities().length > 0;
   }
 
   createRooms() {
@@ -32,14 +36,8 @@ export class RoomListComponent implements OnInit {
     room.price = ROOMS[0].price;
     room.mainPicture = ROOMS[0].mainPicture;
     room.type = ROOMS[0].type;
-    this.roomService.createRoom(room).subscribe(
-      data => {
-        console.log(' room has been created ' + ROOMS[0].id);
-      },
-      error => console.error('error'),
-      () => this.roomService.getRooms().subscribe(data => {
-        this.availableRooms = data;
-      })
-    );
+    this.roomService.getRooms().subscribe(data => {
+      this.availableRooms = data;
+    });
   }
 }

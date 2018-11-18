@@ -6,6 +6,7 @@ insert into users (email, name, password, username) values ('mirunix_tm@yahoo.co
 insert into users (email, name, password, username) values ('balan_vlad92@yahoo.com','Vlad','$2a$10$RxCvqjekQPU8MFSxWbhk7OwgXlkjur9T19alK8.IMGUY7cBIbLHaq','balan_vlad92@yahoo.com');
 insert into users (email, name, password, username) values ('user1@mail.com','User1','$2a$10$zQFAYbC53rnHC.jBjCcX2.l4DO6/qUyfu3gQ9dL2HhT5TOqAN34kC','user1@mail.com');
 insert into users (email, name, password, username) values ('user2@mail.com','User2','$2a$10$Cwjx0Iq4Jml3bkdWFiu/D.0bZrAbpI/KEAvIh0yTfb.2bRpuf6eOm','user2@mail.com');
+insert into users (email, name, password, username) values ('sese18@mail.com','sese18@mail.com','$2a$10$uWLs6BjlD4Hof5AyoonakOWfw5IzVl4WG3t0hrSJyt8YFqAUQHO.q','sese18@mail.com');
 
 insert into user_roles (user_id, role_id) VALUES (1,2);
 insert into user_roles (user_id, role_id) VALUES (2,2);
@@ -13,3 +14,13 @@ insert into user_roles (user_id, role_id) VALUES (3,2);
 insert into user_roles (user_id, role_id) VALUES (4,2);
 insert into user_roles (user_id, role_id) VALUES (5,1);
 insert into user_roles (user_id, role_id) VALUES (6,1);
+
+insert into room (CAPACITY, DESCRIPTION, MAIN_PICTURE, NAME,NUMBER, PRICE,TYPE) VALUES (2, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et ', '../../../assets/rooms/apartment-bed-chair-189333.jpg','Zimmer 1',1,50,'DZ');
+insert into room (CAPACITY, DESCRIPTION, MAIN_PICTURE, NAME,NUMBER, PRICE,TYPE) VALUES (2, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et ', '../../../assets/rooms/apartment-bed-chair-189333.jpg','Zimmer 2',2,60,'DZ');
+insert into room (CAPACITY, DESCRIPTION, MAIN_PICTURE, NAME,NUMBER, PRICE,TYPE) VALUES (2, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et ', '../../../assets/rooms/accomodation-bed-hotel-97083.jpg','Zimmer 3',3,70,'DZ');
+insert into room (CAPACITY, DESCRIPTION, MAIN_PICTURE, NAME,NUMBER, PRICE,TYPE) VALUES (2, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et ', '../../../assets/rooms/bed-bedroom-ceiling-262048.jpg','Zimmer 4',4,80,'DZ');
+insert into room (CAPACITY, DESCRIPTION, MAIN_PICTURE, NAME,NUMBER, PRICE,TYPE) VALUES (2, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et ', '../../../assets/rooms/bed-bedroom-curtains-26139.jpg','Zimmer 5',5,90,'DZ');
+insert into room (CAPACITY, DESCRIPTION, MAIN_PICTURE, NAME,NUMBER, PRICE,TYPE) VALUES (2, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et ', '../../../assets/rooms/apartment-bed-bedroom-271618.jpg','Zimmer 6',6,99,'DZ');
+insert into room (CAPACITY, DESCRIPTION, MAIN_PICTURE, NAME,NUMBER, PRICE,TYPE) VALUES (2, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et ', '../../../assets/rooms/bed-bedroom-furniture-279746.jpg','Zimmer 7',7,45,'DZ');
+insert into room (CAPACITY, DESCRIPTION, MAIN_PICTURE, NAME,NUMBER, PRICE,TYPE) VALUES (2, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et ', '../../../assets/rooms/accomodation-bed-hotel-97083.jpg','Zimmer 8',8,33,'DZ');
+insert into room (CAPACITY, DESCRIPTION, MAIN_PICTURE, NAME,NUMBER, PRICE,TYPE) VALUES (2, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et ', '../../../assets/rooms/apartment-bed-chair-189333.jpg','Zimmer 9',9,54,'DZ');
