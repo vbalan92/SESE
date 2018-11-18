@@ -1,0 +1,118 @@
+<button type="button" class="btn btn-sm btn-outline-secondary" routerLink="/roomlist">
+  Zurück zu Liste
+</button>
+<br/>
+<br/>
+<ng-template #content let-d="dismiss" let-c="close">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Zimmer erstellen</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="createRoomForm" (ngSubmit)="createRoom()">
+      <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+          <input type="name"
+                 class="form-control"
+                 id="name"
+                 placeholder="name"
+                 formControlName="name">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="description" class="col-sm-2 col-form-label">Description</label>
+        <div class="col-sm-10">
+          <input type="text"
+                 class="form-control"
+                 id="description"
+                 placeholder="description"
+                 formControlName="description">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="type" class="col-sm-2 col-form-label">Type:</label>
+        <div class="col-sm-10">
+          <select id="type" class="form-control"
+                  formControlName="type">
+            <option value="" disabled selected>select a mainpicture</option>
+            <option value="EZ">EZ</option>
+            <option value="DZ">DZ</option>
+            <option value="VIP">VIP</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="price" class="col-sm-2 col-form-label">Price:</label>
+        <div class="col-sm-10">
+          <input type="number"
+                 class="form-control"
+                 id="price"
+                 placeholder="price"
+                 formControlName="price">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="capacity" class="col-sm-2 col-form-label">Capacity:</label>
+        <div class="col-sm-10">
+          <input type="number"
+                 class="form-control"
+                 id="capacity"
+                 placeholder="capacity"
+                 formControlName="capacity">
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label for="capacity" class="col-sm-2 col-form-label">Main Picture:</label>
+        <div class="col-sm-10">
+          <select id="mainPicture" class="form-control"
+                  formControlName="mainPicture">
+            <option value="" disabled selected>select a mainpicture</option>
+            <option *ngFor="let item of rooms" [value]="item.mainPicture">{{item.mainPicture}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="createdFrom" class="col-sm-2 col-form-label">Created From:</label>
+        <div class="col-sm-10">
+          <input type="text"
+                 class="form-control"
+                 id="createdFrom"
+                 placeholder="createdFrom"
+                 formControlName="createdFrom">
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label for="toDate" class="col-sm-2 col-form-label">created At</label>
+        <div class="input-group col-sm-10">
+          <input id="toDate"
+                 class="form-control"
+                 placeholder="yyyy-mm-dd"
+                 name="toDateDp"
+                 ngbDatepicker
+                 #toDateDp="ngbDatepicker"
+                 formControlName="createdAt">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="toDateDp.toggle()" type="button"></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="d()">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="c()"
+            [attr.disabled]="roomForm.valid ? null : ''">Create
+    </button>
+  </div>
+</ng-template>
