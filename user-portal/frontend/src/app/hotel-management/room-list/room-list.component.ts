@@ -32,13 +32,14 @@ export class RoomListComponent implements OnInit {
     room.price = ROOMS[0].price;
     room.mainPicture = ROOMS[0].mainPicture;
     room.type = ROOMS[0].type;
-    this.roomService.createRoom(room).subscribe(data => {
+    this.roomService.createRoom(room).subscribe(
+      data => {
         console.log(' room has been created ' + ROOMS[0].id);
-      }, error => console.error('error'),
-      complete => this.roomService.getRooms().subscribe(data => {
+      },
+      error => console.error('error'),
+      () => this.roomService.getRooms().subscribe(data => {
         this.availableRooms = data;
       })
     );
   }
-}
 }

@@ -24,7 +24,7 @@ export class CreateRoomComponent implements OnInit {
 
 
   ngOnInit() {
-    this.room = new roomDTO();
+    this.room = new Room();
     this.initAuctionCreateForm(this.room);
   }
 
