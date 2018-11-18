@@ -32,3 +32,4 @@ export class CreateRoomForm {
     this.mainPicture = this.fb.control(this.auction.mainPicture, Validators.required);
     this.description = this.fb.control(this.auction.description, Validators.required);
   }
+}
