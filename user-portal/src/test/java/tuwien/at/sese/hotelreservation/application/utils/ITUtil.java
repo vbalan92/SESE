@@ -10,6 +10,7 @@ import tuwien.at.sese.hotelreservation.model.Address;
 import tuwien.at.sese.hotelreservation.model.Customer;
 import tuwien.at.sese.hotelreservation.model.Reservation;
 import tuwien.at.sese.hotelreservation.model.Room;
+import tuwien.at.sese.hotelreservation.model.RoomType;
 
 /**
  * The Class ITUTIL.
@@ -74,10 +75,12 @@ public class ITUtil {
      */
     public static Room createDummyRoom() {
         Room room = new Room();
-        room.setMaxOccupancy(4);
+        room.setCapacity(4);
         room.setName("Room1");
         room.setNumber("100");
-        room.setPriceEZ(100);
+        room.setPrice(100);
+        room.setDescription("description descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription");
+        room.setType(RoomType.EZ);
         return room;
     }
 
@@ -90,11 +93,19 @@ public class ITUtil {
         List<Room> rooms = new ArrayList<>();
         Room room = new Room();
         for (int i = 100; i < 150; i = i + 2) {
-            room.setMaxOccupancy(4);
+            room.setCapacity(4);
             room.setName("Room::" + i);
             room.setNumber("" + i);
-            room.setPriceEZ(i);
+            room.setPrice(i);
+            room.setDescription("description descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription");
             rooms.add(room);
+            if(i<120) {
+            room.setType(RoomType.DZ);
+            } else if(i> 120 && i < 130) {
+            	room.setType(RoomType.EZ);
+            }else {
+            	room.setType(RoomType.VIP);
+            }
         }
         return rooms;
     }

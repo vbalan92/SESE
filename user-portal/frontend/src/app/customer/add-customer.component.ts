@@ -15,7 +15,7 @@ export class AddCustomerComponent implements OnInit {
   customer: Customer = new Customer();
 
   constructor(private router: Router, private customerService: CustomerService) {
-    this.customer.billAddress = new Address();
+
   }
 
   createCustomer(): void {
@@ -27,6 +27,7 @@ export class AddCustomerComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.customer.billAddress = new Address();
   }
 
   gotoCustomers() {

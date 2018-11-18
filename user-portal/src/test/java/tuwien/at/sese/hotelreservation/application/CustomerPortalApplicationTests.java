@@ -56,14 +56,6 @@ public class CustomerPortalApplicationTests {
 		reservation.setBeginnDate(new Date(1000));
 		reservation.setEndDate(new Date(1200));
 		
-
-		Room room = new Room();
-		room.setName("alex");
-		room.setNumber("100");
-		room.setMaxOccupancy(2);
-		room.setPriceEZ(100.00);
-
-		
 		alex.getReservations().add(reservation);
 
 		customerRepository.save(alex);
@@ -74,7 +66,29 @@ public class CustomerPortalApplicationTests {
 		// then
 		Assert.assertTrue("not empty", !founds.isEmpty());
 	}
+	public void createNewUserReturnCustomer() {
+		// given
+		Customer hans = ITUtil.createDummyCustomer();
+		hans.setFirmenname("HansFIrma");
+		hans.setFirstName("Hans");
+		hans.setLastName("Hanso");
+		hans.setEmail("hans@email.com");
+		hans.setRoom(room);
+		Reservation reservation = new Reservation();
+		reservation.setBeginnDate(new Date(1000));
+		reservation.setEndDate(new Date(1200));
+		
+		hans.getReservations().add(reservation);
 
+		customerRepository.save(hans);
+
+		// when
+		List<Customer> founds = customerRepository.findAll();
+
+		// then
+		Assert.assertTrue("not empty", !founds.isEmpty());
+	}
+	
 	@Test
 	public void createReservation() {
 		Reservation reservation = ITUtil.createDummyReservation(roomRepository.findAll().get(0));

@@ -18,6 +18,5 @@ export class ReservationService {
 
   reserveRoom(reservation: ReservationDTO): Observable<ReservationDTO> {
     return this.http.post<ReservationDTO>(this.reservationUrl, reservation, httpOptions);
-
   }
 }

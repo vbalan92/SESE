@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Room extends EntityId implements Serializable{
 
+	
 	/**
 	 * 
 	 */
@@ -20,8 +21,11 @@ public class Room extends EntityId implements Serializable{
 	
 	private String name;
 	private String number;
-	private int maxOccupancy;
-	private double priceEZ;
+	private int capacity;
+	private double price;
+	private RoomType type;
+	private String description;
+	private String mainPicture;
 	
 	@OneToMany(targetEntity = Reservation.class, mappedBy = "room")
     private Collection<Reservation> reservations= new ArrayList<>();
@@ -63,51 +67,53 @@ public class Room extends EntityId implements Serializable{
 		this.number = number;
 	}
 
-    /**
-     * Gets the max occupancy.
-     *
-     * @return the max occupancy
-     */
-	public int getMaxOccupancy() {
-		return maxOccupancy;
+    public int getCapacity() {
+		return capacity;
 	}
 
-    /**
-     * Sets the max occupancy.
-     *
-     * @param maxOccupancy the new max occupancy
-     */
-	public void setMaxOccupancy(int maxOccupancy) {
-		this.maxOccupancy = maxOccupancy;
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
 	}
 
-    
-
-    /**
-     * Gets the price EZ.
-     *
-     * @return the price EZ
-     */
-	public double getPriceEZ() {
-		return priceEZ;
+	public double getPrice() {
+		return price;
 	}
 
-    /**
-     * Sets the price EZ.
-     *
-     * @param priceEZ the new price EZ
-     */
-	public void setPriceEZ(double priceEZ) {
-		this.priceEZ = priceEZ;
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
-    /**
+	public RoomType getType() {
+		return type;
+	}
+
+	public void setType(RoomType type) {
+		this.type = type;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getMainPicture() {
+		return mainPicture;
+	}
+
+	public void setMainPicture(String mainPicture) {
+		this.mainPicture = mainPicture;
+	}
+
+	/**
      * Gets the price DZ.
      *
      * @return the price DZ
      */
 	public double getPriceDZ() {
-		return priceEZ * 2;
+		return price * 2;
 	}
 
     /**
@@ -116,7 +122,7 @@ public class Room extends EntityId implements Serializable{
      * @return the price tree occupancy
      */
 	public double getPriceTreeOccupancy() {
-		return (priceEZ * 3) - ((priceEZ * 100) / 20);
+		return (price * 3) - ((price * 100) / 20);
 	}
 
     /**
@@ -125,7 +131,7 @@ public class Room extends EntityId implements Serializable{
      * @return the price EZ mit one child
      */
 	public double getPriceEZMitOneChild() {
-		return priceEZ + ((priceEZ * 100) / 25);
+		return price + ((price * 100) / 25);
 	}
 
     /**
@@ -134,7 +140,7 @@ public class Room extends EntityId implements Serializable{
      * @return the price EZ mit two child
      */
 	public double getPriceEZMitTwoChild() {
-		return priceEZ + maxOccupancy * ((priceEZ * 100) / 25);
+		return price + capacity * ((price * 100) / 25);
 	}
 
     /**
@@ -143,7 +149,7 @@ public class Room extends EntityId implements Serializable{
      * @return the price DZ mit child
      */
 	public double getPriceDZMitChild() {
-		return getPriceDZ() + maxOccupancy * ((getPriceDZ() * 100) / 25);
+		return getPriceDZ() + capacity * ((getPriceDZ() * 100) / 25);
 	}
 	
 }
