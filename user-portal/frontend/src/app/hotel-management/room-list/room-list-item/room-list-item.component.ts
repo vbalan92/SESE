@@ -1,11 +1,11 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Room} from "../models/room";
-import {Router} from "@angular/router";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {CreateReservationForm, ReservationDTO} from "../models/reservation";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {ReservationService} from "../../../services/reservation.service";
-import {RoomService} from "../service/room.service";
+import {Room} from '../models/room';
+import {Router} from '@angular/router';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {CreateReservationForm, ReservationDTO} from '../models/reservation';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {ReservationService} from '../../../services/reservation.service';
+import {RoomService} from '../service/room.service';
 
 @Component({
   selector: 'room-list-item',
@@ -50,7 +50,7 @@ export class RoomListItemComponent implements OnInit, OnDestroy {
     }).result.then((result) => {
       this.onReserveRoom(result);
     }, (reason) => {
-      console.log("Reservation dismissed!");
+      console.log('Reservation dismissed!');
     });
   }
 
