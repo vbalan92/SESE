@@ -4,10 +4,6 @@ import {ROOMS} from './models/mock-room';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RoomService} from './service/room.service';
 import {TokenStorageService} from '../../auth/token-storage.service';
-import {Room} from './models/room';
-import {ROOMS} from './models/mock-room';
-import {ActivatedRoute, Router} from '@angular/router';
-import {RoomService} from './service/room.service';
 
 @Component({
   selector: 'app-room-list',
@@ -20,7 +16,7 @@ export class RoomListComponent implements OnInit {
   isLoggedIn: boolean;
   cachedRooms: Room[];
   searchRoom: Room = new Room();
-  showSearch: bgitoolean;
+  showSearch: boolean;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
