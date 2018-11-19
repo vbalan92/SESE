@@ -20,7 +20,7 @@ export class RoomListComponent implements OnInit {
   isLoggedIn: boolean;
   cachedRooms: Room[];
   searchRoom: Room = new Room();
-  showSearch: boolean;
+  showSearch: bgitoolean;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
