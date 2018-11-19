@@ -20,7 +20,7 @@ import tuwien.at.sese.hotelreservation.service.ReservationService;
 /**
  * The Class ReservationController.
  */
-@CrossOrigin(origins = "http://localhost:4200",  maxAge = 3600)
+@CrossOrigin(origins = "*",  maxAge = 3600)
 @RestController
 @RequestMapping({"/reservations"})
 public class ReservationController {

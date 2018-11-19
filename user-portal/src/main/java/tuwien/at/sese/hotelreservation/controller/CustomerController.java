@@ -22,7 +22,7 @@ import tuwien.at.sese.hotelreservation.service.CustomerService;
  * Customers
  *
  */
-@CrossOrigin(origins = "http://localhost:4200",  maxAge = 3600)
+@CrossOrigin(origins = "*",  maxAge = 3600)
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
