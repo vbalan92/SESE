@@ -40,5 +40,21 @@
         Reservieren
       </button>
     </div>
+    <span class="col-lg-2">TODO SHOW BY LOGIN</span>
+    <div class="row">
+      <button type="button" class="btn btn-success col-lg-2 offset-lg-10"
+              (click)="updateRoom(room.id)">
+        Update
+      </button>
+    </div>
+    <span class="col-lg-2">TODO SHOW BY LOGIN</span>
+    <div class="row">
+      <button type="button" class="btn btn-danger col-lg-2 offset-lg-10"
+              (click)="deleteRoom(room)" routerLink="/roomlist">
+        Delete
+      </button>
+    </div>
   </div>
 </div>
+
+<app-room-update [model] = "room" *ngIf="showUpdate"></app-room-update>

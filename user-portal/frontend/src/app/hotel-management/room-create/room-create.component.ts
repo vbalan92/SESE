@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
 
 
 @Component({
-  selector: 'app-room-detail',
+  selector: 'app-room-create',
   templateUrl: './room-create.component.html',
   styleUrls: ['./room-create.component.css']
 })

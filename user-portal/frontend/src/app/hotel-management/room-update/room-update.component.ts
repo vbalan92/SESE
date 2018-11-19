@@ -1,29 +1,47 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {Location} from "@angular/common";
-import {Room} from "../room-list/models/room";
-import {ROOMS} from "../room-list/models/mock-room";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {Component, Input, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Location} from '@angular/common';
+import {CreateRoomForm, Room} from '../room-list/models/room';
+import {RoomService} from '../room-list/service/room.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
-  selector: 'app-room-detail',
+  selector: 'app-room-update',
   templateUrl: './room-update.component.html',
   styleUrls: ['./room-update.component.css']
 })
-export class RoomDetailComponent implements OnInit {
 
-  room:Room;
+export class RoomUpdateComponent implements OnInit {
+
+  @Input() room: Room;
+
+  private roomForm: FormGroup;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private location: Location,
-              private modalService: NgbModal) {
+              private fb: FormBuilder,
+              private roomService: RoomService) {
   }
 
   ngOnInit() {
-    let roomId = +this.route.snapshot.paramMap.get('id');
-    this.room =ROOMS.find(room => room.id == roomId);
-    console.log(`Room details of the room with the id ` + roomId + ` requested!`);
+    console.log(`Welcome to update !` + this.room.name);
+    this.initAuctionCreateForm(this.room);
+  }
+
+  private initAuctionCreateForm(room: Room): void {
+    const createAuctionForm = new CreateRoomForm(room, this.fb);
+    this.roomForm = this.fb.group(createAuctionForm);
+  }
+
+  onUpdateRoom() {
+    console.warn(this.roomForm.value);
+    this.room = this.roomForm.value;
+    this.roomService.updateRoom(this.room).subscribe(room => {
+      this.room = room;
+      console.log('Reservation successfully updated');
+    });
+    console.log(`room with the id ` + this.room.id + ` successfully update!`);
+    this.initAuctionCreateForm(this.room);
   }
 
 

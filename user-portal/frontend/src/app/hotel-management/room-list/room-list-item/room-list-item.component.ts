@@ -5,6 +5,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CreateReservationForm, ReservationDTO} from "../models/reservation";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ReservationService} from "../../../services/reservation.service";
+import {RoomService} from "../service/room.service";
 
 @Component({
   selector: 'room-list-item',
@@ -19,10 +20,12 @@ export class RoomListItemComponent implements OnInit, OnDestroy {
   private reservation: ReservationDTO;
   private reservationForm: FormGroup;
 
+
   constructor(private router: Router,
               private fb: FormBuilder,
               private modalService: NgbModal,
-              private reservationService: ReservationService) {
+              private reservationService: ReservationService,
+              private roomService: RoomService) {
   }
 
   ngOnInit() {
@@ -65,4 +68,5 @@ export class RoomListItemComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
   }
+
 }

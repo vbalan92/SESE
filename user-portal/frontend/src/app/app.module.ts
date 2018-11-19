@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
 import {CustomerComponent} from './customer/customer.component';
@@ -17,6 +17,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ReservationService} from './services/reservation.service';
 import {RoomService} from './hotel-management/room-list/service/room.service';
 import {httpInterceptorProviders} from './auth/auth-interceptor';
+import {CreateRoomComponent} from './hotel-management/room-create/room-create.component';
+import {RoomUpdateComponent} from "./hotel-management/room-update/room-update.component";
 
 @NgModule({
   declarations: [
@@ -25,12 +27,16 @@ import {httpInterceptorProviders} from './auth/auth-interceptor';
     AddCustomerComponent,
     ContactComponent,
     HomeComponent, DetailsCustomerComponent
+    HomeComponent, DetailsCustomerComponent,
+    CreateRoomComponent,
+    RoomUpdateComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     UiModule,
     HotelManagementModule,
     NgbModule.forRoot()

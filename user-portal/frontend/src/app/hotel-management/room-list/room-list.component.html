@@ -1,4 +1,45 @@
 <a *ngIf="isLoggedIn" style="margin-left:10px" routerLink="/createRoom">Add new Room</a>
 <div *ngFor="let room of availableRooms">
   <room-list-item [room]="room"></room-list-item>
+<a style="margin-left:10px" routerLink="/createRoom">Add new Room</a>
+
+<div *ngIf="showSearch">
+  <h2>Room Search</h2>
+  <form>
+    <div class="form-group">
+      <div class="col-md-3 pull-left">
+        <label for="name">Name:</label>
+      </div>
+      <div class="col-md-3 pull-left">
+        <input [(ngModel)]="searchRoom.name" placeholder="Name" name="name" class="form-control"
+               id="name">
+      </div>
+      <div class="col-md-2 pull-left">
+        <label for="capacity">Capacity :</label>
+      </div>
+      <div class="col-md-3 pull-left">
+        <input type="number" [(ngModel)]="searchRoom.capacity" placeholder="capacity" name="capacity" class="form-control"
+               id="capacity">
+      </div>
+      <div class="col-md-2 pull-left">
+        <label for="capacity">Capacity :</label>
+      </div>
+      <div class="col-md-3 pull-left">
+        <input type="number" [(ngModel)]="searchRoom.price" placeholder="price" name="price" class="form-control"
+               id="price">
+      </div>
+    </div>
+
+    <button class="btn btn-success pull-left" (click)="search()">Search</button>
+    <span class="col-md-2"></span>
+    <button class="btn btn-success  pull-right" (click)="resetSearch()">ResetFilter</button>
+
+  </form>
+
+  <h3>Results</h3>
+  <div *ngFor="let room of availableRooms">
+
+    <room-list-item [room]="room"></room-list-item>
+  </div>
 </div>
+

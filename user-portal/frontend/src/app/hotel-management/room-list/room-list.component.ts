@@ -4,6 +4,10 @@ import {ROOMS} from "./models/mock-room";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RoomService} from "./service/room.service";
 import {TokenStorageService} from "../../auth/token-storage.service";
+import {Room} from './models/room';
+import {ROOMS} from './models/mock-room';
+import {ActivatedRoute, Router} from '@angular/router';
+import {RoomService} from './service/room.service';
 
 @Component({
   selector: 'app-room-list',
@@ -14,6 +18,9 @@ export class RoomListComponent implements OnInit {
 
   availableRooms: Room[];
   isLoggedIn: boolean;
+  cachedRooms: Room[];
+  searchRoom: Room = new Room();
+  showSearch: boolean;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -24,9 +31,16 @@ export class RoomListComponent implements OnInit {
   ngOnInit() {
     this.createRooms();
     this.isLoggedIn = this.token.getAuthorities().length > 0;
+    this.loodRooms();
+    this.showSearch = true;
   }
 
-  createRooms() {
+  loodRooms() {
+    this.roomService.getRooms().subscribe(data => {
+      this.availableRooms = data;
+      this.cachedRooms = this.availableRooms;
+    });
+  
 
     console.log(ROOMS[0]);
     let room: Room = new Room();
@@ -39,5 +53,15 @@ export class RoomListComponent implements OnInit {
     this.roomService.getRooms().subscribe(data => {
       this.availableRooms = data;
     });
+  }  
+  search() {
+    if (this.searchRoom) {
+      this.availableRooms = this.availableRooms.filter(
+        item => item.name === this.searchRoom.name || item.capacity === this.searchRoom.capacity || item.price === this.searchRoom.price);
+    }
+  }
+
+  resetSearch() {
+    this.availableRooms = this.cachedRooms;
   }
 }
