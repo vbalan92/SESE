@@ -7,14 +7,41 @@ import {ContactComponent} from "./contact/contact.component";
 import {HomeComponent} from "./home/home.component";
 import {DetailsCustomerComponent} from "./customer/details-customer.component";
 import {CreateRoomComponent} from "./hotel-management/room-create/room-create.component";
+import {AuthGuard} from "./auth/auth.guard";
+
 const routes: Routes = [
-  {path: 'customers', component: CustomerComponent},
-  {path: 'add', component: AddCustomerComponent},
-  {path: '', component: HomeComponent},
-  {path: 'home', component: HomeComponent},
-  {path: 'contact', component: ContactComponent},
-  {path: 'customerDetails/:id', component: DetailsCustomerComponent},
-  {path: 'createRoom', component: CreateRoomComponent},
+  {
+    path: 'customers',
+    component: CustomerComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'add',
+    component: AddCustomerComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
+  },
+  {
+    path: 'customerDetails/:id',
+    component: DetailsCustomerComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'createRoom',
+    component: CreateRoomComponent,
+    canActivate: [AuthGuard]
+  },
 
 ];
 

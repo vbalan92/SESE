@@ -10,23 +10,21 @@ import {AuthService} from "../../auth/auth.service";
 })
 export class HeaderComponent implements OnInit {
 
-  private authority: string;
-  
   form: any = {};
   isLoggedIn = false;
   loggedInUser: string;
   isLoginFailed = false;
   errorMessage = '';
-  roles: string[] = [];
   private loginInfo: AuthLoginInfo;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) {
+  constructor(private authService: AuthService,
+              private tokenStorage: TokenStorageService) {
   }
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getAuthorities();
+      this.loggedInUser = this.tokenStorage.getUsername();
     }
   }
 
@@ -46,8 +44,7 @@ export class HeaderComponent implements OnInit {
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getAuthorities();
-        this.setAuthority();
+
       },
       error => {
         console.log(error);
@@ -57,22 +54,8 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  setAuthority() {
-    if (this.tokenStorage.getToken()) {
-      this.roles = this.tokenStorage.getAuthorities();
-      this.roles.every(role => {
-        if (role === 'ROLE_ADMIN') {
-          this.authority = 'admin';
-          return false;
-        }
-        this.authority = 'user';
-        return true;
-      });
-    }
-  }
-
   logout() {
     this.tokenStorage.signOut();
-    window.location.reload();
+    this.isLoggedIn = false;
   }
 }

@@ -26,7 +26,9 @@ export class RoomListComponent implements OnInit {
 
   ngOnInit() {
     this.loodRooms();
-    this.isLoggedIn = this.token.getAuthorities().length > 0;
+    this.isLoggedIn = this.token.isLoggedIn.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+    });
     this.loodRooms();
     this.showSearch = true;
   }

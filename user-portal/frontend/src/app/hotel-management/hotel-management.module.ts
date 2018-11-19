@@ -9,15 +9,40 @@ import {RouterModule, Routes} from "@angular/router";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CreateRoomComponent} from "./room-create/room-create.component";
+import {AuthGuard} from "../auth/auth.guard";
 
 const routes: Routes = [
-  { path: 'management', component: RoomListComponent },
-  { path: 'roomlist', component: RoomListComponent },
-  { path: 'roomdetail', component: RoomDetailComponent },
-  { path: 'roomdetail/:id', component: RoomDetailComponent },
-  { path: 'customerlist', component: CustomerListComponent },
-  { path: 'customerdetail', component: CustomerDetailComponent },
-  { path: 'customerdetail/:id', component: CustomerDetailComponent },
+  {
+    path: 'management',
+    component: RoomListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'roomlist',
+    component: RoomListComponent
+  },
+  {
+    path: 'roomdetail',
+    component: RoomDetailComponent
+  },
+  {
+    path: 'roomdetail/:id',
+    component: RoomDetailComponent
+  },
+  {
+    path: 'customerlist',
+    component: CustomerListComponent
+  },
+  {
+    path: 'customerdetail',
+    component: CustomerDetailComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'customerdetail/:id',
+    component: CustomerDetailComponent,
+    canActivate: [AuthGuard]
+  },
 ];
 
 export const managementRouting = RouterModule.forChild(routes);

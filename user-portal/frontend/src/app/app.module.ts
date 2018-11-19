@@ -24,7 +24,8 @@ import {httpInterceptorProviders} from './auth/auth-interceptor';
     CustomerComponent,
     AddCustomerComponent,
     ContactComponent,
-    HomeComponent, DetailsCustomerComponent,
+    HomeComponent,
+    DetailsCustomerComponent,
   ],
   imports: [
     BrowserModule,
