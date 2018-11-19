@@ -26,10 +26,8 @@ import {RoomUpdateComponent} from "./hotel-management/room-update/room-update.co
     CustomerComponent,
     AddCustomerComponent,
     ContactComponent,
-    HomeComponent, DetailsCustomerComponent
     HomeComponent, DetailsCustomerComponent,
     CreateRoomComponent,
-    RoomUpdateComponent,
   ],
   imports: [
     BrowserModule,
