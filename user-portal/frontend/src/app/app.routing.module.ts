@@ -7,8 +7,6 @@ import {ContactComponent} from "./contact/contact.component";
 import {HomeComponent} from "./home/home.component";
 import {DetailsCustomerComponent} from "./customer/details-customer.component";
 import {CreateRoomComponent} from "./hotel-management/room-create/room-create.component";
-import {RoomUpdateComponent} from "./hotel-management/room-update/room-update.component";
-
 const routes: Routes = [
   {path: 'customers', component: CustomerComponent},
   {path: 'add', component: AddCustomerComponent},
@@ -17,7 +15,7 @@ const routes: Routes = [
   {path: 'contact', component: ContactComponent},
   {path: 'customerDetails/:id', component: DetailsCustomerComponent},
   {path: 'createRoom', component: CreateRoomComponent},
-  {path: 'updateRoom/:id', component: RoomUpdateComponent}
+
 ];
 
 @NgModule({

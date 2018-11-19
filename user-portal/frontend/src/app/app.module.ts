@@ -17,7 +17,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ReservationService} from './services/reservation.service';
 import {RoomService} from './hotel-management/room-list/service/room.service';
 import {httpInterceptorProviders} from './auth/auth-interceptor';
-import {CreateRoomComponent} from './hotel-management/room-create/room-create.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +25,6 @@ import {CreateRoomComponent} from './hotel-management/room-create/room-create.co
     AddCustomerComponent,
     ContactComponent,
     HomeComponent, DetailsCustomerComponent,
-    CreateRoomComponent,
   ],
   imports: [
     BrowserModule,
