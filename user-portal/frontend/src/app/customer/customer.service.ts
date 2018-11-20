@@ -14,7 +14,7 @@ export class CustomerService {
 
   constructor(private http: HttpClient) {}
 
-  private customerUrl = 'http://localhost:8282/customers';
+  private customerUrl = '/customers';
   //private customerUrl = '/api';
 
   public getCustomers() {

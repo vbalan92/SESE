@@ -14,7 +14,7 @@ export class RoomService {
 
   constructor(private http: HttpClient) {}
 
-  private roomUrl = 'http://localhost:8282/rooms';
+  private roomUrl = '/rooms';
   //private roomUrl = '/api';
 
   public getRooms() {
