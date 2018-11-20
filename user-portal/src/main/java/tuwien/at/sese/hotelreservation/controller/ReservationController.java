@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import tuwien.at.sese.hotelreservation.api.dto.ReservationDTO;
 import tuwien.at.sese.hotelreservation.model.Reservation;
 import tuwien.at.sese.hotelreservation.service.ReservationService;
 
 /**
  * The Class ReservationController.
  */
-@CrossOrigin(origins = "*",  maxAge = 3600)
 @RestController
-@RequestMapping({"/reservations"})
+@RequestMapping({"/api/reservations"})
 public class ReservationController {
 
     @Autowired

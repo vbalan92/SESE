@@ -25,7 +25,7 @@ import tuwien.at.sese.hotelreservation.repository.RoomRepository;
 import tuwien.at.sese.hotelreservation.repository.UserRepository;
 
 import javax.validation.Valid;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -65,10 +65,9 @@ public class CustomerPortalApplicationTests {
 	public void whenFindByName_thenReturnCustomer() {
 		// given
 		Customer alex = ITUtil.createDummyCustomer();
-		alex.setRoom(room);
 		Reservation reservation = new Reservation();
-		reservation.setBeginnDate(new Date(1000));
-		reservation.setEndDate(new Date(1200));
+		reservation.setFromDate(LocalDate.now());
+		reservation.setToDate(LocalDate.now().plusDays(10));
 		
 		alex.getReservations().add(reservation);
 
@@ -87,10 +86,9 @@ public class CustomerPortalApplicationTests {
 		hans.setFirstName("Hans");
 		hans.setLastName("Hanso");
 		hans.setEmail("hans@email.com");
-		hans.setRoom(room);
 		Reservation reservation = new Reservation();
-		reservation.setBeginnDate(new Date(1000));
-		reservation.setEndDate(new Date(1200));
+		reservation.setFromDate(LocalDate.now());
+		reservation.setToDate(LocalDate.now().plusDays(10));
 		
 		hans.getReservations().add(reservation);
 

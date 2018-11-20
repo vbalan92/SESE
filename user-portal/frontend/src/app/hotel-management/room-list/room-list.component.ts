@@ -25,10 +25,10 @@ export class RoomListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loodRooms();
     this.isLoggedIn = this.token.isLoggedIn.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
     });
+    this.isLoggedIn = this.token.getToken() !== undefined;
     this.loodRooms();
     this.showSearch = true;
   }
@@ -39,14 +39,6 @@ export class RoomListComponent implements OnInit {
       this.cachedRooms = this.availableRooms;
     });
 
-    console.log(ROOMS[0]);
-    let room: Room = new Room();
-    room.name = ROOMS[0].name;
-    room.capacity = ROOMS[0].capacity;
-    room.description = ROOMS[0].description;
-    room.price = ROOMS[0].price;
-    room.mainPicture = ROOMS[0].mainPicture;
-    room.type = ROOMS[0].type;
     this.roomService.getRooms().subscribe(data => {
       this.availableRooms = data;
     });

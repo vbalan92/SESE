@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import tuwien.at.sese.hotelreservation.model.Statistik;
 import tuwien.at.sese.hotelreservation.service.StatistikService;
 
-@CrossOrigin(origins = "*",  maxAge = 3600)
 @RestController
-@RequestMapping({ "/statistiks" })
+@RequestMapping({ "/api/statistiks" })
 public class StatistikController {
 
     @Autowired

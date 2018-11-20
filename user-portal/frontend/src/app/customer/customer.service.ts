@@ -14,8 +14,7 @@ export class CustomerService {
 
   constructor(private http: HttpClient) {}
 
-  private customerUrl = '/customers';
-  //private customerUrl = '/api';
+  private customerUrl = './api/customers';
 
   public getCustomers() {
     return this.http.get<Customer[]>(this.customerUrl);

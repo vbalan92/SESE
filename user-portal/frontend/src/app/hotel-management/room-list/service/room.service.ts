@@ -14,8 +14,7 @@ export class RoomService {
 
   constructor(private http: HttpClient) {}
 
-  private roomUrl = '/rooms';
-  //private roomUrl = '/api';
+  private roomUrl = './api/rooms';
 
   public getRooms() {
     return this.http.get<Room[]>(this.roomUrl);

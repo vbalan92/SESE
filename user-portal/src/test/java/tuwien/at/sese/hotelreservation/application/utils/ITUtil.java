@@ -1,16 +1,15 @@
 package tuwien.at.sese.hotelreservation.application.utils;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import tuwien.at.sese.hotelreservation.model.Address;
 import tuwien.at.sese.hotelreservation.model.Customer;
 import tuwien.at.sese.hotelreservation.model.Reservation;
 import tuwien.at.sese.hotelreservation.model.Room;
 import tuwien.at.sese.hotelreservation.model.RoomType;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The Class ITUTIL.
@@ -57,12 +56,11 @@ public class ITUtil {
      */
     public static Reservation createDummyReservation(Room room) {
         Reservation reservation = new Reservation();
-        Date date = new Date(System.currentTimeMillis());
+        LocalDate date = LocalDate.now();
 
-        reservation.setBeginnDate(date);
-        reservation.setEndDate(new Date(date.getYear(), date.getMonth(), date.getDay()+7));
-        reservation.setRabatt("5");
-        reservation.setDuration(7);
+        reservation.setFromDate(date);
+        reservation.setToDate(date.plusDays(10));
+        reservation.setDiscount("5");
         reservation.setRoom(room);
         
         return reservation;
@@ -78,7 +76,7 @@ public class ITUtil {
         room.setCapacity(4);
         room.setName("Room1");
         room.setNumber("100");
-        room.setPrice(100);
+        room.setPricePerNight(BigDecimal.valueOf(100));
         room.setDescription("description descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription");
         room.setType(RoomType.EZ);
         return room;
@@ -96,7 +94,7 @@ public class ITUtil {
             room.setCapacity(4);
             room.setName("Room::" + i);
             room.setNumber("" + i);
-            room.setPrice(i);
+            room.setPricePerNight(BigDecimal.valueOf(i));
             room.setDescription("description descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription");
             rooms.add(room);
             if(i<120) {

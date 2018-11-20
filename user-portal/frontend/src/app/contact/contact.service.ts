@@ -14,7 +14,7 @@ export class ContactService {
 
   constructor(private http: HttpClient) {}
 
-  private contactURL = '/contacts';
+  private contactURL = './api/contacts';
 
   public getContacts() {
     return this.http.get<Contact[]>(this.contactURL);

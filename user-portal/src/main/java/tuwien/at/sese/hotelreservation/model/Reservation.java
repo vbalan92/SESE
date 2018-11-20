@@ -1,140 +1,104 @@
 package tuwien.at.sese.hotelreservation.model;
 
-import java.io.Serializable;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * The Class Reservation.
  */
 @Entity
 @Table(name = "reservation")
-public class Reservation extends EntityId implements Serializable {
+public class Reservation extends EntityId implements Serializable
+{
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    @Column
+    private String discount;
 
-	@ManyToOne(targetEntity = Room.class)
-    @JoinColumn(name = "room")
-	private Room room;
-	
-	@Column
-	private String rabatt;
-	
-	@Column
-	private Date beginnDate;
-	
-	@Column
-	private Date endDate;
-	
-	@Column
-	private int duration;
+    @Column
+    private LocalDate fromDate;
 
-    
+    @Column
+    private LocalDate toDate;
 
-    /**
-     * Gets the room.
-     *
-     * @return the room
-     */
-	public Room getRoom() {
-		return room;
-	}
+    @Column
+    private BigDecimal price;
 
-    /**
-     * Gets the rabatt.
-     *
-     * @return the rabatt
-     */
-	public String getRabatt() {
-		return rabatt;
-	}
+    @ManyToOne
+    @JoinColumn(name = "CUSTOMER_ID")
+    private Customer customer;
 
-	
+    @ManyToOne
+    @JoinColumn(name = "ROOM_ID")
+    private Room room;
 
-    /**
-     * Gets the duration.
-     *
-     * @return the duration
-     */
-	public int getDuration() {
-		return duration;
-	}
+    public Reservation()
+    {
+    }
 
-   
+    public String getDiscount()
+    {
+        return discount;
+    }
 
-    /**
-     * Sets the room.
-     *
-     * @param room the new room
-     */
-	public void setRoom(Room room) {
-		this.room = room;
-	}
+    public void setDiscount(final String discount)
+    {
+        this.discount = discount;
+    }
 
-    /**
-     * Sets the rabatt.
-     *
-     * @param rabatt the new rabatt
-     */
-	public void setRabatt(String rabatt) {
-		this.rabatt = rabatt;
-	}
+    public LocalDate getFromDate()
+    {
+        return fromDate;
+    }
 
-	
-    /**
-     * Gets the beginn date.
-     *
-     * @return the beginn date
-     */
-	public Date getBeginnDate() {
-		return beginnDate;
-	}
+    public void setFromDate(final LocalDate fromDate)
+    {
+        this.fromDate = fromDate;
+    }
 
-    /**
-     * Sets the beginn date.
-     *
-     * @param beginnDate the new beginn date
-     */
-	public void setBeginnDate(Date beginnDate) {
-		this.beginnDate = beginnDate;
-	}
+    public LocalDate getToDate()
+    {
+        return toDate;
+    }
 
-    /**
-     * Gets the end date.
-     *
-     * @return the end date
-     */
-	public Date getEndDate() {
-		return endDate;
-	}
+    public void setToDate(final LocalDate toDate)
+    {
+        this.toDate = toDate;
+    }
 
-    /**
-     * Sets the end date.
-     *
-     * @param endDate the new end date
-     */
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
+    public BigDecimal getPrice()
+    {
+        return price;
+    }
 
-    /**
-     * Sets the duration.
-     *
-     * @param duration the new duration
-     */
-	public void setDuration(int duration) {
-		this.duration = duration;
-	}
+    public void setPrice(final BigDecimal price)
+    {
+        this.price = price;
+    }
 
+    public Customer getCustomer()
+    {
+        return customer;
+    }
+
+    public void setCustomer(final Customer customer)
+    {
+        this.customer = customer;
+    }
+
+    public Room getRoom()
+    {
+        return room;
+    }
+
+    public void setRoom(final Room room)
+    {
+        this.room = room;
+    }
 }

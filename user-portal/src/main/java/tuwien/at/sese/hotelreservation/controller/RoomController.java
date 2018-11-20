@@ -20,9 +20,8 @@ import tuwien.at.sese.hotelreservation.service.RoomService;
 /**
  * The Class RoomController.
  */
-@CrossOrigin(origins = "*",  maxAge = 3600)
 @RestController
-@RequestMapping({ "/rooms" })
+@RequestMapping({ "/api/rooms" })
 public class RoomController {
 
     @Autowired
