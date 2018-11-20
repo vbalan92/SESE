@@ -11,7 +11,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ReservationService {
-  private reservationUrl = 'http://localhost:8080/reservations';
+  private reservationUrl = '/reservations';
 
   constructor(private http: HttpClient) {
   }

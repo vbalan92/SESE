@@ -14,8 +14,7 @@ export class ContactService {
 
   constructor(private http: HttpClient) {}
 
-  private contactURL = 'http://localhost:8080/contacts';
-  //private contactURL = '/api';
+  private contactURL = '/contacts';
 
   public getContacts() {
     return this.http.get<Contact[]>(this.contactURL);

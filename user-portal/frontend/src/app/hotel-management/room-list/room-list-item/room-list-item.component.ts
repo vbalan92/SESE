@@ -34,8 +34,8 @@ export class RoomListItemComponent implements OnInit, OnDestroy {
   }
 
   private initAuctionCreateForm(reservation: ReservationDTO): void {
-    const createAuctionForm = new CreateReservationForm(reservation, this.fb);
-    this.reservationForm = this.fb.group(createAuctionForm);
+    const createReservationForm = new CreateReservationForm(reservation, this.fb);
+    this.reservationForm = this.fb.group(createReservationForm);
   }
 
   onShowRoomDetails(selectedRoom: Room) {
