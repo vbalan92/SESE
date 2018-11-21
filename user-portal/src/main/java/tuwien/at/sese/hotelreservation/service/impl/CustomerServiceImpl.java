@@ -1,6 +1,7 @@
 package tuwien.at.sese.hotelreservation.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -65,5 +66,13 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer update(Customer customer) {
         return repository.save(customer);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Optional<Customer> findByEmail(String email) {
+        return repository.findByEmail(email);
     }
 }

@@ -43,5 +43,9 @@ public interface CustomerRepository extends Repository<Customer, Long> {
      */
     Customer save(Customer customer);
 
+    /**
+     * @param customerEmail
+     * @return Customer 
+     */
     Optional<Customer> findByEmail(String customerEmail);
 }

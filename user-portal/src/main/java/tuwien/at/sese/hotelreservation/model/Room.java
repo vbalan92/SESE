@@ -1,14 +1,15 @@
 package tuwien.at.sese.hotelreservation.model;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * The Class Room.
@@ -34,7 +35,7 @@ public class Room extends EntityId implements Serializable
     @Enumerated(EnumType.STRING)
     private RoomType type;
 
-    @Column
+    @Column(length = 500)
     private String description;
 
     @Column

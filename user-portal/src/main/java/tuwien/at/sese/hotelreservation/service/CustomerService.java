@@ -1,6 +1,7 @@
 package tuwien.at.sese.hotelreservation.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import tuwien.at.sese.hotelreservation.model.Customer;
 
@@ -33,6 +34,12 @@ public interface CustomerService {
      * @return found customer
      */
     Customer findById(Long id);
+
+    /**
+     * @param email
+     * @return found customer
+     */
+    Optional<Customer> findByEmail(String email);
 
     /**
      * @param customer
