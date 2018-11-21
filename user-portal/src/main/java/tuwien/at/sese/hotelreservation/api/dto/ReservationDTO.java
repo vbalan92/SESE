@@ -41,6 +41,19 @@ public class ReservationDTO
         this.customerDateOfBirth = customerDateOfBirth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;
     }
 
+    public ReservationDTO(final LocalDate fromDate, final LocalDate toDate, final BigDecimal price, final Long id, final String firstName, final String email,
+        final LocalDate birtdate)
+    {
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.price = price;
+        this.roomId = roomId;
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
+        this.customerDateOfBirth = customerDateOfBirth;
+
+    }
+
     public LocalDate getFromDate()
     {
         return fromDate;
