@@ -45,6 +45,7 @@
       <button type="button" class="btn btn-success col-lg-2 offset-lg-10"
               (click)="updateRoom(room.id)">
         Update
+
       </button>
     </div>
     <span class="col-lg-2">TODO SHOW BY LOGIN</span>
@@ -55,7 +56,7 @@
       </button>
     </div>
   </div>
+  <app-room-update [room]="room" *ngIf="showUpdate"></app-room-update>
 </div>
 
-<!--<app-room-update [model] = "room" *ngIf="showUpdate"></app-room-update>
--->
+

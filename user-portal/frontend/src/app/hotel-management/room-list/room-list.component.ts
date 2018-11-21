@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Room} from './models/room';
-import {ROOMS} from './models/mock-room';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RoomService} from './service/room.service';
 import {TokenStorageService} from '../../auth/token-storage.service';
@@ -34,13 +33,9 @@ export class RoomListComponent implements OnInit {
   }
 
   loodRooms() {
-    this.roomService.getRooms().subscribe(data => {
-      this.availableRooms = data;
+    this.roomService.getRooms().subscribe((data: Room[])  => {
+      this.availableRooms =  data;
       this.cachedRooms = this.availableRooms;
-    });
-
-    this.roomService.getRooms().subscribe(data => {
-      this.availableRooms = data;
     });
   }
   search() {

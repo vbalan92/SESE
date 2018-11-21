@@ -13,6 +13,7 @@ import {AuthGuard} from "../auth/auth.guard";
 import { ReservationListComponent } from './reservation-list/reservation-list.component';
 import { ReservationDetailComponent } from './reservation-detail/reservation-detail.component';
 import { ReservationListItemComponent } from './reservation-list/reservation-list-item/reservation-list-item.component';
+import {RoomUpdateComponent} from './room-update/room-update.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,7 @@ export const managementRouting = RouterModule.forChild(routes);
     RoomListComponent,
     RoomListItemComponent,
     RoomDetailComponent,
+    RoomUpdateComponent,
     CustomerListComponent,
     CustomerDetailComponent,
     CreateRoomComponent,

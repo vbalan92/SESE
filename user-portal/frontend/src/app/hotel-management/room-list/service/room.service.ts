@@ -16,7 +16,7 @@ export class RoomService {
 
   private roomUrl = './api/rooms';
 
-  public getRooms() {
+  public getRooms(): Observable<Room[]> {
     return this.http.get<Room[]>(this.roomUrl);
   }
 

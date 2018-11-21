@@ -15,7 +15,7 @@ export class RoomUpdateComponent implements OnInit {
 
   @Input() room: Room;
 
-  private roomForm: FormGroup;
+  public roomForm: FormGroup;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -26,6 +26,7 @@ export class RoomUpdateComponent implements OnInit {
   ngOnInit() {
     console.log(`Welcome to update !` + this.room.name);
     this.initAuctionCreateForm(this.room);
+    this.roomForm.patchValue(this.room);
   }
 
   private initAuctionCreateForm(room: Room): void {
