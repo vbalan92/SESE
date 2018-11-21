@@ -1,5 +1,12 @@
 package tuwien.at.sese.hotelreservation.application;
 
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.validation.Valid;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,25 +17,22 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
+
 import tuwien.at.sese.hotelreservation.application.utils.ITUtil;
 import tuwien.at.sese.hotelreservation.message.request.SignUpForm;
+import tuwien.at.sese.hotelreservation.model.Contact;
 import tuwien.at.sese.hotelreservation.model.Customer;
 import tuwien.at.sese.hotelreservation.model.Reservation;
 import tuwien.at.sese.hotelreservation.model.Role;
 import tuwien.at.sese.hotelreservation.model.RoleName;
 import tuwien.at.sese.hotelreservation.model.Room;
 import tuwien.at.sese.hotelreservation.model.User;
+import tuwien.at.sese.hotelreservation.repository.ContactRepository;
 import tuwien.at.sese.hotelreservation.repository.CustomerRepository;
 import tuwien.at.sese.hotelreservation.repository.ReservationRepository;
 import tuwien.at.sese.hotelreservation.repository.RoleRepository;
 import tuwien.at.sese.hotelreservation.repository.RoomRepository;
 import tuwien.at.sese.hotelreservation.repository.UserRepository;
-
-import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(properties = {"app.jwtSecret=secret", "app.jwtExpiration=2344342"})
@@ -45,6 +49,10 @@ public class CustomerPortalApplicationTests {
 	private UserRepository userRepository;
 	@Autowired
 	private RoleRepository roleRepository;
+
+    @Autowired
+    private ContactRepository contactRepository;
+
 	@Autowired
 	private PasswordEncoder encoder;
 
@@ -126,6 +134,19 @@ public class CustomerPortalApplicationTests {
 		Assert.assertTrue("not empty", !founds.isEmpty());
 
 	}
+
+    @Test
+    public void createContact() {
+        Contact contact = ITUtil.createDummyContact();
+        // create
+        contactRepository.save(contact);
+
+        // when
+        List<Contact> founds = contactRepository.findAll();
+        // then
+        Assert.assertTrue("not empty", !founds.isEmpty());
+
+    }
 
 	@Test
 	public void createUser() {

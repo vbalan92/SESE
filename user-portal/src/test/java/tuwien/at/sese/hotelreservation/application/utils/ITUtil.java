@@ -1,15 +1,16 @@
 package tuwien.at.sese.hotelreservation.application.utils;
 
-import tuwien.at.sese.hotelreservation.model.Address;
-import tuwien.at.sese.hotelreservation.model.Customer;
-import tuwien.at.sese.hotelreservation.model.Reservation;
-import tuwien.at.sese.hotelreservation.model.Room;
-import tuwien.at.sese.hotelreservation.model.RoomType;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import tuwien.at.sese.hotelreservation.model.Address;
+import tuwien.at.sese.hotelreservation.model.Contact;
+import tuwien.at.sese.hotelreservation.model.Customer;
+import tuwien.at.sese.hotelreservation.model.Reservation;
+import tuwien.at.sese.hotelreservation.model.Room;
+import tuwien.at.sese.hotelreservation.model.RoomType;
 
 /**
  * The Class ITUTIL.
@@ -64,6 +65,22 @@ public class ITUtil {
         reservation.setRoom(room);
         
         return reservation;
+    }
+
+    /**
+     * Creates the dummy reservation.
+     *
+     * @return the reservation
+     */
+    public static Contact createDummyContact() {
+        Contact contact = new Contact();
+        contact.setEmail("abbas@email.com");
+        contact.setName("abbas");
+        contact.setNachricht("fsdfsdfsdfdfs hello "
+                + "fsdfsdfsdfdfs hellofsdfsdfsdfdfs hellofsdfsdfsdfdfs hellofsdfsdfsdfdfs hellofsdfsdfsdfdfs hello"
+                + "fsdfsdfsdfdfs hellofsdfsdfsdfdfs hellofsdfsdfsdfdfs hello" + "fsdfsdfsdfdfs hellofsdfsdfsdfdfs hello"
+                + "fsdfsdfsdfdfs hellofsdfsdfsdfdfs hello" + "");
+        return contact;
     }
 
     /**
