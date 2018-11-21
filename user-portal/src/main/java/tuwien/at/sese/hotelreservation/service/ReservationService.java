@@ -2,6 +2,7 @@ package tuwien.at.sese.hotelreservation.service;
 
 import java.util.List;
 
+import tuwien.at.sese.hotelreservation.api.dto.ReservationDTO;
 import tuwien.at.sese.hotelreservation.model.Reservation;
 
 /**
@@ -15,7 +16,7 @@ public interface ReservationService {
      * @param reservation the reservation
      * @return the reservation
      */
-    Reservation create(Reservation reservation);
+    Reservation create(ReservationDTO reservation);
 
     /**
      * Delete.

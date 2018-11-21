@@ -1,6 +1,7 @@
 package tuwien.at.sese.hotelreservation.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.repository.Repository;
 
@@ -41,4 +42,6 @@ public interface CustomerRepository extends Repository<Customer, Long> {
      * @return the customer
      */
     Customer save(Customer customer);
+
+    Optional<Customer> findByEmail(String customerEmail);
 }

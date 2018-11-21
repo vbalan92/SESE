@@ -10,6 +10,8 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CreateRoomComponent} from "./room-create/room-create.component";
 import {AuthGuard} from "../auth/auth.guard";
+import { ReservationListComponent } from './reservation-list/reservation-list.component';
+import { ReservationDetailComponent } from './reservation-detail/reservation-detail.component';
 
 const routes: Routes = [
   {
@@ -43,6 +45,11 @@ const routes: Routes = [
     component: CustomerDetailComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'reservations',
+    component: ReservationListComponent,
+    canActivate: [AuthGuard]
+  },
 ];
 
 export const managementRouting = RouterModule.forChild(routes);
@@ -54,7 +61,9 @@ export const managementRouting = RouterModule.forChild(routes);
     RoomDetailComponent,
     CustomerListComponent,
     CustomerDetailComponent,
-    CreateRoomComponent
+    CreateRoomComponent,
+    ReservationListComponent,
+    ReservationDetailComponent
   ],
   imports: [
     CommonModule,

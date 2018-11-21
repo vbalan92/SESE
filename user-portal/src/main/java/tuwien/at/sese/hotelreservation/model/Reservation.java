@@ -1,5 +1,7 @@
 package tuwien.at.sese.hotelreservation.model;
 
+import tuwien.at.sese.hotelreservation.api.dto.ReservationDTO;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -40,6 +42,24 @@ public class Reservation extends EntityId implements Serializable
 
     public Reservation()
     {
+    }
+
+    public Reservation(final String discount, final LocalDate fromDate, final LocalDate toDate,
+        final BigDecimal price, final Customer customer, final Room room)
+    {
+        this.discount = discount;
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.price = price;
+        this.customer = customer;
+        this.room = room;
+    }
+
+    public Reservation(final ReservationDTO reservationDTO)
+    {
+        this.fromDate = reservationDTO.getFromDate();
+        this.toDate = reservationDTO.getToDate();
+        this.price = reservationDTO.getPrice();
     }
 
     public String getDiscount()

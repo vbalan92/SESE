@@ -1,6 +1,7 @@
 package tuwien.at.sese.hotelreservation.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.EnumType;
@@ -22,7 +23,7 @@ public class Person extends EntityId {
     @Column
     private String email;
     @Column
-    private Date birtdate;
+    private LocalDate birtdate;
     @Column
     private String notiz;
     @Column
@@ -95,7 +96,7 @@ public class Person extends EntityId {
      *
      * @return the birtdate
      */
-    public Date getBirtdate() {
+    public LocalDate getBirtdate() {
         return birtdate;
     }
 
@@ -140,7 +141,7 @@ public class Person extends EntityId {
      *
      * @param birtdate the new birtdate
      */
-    public void setBirtdate(Date birtdate) {
+    public void setBirtdate(LocalDate birtdate) {
         this.birtdate = birtdate;
     }
 

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -35,6 +36,18 @@ public class Customer extends Person implements Serializable
 
     @OneToMany(mappedBy = "customer", cascade = {CascadeType.ALL})
     private Collection<Reservation> reservations = new ArrayList<>();
+
+    public Customer()
+    {
+
+    }
+
+    public Customer(final String email, final String name, final LocalDate dateOfBirth)
+    {
+        this.setEmail(email);
+        this.setFirstName(name);
+        this.setBirtdate(dateOfBirth);
+    }
 
     /**
      * Gets the customer number.

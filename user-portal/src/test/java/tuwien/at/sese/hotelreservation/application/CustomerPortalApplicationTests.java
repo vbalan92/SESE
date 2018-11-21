@@ -51,7 +51,7 @@ public class CustomerPortalApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-	
+
 	Room room = null;
 	@Before
 	public void setup(){
@@ -68,7 +68,7 @@ public class CustomerPortalApplicationTests {
 		Reservation reservation = new Reservation();
 		reservation.setFromDate(LocalDate.now());
 		reservation.setToDate(LocalDate.now().plusDays(10));
-		
+
 		alex.getReservations().add(reservation);
 
 		customerRepository.save(alex);
@@ -89,7 +89,7 @@ public class CustomerPortalApplicationTests {
 		Reservation reservation = new Reservation();
 		reservation.setFromDate(LocalDate.now());
 		reservation.setToDate(LocalDate.now().plusDays(10));
-		
+
 		hans.getReservations().add(reservation);
 
 		customerRepository.save(hans);
@@ -100,7 +100,7 @@ public class CustomerPortalApplicationTests {
 		// then
 		Assert.assertTrue("not empty", !founds.isEmpty());
 	}
-	
+
 	@Test
 	public void createReservation() {
 		Reservation reservation = ITUtil.createDummyReservation(roomRepository.findAll().get(0));

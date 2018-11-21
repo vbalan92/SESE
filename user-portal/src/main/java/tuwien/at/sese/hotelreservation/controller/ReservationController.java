@@ -31,12 +31,13 @@ public class ReservationController {
     /**
      * Creates the.
      *
-     * @param reservation the reservation
-     * @return the reservation
+     * @param reservationDTO the reservationDTO
+     * @return the reservationDTO
      */
     @PostMapping
-    public Reservation create(@RequestBody Reservation reservation){
-        return reservationService.create(reservation);
+    public Reservation create(@RequestBody ReservationDTO reservationDTO){
+
+        return reservationService.create(reservationDTO);
     }
 
     /**

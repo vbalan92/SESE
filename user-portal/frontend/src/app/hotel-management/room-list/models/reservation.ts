@@ -5,9 +5,9 @@ export class ReservationDTO {
   roomId: number;
   customerName: string;
   customerEmail: string;
-  customerDateOfBirth: Date;
-  fromDate: Date;
-  toDate: Date;
+  customerDateOfBirth: any;
+  fromDate: any;
+  toDate: any;
 }
 
 export class CreateReservationForm {

@@ -17,6 +17,18 @@ export class ReservationService {
   }
 
   reserveRoom(reservation: ReservationDTO): Observable<ReservationDTO> {
+    reservation.fromDate = this.getDateInMillis(reservation.fromDate);
+    reservation.toDate = this.getDateInMillis(reservation.toDate);
+    reservation.customerDateOfBirth = this.getDateInMillis(reservation.customerDateOfBirth);
     return this.http.post<ReservationDTO>(this.reservationUrl, reservation, httpOptions);
+  }
+
+  private getDateInMillis(date: any) {
+    let date2 = new Date(Date.UTC(date.year, date.month - 1, date.day));
+    return date2.getTime();
+  }
+
+  findAll(): Observable<ReservationDTO[]> {
+    return this.http.get<ReservationDTO[]>(this.reservationUrl, httpOptions);
   }
 }
