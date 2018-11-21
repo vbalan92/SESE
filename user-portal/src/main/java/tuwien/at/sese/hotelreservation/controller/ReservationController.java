@@ -1,10 +1,10 @@
 package tuwien.at.sese.hotelreservation.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import tuwien.at.sese.hotelreservation.api.dto.ReservationDTO;
+import tuwien.at.sese.hotelreservation.api.dto.ReservationDetailDTO;
 import tuwien.at.sese.hotelreservation.model.Reservation;
 import tuwien.at.sese.hotelreservation.service.ReservationService;
 
@@ -82,7 +83,14 @@ public class ReservationController {
      */
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public List<Reservation> findAll(){
-        return reservationService.findAll();
+    public List<ReservationDetailDTO> findAll(){
+        return reservationService.findAll().stream()
+            .map(this::createReservationDetailDTO)
+            .collect(Collectors.toList());
+    }
+
+    private ReservationDetailDTO createReservationDetailDTO(final Reservation reservation)
+    {
+        return new ReservationDetailDTO(reservation);
     }
 }
