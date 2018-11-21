@@ -14,12 +14,12 @@
   </div>
   <div class="col-lg-2 room-list-item-details">
     <h5 class="room-list-item-price">{{reservation.price | currency:'EUR'}}</h5>
-    <button type="button" class="btn btn-danger room-list-item-reserve"
-            (click)="$event.stopPropagation();open(content)">
+    <button type="button" class="btn btn-danger room-list-item-reserve" style="right: 110px;"
+            (click)="$event.stopPropagation();cancelReservation()">
       Stornieren
     </button>
     <button type="button" class="btn btn-success room-list-item-reserve"
-            (click)="$event.stopPropagation();open(content)">
+            (click)="$event.stopPropagation();approveReservation()">
       Bestätigen
     </button>
     <span class="col-lg-2"></span>

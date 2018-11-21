@@ -36,7 +36,7 @@ public class ReservationController {
      * @return the reservationDTO
      */
     @PostMapping
-    public Reservation create(@RequestBody ReservationDTO reservationDTO){
+    public ReservationDTO create(@RequestBody ReservationDTO reservationDTO){
 
         return reservationService.create(reservationDTO);
     }
@@ -85,12 +85,7 @@ public class ReservationController {
     @PreAuthorize("hasRole('ADMIN')")
     public List<ReservationDetailDTO> findAll(){
         return reservationService.findAll().stream()
-            .map(this::createReservationDetailDTO)
+            .map(ReservationDetailDTO::new)
             .collect(Collectors.toList());
-    }
-
-    private ReservationDetailDTO createReservationDetailDTO(final Reservation reservation)
-    {
-        return new ReservationDetailDTO(reservation);
     }
 }

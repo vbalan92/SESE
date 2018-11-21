@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import tuwien.at.sese.hotelreservation.api.dto.RoomDTO;
 import tuwien.at.sese.hotelreservation.model.Room;
 import tuwien.at.sese.hotelreservation.service.RoomService;
 
@@ -82,7 +83,7 @@ public class RoomController {
      * @return the list
      */
     @GetMapping
-    public List<Room> findAll() {
+    public List<RoomDTO> findAll() {
         return roomService.findAll();
     }
 }

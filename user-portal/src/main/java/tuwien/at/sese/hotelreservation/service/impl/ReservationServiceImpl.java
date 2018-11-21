@@ -1,11 +1,13 @@
 package tuwien.at.sese.hotelreservation.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tuwien.at.sese.hotelreservation.api.dto.ReservationDTO;
+import tuwien.at.sese.hotelreservation.api.dto.ReservationDetailDTO;
 import tuwien.at.sese.hotelreservation.model.Customer;
 import tuwien.at.sese.hotelreservation.model.Reservation;
 import tuwien.at.sese.hotelreservation.model.Room;
@@ -37,12 +39,11 @@ public class ReservationServiceImpl implements ReservationService
      * @param reservationDTO
      */
     @Override
-    public Reservation create(final ReservationDTO reservationDTO)
+    public ReservationDTO create(final ReservationDTO reservationDTO)
     {
-        final Customer customer = customerRepository.findByEmail(reservationDTO.getCustomerEmail())
-            .orElse(customerService.create(new Customer(reservationDTO.getCustomerEmail(),
-                reservationDTO.getCustomerName(),
-                reservationDTO.getCustomerDateOfBirth())));
+        final Optional<Customer> existingCustomer = customerRepository.findByEmail(reservationDTO.getCustomerEmail());
+        final Customer customer = existingCustomer.isPresent()
+            ? existingCustomer.get() : createNewCustomer(reservationDTO);
 
         final Room room = roomRepository.findById(reservationDTO.getRoomId());
 
@@ -50,7 +51,15 @@ public class ReservationServiceImpl implements ReservationService
         reservation.setCustomer(customer);
         reservation.setRoom(room);
 
-        return repository.save(reservation);
+        final Reservation reservationEntity = repository.save(reservation);
+        return new ReservationDetailDTO(reservationEntity);
+    }
+
+    private Customer createNewCustomer(final ReservationDTO reservationDTO)
+    {
+        return customerService.create(new Customer(reservationDTO.getCustomerEmail(),
+            reservationDTO.getCustomerName(),
+            reservationDTO.getCustomerDateOfBirth()));
     }
 
     /**

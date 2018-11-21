@@ -16,7 +16,7 @@ public interface ReservationService {
      * @param reservation the reservation
      * @return the reservation
      */
-    Reservation create(ReservationDTO reservation);
+    ReservationDTO create(ReservationDTO reservation);
 
     /**
      * Delete.

@@ -2,6 +2,7 @@ package tuwien.at.sese.hotelreservation.service;
 
 import java.util.List;
 
+import tuwien.at.sese.hotelreservation.api.dto.RoomDTO;
 import tuwien.at.sese.hotelreservation.model.Room;
 
 /**
@@ -31,7 +32,7 @@ public interface RoomService {
      *
      * @return the list
      */
-    List<Room> findAll();
+    List<RoomDTO> findAll();
 
     /**
      * Find by id.
