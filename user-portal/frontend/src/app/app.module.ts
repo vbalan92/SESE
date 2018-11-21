@@ -14,6 +14,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ReservationService} from './services/reservation.service';
 import {RoomService} from './hotel-management/room-list/service/room.service';
 import {httpInterceptorProviders} from './auth/auth-interceptor';
+import {ContactService} from './services/contact.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import {httpInterceptorProviders} from './auth/auth-interceptor';
     HotelManagementModule,
     NgbModule.forRoot()
   ],
-  providers: [CustomerService, ReservationService, RoomService, httpInterceptorProviders],
+  providers: [CustomerService, ReservationService, RoomService, ContactService, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {

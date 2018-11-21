@@ -52,7 +52,5 @@ export class CustomerListComponent implements OnInit {
   detailCustomer(customer: Customer): void {
     this.showDetail = true;
     this.selectedCustomer = customer;
-
   }
-
 }

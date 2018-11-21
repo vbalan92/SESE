@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {Customer} from '../../models/customer.model';
 import {CustomerService} from '../../services/customer.service';
 import {Address} from "../../models/address.model";
-
+import {TokenStorageService} from "../../auth/token-storage.service";
 
 
 @Component({
@@ -29,6 +29,7 @@ export class CustomerAddComponent implements OnInit {
 
   ngOnInit() {
     this.customer.billAddress = new Address();
+
   }
 
   gotoCustomers() {

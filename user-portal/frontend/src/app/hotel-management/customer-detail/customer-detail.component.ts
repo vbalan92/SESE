@@ -40,7 +40,7 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   goToCustomers() {
-    this.router.navigate(['/customerlist']);
+    this.router.navigate(['/customers']);
   }
 
 
