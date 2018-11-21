@@ -13,7 +13,7 @@ export class Room {
   description: string;
   mainPicture: string;
   capacity: number;
-  price: number;
+  pricePerNight: number;
   /**
   createdAt: string;
   createdFrom: string;
@@ -23,7 +23,7 @@ export class Room {
 export class CreateRoomForm {
   name: FormControl;
   type: FormControl;
-  price: FormControl;
+  pricePerNight: FormControl;
   capacity: FormControl;
   description: FormControl;
   mainPicture: FormControl;
@@ -31,7 +31,7 @@ export class CreateRoomForm {
   constructor(private auction: Room, private fb: FormBuilder) {
     this.name = this.fb.control(this.auction.name, Validators.required);
     this.type = this.fb.control(this.auction.type, Validators.required);
-    this.price = this.fb.control(this.auction.price, Validators.required);
+    this.pricePerNight = this.fb.control(this.auction.pricePerNight, Validators.required);
     this.capacity = this.fb.control(this.auction.capacity, Validators.required);
     this.mainPicture = this.fb.control(this.auction.mainPicture);
     this.description = this.fb.control(this.auction.description, Validators.required);

@@ -33,15 +33,17 @@ export class RoomListComponent implements OnInit {
   }
 
   loodRooms() {
-    this.roomService.getRooms().subscribe((data: Room[])  => {
-      this.availableRooms =  data;
+    this.roomService.getRooms().subscribe((data: Room[]) => {
+      this.availableRooms = data;
       this.cachedRooms = this.availableRooms;
     });
   }
+
   search() {
     if (this.searchRoom) {
       this.availableRooms = this.availableRooms.filter(
-        item => item.name === this.searchRoom.name || item.capacity === this.searchRoom.capacity || item.price === this.searchRoom.price);
+        item => item.name === this.searchRoom.name || item.capacity === this.searchRoom.capacity ||
+          item.pricePerNight === this.searchRoom.pricePerNight);
     }
   }
 

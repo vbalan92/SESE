@@ -14,6 +14,7 @@ import { ReservationListComponent } from './reservation-list/reservation-list.co
 import { ReservationDetailComponent } from './reservation-detail/reservation-detail.component';
 import { ReservationListItemComponent } from './reservation-list/reservation-list-item/reservation-list-item.component';
 import {RoomUpdateComponent} from './room-update/room-update.component';
+import {CustomerAddComponent} from "./customer-add/customer-add.component";
 
 const routes: Routes = [
   {
@@ -64,6 +65,7 @@ export const managementRouting = RouterModule.forChild(routes);
     RoomUpdateComponent,
     CustomerListComponent,
     CustomerDetailComponent,
+    CustomerAddComponent,
     CreateRoomComponent,
     ReservationListComponent,
     ReservationDetailComponent,

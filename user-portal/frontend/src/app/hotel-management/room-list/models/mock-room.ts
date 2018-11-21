@@ -8,7 +8,7 @@ export const ROOMS: Room[] = [
     description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.',
     mainPicture: '../../../assets/rooms/apartment-bed-bedroom-271618.jpg',
     capacity: 2,
-    price: 50
+    pricePerNight: 50
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ export const ROOMS: Room[] = [
     description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et ',
     mainPicture: '../../../assets/rooms/apartment-bed-chair-189333.jpg',
     capacity: 2,
-    price: 50
+    pricePerNight: 50
   },
   {
     id: 3,
@@ -26,7 +26,7 @@ export const ROOMS: Room[] = [
     description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et ',
     mainPicture: '../../../assets/rooms/accomodation-bed-hotel-97083.jpg',
     capacity: 2,
-    price: 50
+    pricePerNight: 50
   },
   {
     id: 4,
@@ -35,7 +35,7 @@ export const ROOMS: Room[] = [
     description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et ',
     mainPicture: '../../../assets/rooms/bed-bedroom-ceiling-262048.jpg',
     capacity: 2,
-    price: 50
+    pricePerNight: 50
   },
   {
     id: 5,
@@ -44,7 +44,7 @@ export const ROOMS: Room[] = [
     description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et ',
     mainPicture: '../../../assets/rooms/bed-bedroom-curtains-26139.jpg',
     capacity: 2,
-    price: 50
+    pricePerNight: 50
   },
   {
     id: 6,
@@ -53,7 +53,7 @@ export const ROOMS: Room[] = [
     description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et ',
     mainPicture: '../../../assets/rooms/apartment-bed-bedroom-271618.jpg',
     capacity: 2,
-    price: 50
+    pricePerNight: 50
   },
   {
     id: 7,
@@ -62,7 +62,7 @@ export const ROOMS: Room[] = [
     description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et ',
     mainPicture: '../../../assets/rooms/bed-bedroom-furniture-279746.jpg',
     capacity: 2,
-    price: 50
+    pricePerNight: 50
   },
   {
     id: 8,
@@ -71,7 +71,7 @@ export const ROOMS: Room[] = [
     description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et ',
     mainPicture: '../../../assets/rooms/accomodation-bed-hotel-97083.jpg',
     capacity: 2,
-    price: 50
+    pricePerNight: 50
   },
   {
     id: 9,
@@ -80,6 +80,6 @@ export const ROOMS: Room[] = [
     description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et ',
     mainPicture: '../../../assets/rooms/apartment-bed-chair-189333.jpg',
     capacity: 2,
-    price: 50
+    pricePerNight: 50
   },
 ];

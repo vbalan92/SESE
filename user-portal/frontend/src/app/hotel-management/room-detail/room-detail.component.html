@@ -6,7 +6,7 @@
 <div *ngIf="room" class="card">
   <h5 class="card-header">
     {{room.name}}
-    <span class="float-right" style="color: #660000">{{room.price | currency:'EUR'}}</span>
+    <span class="float-right" style="color: #660000">{{room.pricePerNight | currency:'EUR'}}</span>
   </h5>
   <div class="card-body">
     <h5 class="card-title row">

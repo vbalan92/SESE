@@ -11,7 +11,7 @@
     {{room.description}}
   </div>
   <div class="col-lg-2 room-list-item-details">
-    <h5 class="room-list-item-price">{{room.price | currency:'EUR'}}</h5>
+    <h5 class="room-list-item-price">{{room.pricePerNight | currency:'EUR'}}</h5>
     <button type="button" class="btn btn-success room-list-item-reserve"
             (click)="$event.stopPropagation();open(content)">
       Reservieren

@@ -1,16 +1,17 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {Customer} from '../../models/customer.model';
+import {CustomerService} from '../../services/customer.service';
+import {Address} from "../../models/address.model";
 
-import {Customer} from '../models/customer.model';
-import {CustomerService} from './customer.service';
-import {Address} from "../models/address.model";
+
 
 @Component({
   selector: 'app-add-costomer-component',
-  templateUrl: './add-customer.component.html',
+  templateUrl: './customer-add.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AddCustomerComponent implements OnInit {
+export class CustomerAddComponent implements OnInit {
 
   customer: Customer = new Customer();
 

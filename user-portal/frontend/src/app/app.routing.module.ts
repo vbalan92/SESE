@@ -1,23 +1,23 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {CustomerComponent} from './customer/customer.component';
-import {AddCustomerComponent} from './customer/add-customer.component';
-import {ContactComponent} from "./contact/contact.component";
-import {HomeComponent} from "./home/home.component";
-import {DetailsCustomerComponent} from "./customer/details-customer.component";
-import {CreateRoomComponent} from "./hotel-management/room-create/room-create.component";
-import {AuthGuard} from "./auth/auth.guard";
+import {ContactComponent} from './contact/contact.component';
+import {HomeComponent} from './home/home.component';
+import {CreateRoomComponent} from './hotel-management/room-create/room-create.component';
+import {AuthGuard} from './auth/auth.guard';
+import {CustomerListComponent} from './hotel-management/customer-list/customer-list.component';
+import {CustomerAddComponent} from './hotel-management/customer-add/customer-add.component';
+import {CustomerDetailComponent} from './hotel-management/customer-detail/customer-detail.component';
 
 const routes: Routes = [
   {
     path: 'customers',
-    component: CustomerComponent,
+    component: CustomerListComponent,
     canActivate: [AuthGuard]
   },
   {
     path: 'add',
-    component: AddCustomerComponent,
+    component: CustomerAddComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -34,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: 'customerDetails/:id',
-    component: DetailsCustomerComponent,
+    component: CustomerDetailComponent,
     canActivate: [AuthGuard]
   },
   {

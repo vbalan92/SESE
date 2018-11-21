@@ -1,6 +1,67 @@
-<p>
-  customer-list works!
-  <a routerLink="/customers">List Customers</a>
-  <a style="margin-left:10px" routerLink="/add">Add Customer</a>
+<button *ngIf="isLoggedIn" type="button" class="btn btn-success col-lg-2 offset-lg-10" routerLink="/add">
+  Add new customer
+</button>
+<div>
+  <div *ngIf="!showDetail">
+    <h2> Customer Search</h2>
+    <form>
+      <div class="form-group">
+        <div class="col-md-3 pull-left">
+          <label for="lastName">Last Name:</label>
+        </div>
+        <div class="col-md-3 pull-left">
+          <input [(ngModel)]="searchCustomer.lastName" placeholder="Last Name" name="lastName" class="form-control"
+                 id="lastName">
+        </div>
+        <div class="col-md-2 pull-left">
+          <label for="email">Email :</label>
+        </div>
+        <div class="col-md-3 pull-left">
+          <input type="email" [(ngModel)]="searchCustomer.email" placeholder="Email" name="email" class="form-control"
+                 id="email">
+        </div>
+      </div>
 
-</p>
+      <button class="btn btn-success pull-left" (click)="search()">Suchen</button>
+
+
+      <button class="btn btn-success  pull-right" (click)="resetSearch()">Zurücksetzen</button>
+
+    </form>
+
+    <h3>Customer Results</h3>
+    <table id="customerTable" class="table table-striped" *ngIf="!showDetail">
+      <thead>
+      <tr>
+        <th class="hidden">Id</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let customer of customers">
+        <td class="hidden">{{customer.id}}</td>
+        <td>{{customer.firstName}} {{customer.lastName}}</td>
+        <td>{{customer.billAddress.strasse}} / {{customer.billAddress.hausnr}} / {{customer.billAddress.postleitzahl}}
+          {{customer.billAddress.ort}}
+        </td>
+        <td>{{customer.email}}</td>
+        <td>
+          <button type="button" class="close" aria-label="Close" (click)="deleteCustomer(customer)">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-info" (click)="detailCustomer(customer)">
+            <span class="glyphicon glyphicon-info"></span> details
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<app-details-customer-component *ngIf="showDetail" [model]="selectedCustomer"></app-details-customer-component>
+
