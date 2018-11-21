@@ -35,14 +35,17 @@ export class RoomUpdateComponent implements OnInit {
   }
 
   onUpdateRoom() {
+    let id = this.room.id;
     console.warn(this.roomForm.value);
     this.room = this.roomForm.value;
+    this.room.id = id;
     this.roomService.updateRoom(this.room).subscribe(room => {
       this.room = room;
       console.log('Reservation successfully updated');
     });
     console.log(`room with the id ` + this.room.id + ` successfully update!`);
     this.initAuctionCreateForm(this.room);
+    this.router.navigate(['/roomlist']);
   }
 
 
