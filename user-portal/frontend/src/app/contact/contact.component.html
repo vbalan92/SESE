@@ -1,8 +1,12 @@
+<button type="button" class="btn btn-sm btn-outline-secondary" routerLink="/home">
+  Home
+</button>
+
 <div class="col-md-6" *ngIf="!isContactSend">
   <h2 class="text-center">Kontaktformular</h2>
   <form>
     <div class="form-group">
-      <label for="firstName">Name:</label>
+      <label for="name">Name:</label>
       <input [(ngModel)]="contact.name" placeholder="Name" name="name" class="form-control" id="name">
     </div>
 
@@ -27,22 +31,23 @@
 </div>
 <div class="card-body" *ngIf="isContactSend">
   <h5 class="card-title row">
-    <div class="col-lg-3">
-      <span>vielen Dank {{contact.name}} </span>
+    <div class="col-lg-6">
+      <span>vielen Dank <br/> name : {{contact.name}} </span>
     </div>
     <div class="col-lg-6">
-      {{contact.telefonnummer}}
+      <span> telefonnummer: {{contact.telefonnummer}} </span>
     </div>
     <div class="col-lg-3">
-      {{contact.email}}
+      <span>email: {{contact.email}}</span>
     </div>
     <div class="col-lg-6">
-      {{contact.notiz}}
+      <span>notiz: {{contact.notiz}}</span>
     </div>
   </h5>
   <div class="card-text row">
 
-    <div class="col-lg-3">
+    <div class="col-lg-6">
+      <br/>
       Ihre Anfrage so bald wie möglich bearbeitet, und die Antwort auf Ihre email {{contact.email}} gesendet. <br/>
       Mit freundlichen Grüßen <br/>
       Ihre Hotel Team<br/>

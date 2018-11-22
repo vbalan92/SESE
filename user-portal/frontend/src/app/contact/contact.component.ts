@@ -10,8 +10,8 @@ import {Contact} from '../models/contact.model';
 })
 export class ContactComponent implements OnInit {
 
-  private contact: Contact = new Contact();
-  private isContactSend: boolean;
+  public contact: Contact = new Contact();
+  public isContactSend: boolean;
 
   constructor(private contactService: ContactService, private router: Router) {
   }
