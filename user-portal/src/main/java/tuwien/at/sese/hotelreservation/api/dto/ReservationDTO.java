@@ -23,12 +23,13 @@ public class ReservationDTO {
 	private String customerEmail;
 	private LocalDate customerDateOfBirth;
 	private Status status;
-
+	private Long id;
+	
 	@JsonCreator
 	public ReservationDTO(
 			@JsonProperty("fromDate") @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX") final Date fromDate,
 			@JsonProperty("toDate") @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX") final Date toDate,
-			@JsonProperty("price") final BigDecimal price, @JsonProperty("roomId") final Long roomId,
+			@JsonProperty("price") final BigDecimal price, @JsonProperty("roomId") final Long roomId,@JsonProperty("id") final Long id, 
 			@JsonProperty("customerName") final String customerName,
 			@JsonProperty("customerEmail") final String customerEmail,
 			@JsonProperty("customerDateOfBirth") @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX") final Date customerDateOfBirth,
@@ -41,18 +42,21 @@ public class ReservationDTO {
 		this.customerEmail = customerEmail;
 		this.customerDateOfBirth = customerDateOfBirth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		this.status = Status.valueOf(status);
+		this.id = id;
 	}
 
-	public ReservationDTO(final LocalDate fromDate, final LocalDate toDate, final BigDecimal price, final Long id,
+	public ReservationDTO(final LocalDate fromDate, final LocalDate toDate, final BigDecimal price, final Long roomId,final Long id,
 			final String firstName, final String email, final LocalDate birtdate, final String status) {
 		this.fromDate = fromDate;
 		this.toDate = toDate;
 		this.price = price;
+		this.id = id;
 		this.roomId = roomId;
 		this.customerName = customerName;
 		this.customerEmail = customerEmail;
 		this.customerDateOfBirth = customerDateOfBirth;
 		this.status = Status.valueOf(status);
+		this.id = id;
 	}
 
 	public LocalDate getFromDate() {

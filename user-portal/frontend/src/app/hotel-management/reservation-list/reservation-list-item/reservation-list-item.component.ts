@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ReservationDetailDTO} from "./models/reservation.dto";
-import {ReservationService} from "../../../services/reservation.service";
+import {ReservationDetailDTO} from './models/reservation.dto';
+import {ReservationService} from '../../../services/reservation.service';
+import {ReservationDTO, Status} from '../../room-list/models/reservation';
 
 @Component({
   selector: 'app-reservation-list-item',
@@ -16,13 +17,33 @@ export class ReservationListItemComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('id ::' + this.reservation.id);
   }
 
   cancelReservation(): void {
     console.log('reservation cancelled!');
+    this.reservation.status = Status.CANCELED;
+    this.reservation.id = this.reservation.id;
+    this.reservationService.update(this.reservation).subscribe((data: ReservationDetailDTO) => {
+      this.reservation = data ;
+    });
   }
 
   approveReservation(): void {
     console.log('reservation approved!');
+    this.reservation.status = Status.CONFIRMED;
+    this.reservation.id = this.reservation.id;
+    this.reservationService.update(this.reservation).subscribe((data: ReservationDetailDTO) => {
+      this.reservation = data ;
+    });
+  }
+
+  detailReservation(): void {
+    console.log('reservation approved!');
+    this.reservation.status = Status.DELETED;
+    this.reservation.id = this.reservation.id;
+    this.reservationService.update(this.reservation).subscribe((data: ReservationDetailDTO) => {
+      this.reservation = data ;
+    });
   }
 }

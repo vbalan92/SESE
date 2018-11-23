@@ -44,7 +44,7 @@ public class Reservation extends EntityId implements Serializable
     
     @Column
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Status status = Status.OPEN;
 
     public Reservation()
     {
@@ -129,6 +129,9 @@ public class Reservation extends EntityId implements Serializable
     }
 
 	public Status getStatus() {
+		if(this.status == null) {
+			return Status.OPEN;
+		}
 		return status;
 	}
 

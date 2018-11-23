@@ -43,6 +43,7 @@ export class CustomerListComponent implements OnInit {
 
 
   deleteCustomer(customer: Customer): void {
+    alert('Der Kunde ' + customer.firstName + ' ' + customer.lastName + ' wurde gelöscht');
     this.customerService.deleteCustomer(customer)
       .subscribe(data => {
         this.customers = this.customers.filter(u => u !== customer);

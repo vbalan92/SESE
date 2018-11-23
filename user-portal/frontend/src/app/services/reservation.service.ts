@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {ReservationDTO} from "../hotel-management/room-list/models/reservation";
-import {Observable} from "rxjs";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {ReservationDTO} from '../hotel-management/room-list/models/reservation';
+import {Observable} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {ReservationDetailDTO} from '../hotel-management/reservation-list/reservation-list-item/models/reservation.dto';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -30,5 +31,9 @@ export class ReservationService {
 
   findAll(): Observable<ReservationDTO[]> {
     return this.http.get<ReservationDTO[]>(this.reservationUrl, httpOptions);
+  }
+
+  update(reservation: ReservationDetailDTO): Observable<ReservationDetailDTO> {
+    return this.http.put<ReservationDetailDTO>(this.reservationUrl + '/' + reservation.id, reservation, httpOptions);
   }
 }

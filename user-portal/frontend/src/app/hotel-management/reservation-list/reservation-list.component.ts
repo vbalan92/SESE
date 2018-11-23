@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ReservationDTO} from "../room-list/models/reservation";
-import {ReservationService} from "../../services/reservation.service";
+import {ReservationDTO} from '../room-list/models/reservation';
+import {ReservationService} from '../../services/reservation.service';
+import {ReservationDetailDTO} from "./reservation-list-item/models/reservation.dto";
 
 @Component({
   selector: 'app-reservation-list',
@@ -9,7 +10,7 @@ import {ReservationService} from "../../services/reservation.service";
 })
 export class ReservationListComponent implements OnInit {
 
-  reservations: ReservationDTO[];
+  reservations: ReservationDetailDTO[];
 
   constructor(private reservationService: ReservationService) {
   }

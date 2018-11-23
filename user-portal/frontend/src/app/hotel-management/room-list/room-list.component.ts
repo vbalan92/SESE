@@ -49,5 +49,14 @@ export class RoomListComponent implements OnInit {
 
   resetSearch() {
     this.availableRooms = this.cachedRooms;
+    if (this.searchRoom.name) {
+      this.searchRoom.name = null;
+    }
+    if (this.searchRoom.capacity) {
+      this.searchRoom.capacity = null;
+    }
+    if (this.searchRoom.pricePerNight) {
+      this.searchRoom.pricePerNight = null;
+    }
   }
 }

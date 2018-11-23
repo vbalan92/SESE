@@ -19,8 +19,12 @@
       Stornieren
     </button>
     <button type="button" class="btn btn-success room-list-item-reserve"
-            (click)="$event.stopPropagation();approveReservation()">
+            (click)="$event.stopPropagation();approveReservation()" style="left: 110px;">
       Bestätigen
+    </button>
+    <button type="button" class="btn btn-danger room-list-item-reserve"
+            (click)="$event.stopPropagation();deleteReservation()">
+      Löschen
     </button>
     <span class="col-lg-2"></span>
   </div>
