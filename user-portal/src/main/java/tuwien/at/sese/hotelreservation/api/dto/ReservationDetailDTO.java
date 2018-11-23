@@ -23,9 +23,9 @@ public class ReservationDetailDTO extends ReservationDTO
         final Long roomId,
         final String customerName,
         final String customerEmail,
-        final Date customerDateOfBirth, final String roomNumber, final String roomName, final RoomType roomType, final String roomMainPicture)
+        final Date customerDateOfBirth, final String roomNumber, final String roomName, final RoomType roomType, final String roomMainPicture, final String status)
     {
-        super(fromDate, toDate, price, roomId, customerName, customerEmail, customerDateOfBirth);
+        super(fromDate, toDate, price, roomId, customerName, customerEmail, customerDateOfBirth, status);
         this.roomNumber = roomNumber;
         this.roomName = roomName;
         this.roomType = roomType;
@@ -37,7 +37,7 @@ public class ReservationDetailDTO extends ReservationDTO
         super(reservation.getFromDate(), reservation.getToDate(), reservation.getPrice(),
             reservation.getRoom().getId(),
             reservation.getCustomer().getFirstName(), reservation.getCustomer().getEmail(),
-            reservation.getCustomer().getBirtdate());
+            reservation.getCustomer().getBirtdate(), reservation.getStatus().name());
         this.roomName = reservation.getRoom().getName();
         this.roomType = reservation.getRoom().getType();
         this.roomNumber = reservation.getRoom().getNumber();

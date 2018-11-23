@@ -4,6 +4,8 @@ import tuwien.at.sese.hotelreservation.api.dto.ReservationDTO;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -39,6 +41,10 @@ public class Reservation extends EntityId implements Serializable
     @ManyToOne
     @JoinColumn(name = "ROOM_ID")
     private Room room;
+    
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     public Reservation()
     {
@@ -121,4 +127,14 @@ public class Reservation extends EntityId implements Serializable
     {
         this.room = room;
     }
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+    
+    
 }
