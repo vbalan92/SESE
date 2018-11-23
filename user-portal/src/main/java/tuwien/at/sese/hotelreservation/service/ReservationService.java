@@ -47,5 +47,5 @@ public interface ReservationService {
      * @param reservation the reservation
      * @return the reservation
      */
-    Reservation update(Reservation reservation);
+    Reservation update(ReservationDTO reservation);
 }

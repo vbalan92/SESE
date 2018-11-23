@@ -17,12 +17,11 @@ export class ReservationListItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('id ::' + this.reservation.id);
   }
 
   cancelReservation(): void {
     console.log('reservation cancelled!');
-    this.reservation.status = ReservationStatus.CANCELED;
+    this.reservation.status = ReservationStatus.CANCELLED;
     this.reservationService.update(this.reservation).subscribe((data: ReservationDetailDTO) => {
       this.reservation = data ;
     });

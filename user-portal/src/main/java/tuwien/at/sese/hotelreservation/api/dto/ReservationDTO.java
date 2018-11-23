@@ -29,14 +29,13 @@ public class ReservationDTO
     @JsonCreator
     public ReservationDTO(
         @JsonProperty("fromDate") @JsonFormat(shape = JsonFormat.Shape.STRING,
-			pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX") final Date fromDate,
-        @JsonProperty("toDate") @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX") final Date toDate,
+			pattern = "yyyy-MM-dd") final Date fromDate,
+        @JsonProperty("toDate") @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd") final Date toDate,
         @JsonProperty("price") final BigDecimal price, @JsonProperty("roomId") final Long roomId,
 		@JsonProperty("id") final Long id,
         @JsonProperty("customerName") final String customerName,
         @JsonProperty("customerEmail") final String customerEmail,
-        @JsonProperty("customerDateOfBirth") @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH"
-			+ ":mm:ss.SSSX") final Date customerDateOfBirth,
+        @JsonProperty("customerDateOfBirth") @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd") final Date customerDateOfBirth,
         @JsonProperty("status") final ReservationStatus status)
     {
         this.fromDate = fromDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();

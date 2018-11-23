@@ -100,8 +100,15 @@ public class ReservationServiceImpl implements ReservationService
      * {@inheritDoc}
      */
     @Override
-    public Reservation update(Reservation reservation)
+    public Reservation update(ReservationDTO reservationDTO)
     {
+        final Reservation reservation = repository.findById(reservationDTO.getId());
+        if (reservation == null)
+        {
+            return null;
+        }
+        reservation.setStatus(reservationDTO.getStatus());
+
         return repository.save(reservation);
     }
 }

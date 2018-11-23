@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, Validators} from '@angular/forms';
 export enum ReservationStatus {
   CREATED = 'CREATED',
   CONFIRMED = 'CONFIRMED',
-  CANCELED = 'CANCELED'
+  CANCELLED = 'CANCELLED'
 }
 
 export class ReservationDTO {
