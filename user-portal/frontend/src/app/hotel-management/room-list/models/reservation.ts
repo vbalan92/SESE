@@ -1,11 +1,9 @@
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 
-export enum Status {
-  OPEN = 'OPEN',
-  CANCELED = 'CANCELED',
-  FINISHED = 'FINISHED',
+export enum ReservationStatus {
+  CREATED = 'CREATED',
   CONFIRMED = 'CONFIRMED',
-  DELETED = 'DELETED'
+  CANCELED = 'CANCELED'
 }
 
 export class ReservationDTO {
@@ -16,7 +14,7 @@ export class ReservationDTO {
   customerDateOfBirth: any;
   fromDate: any;
   toDate: any;
-  status: Status = Status.OPEN;
+  status: ReservationStatus;
 }
 
 export class CreateReservationForm {

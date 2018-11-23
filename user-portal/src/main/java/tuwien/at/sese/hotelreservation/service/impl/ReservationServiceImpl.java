@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import tuwien.at.sese.hotelreservation.api.dto.ReservationDTO;
 import tuwien.at.sese.hotelreservation.api.dto.ReservationDetailDTO;
+import tuwien.at.sese.hotelreservation.api.enums.ReservationStatus;
 import tuwien.at.sese.hotelreservation.model.Customer;
 import tuwien.at.sese.hotelreservation.model.Reservation;
 import tuwien.at.sese.hotelreservation.model.Room;
@@ -50,6 +51,7 @@ public class ReservationServiceImpl implements ReservationService
         Reservation reservation = new Reservation(reservationDTO);
         reservation.setCustomer(customer);
         reservation.setRoom(room);
+        reservation.setStatus(ReservationStatus.CREATED);
 
         final Reservation reservationEntity = repository.save(reservation);
         return new ReservationDetailDTO(reservationEntity);

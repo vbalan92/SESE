@@ -1,6 +1,7 @@
 package tuwien.at.sese.hotelreservation.model;
 
 import tuwien.at.sese.hotelreservation.api.dto.ReservationDTO;
+import tuwien.at.sese.hotelreservation.api.enums.ReservationStatus;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,10 +42,10 @@ public class Reservation extends EntityId implements Serializable
     @ManyToOne
     @JoinColumn(name = "ROOM_ID")
     private Room room;
-    
+
     @Column
     @Enumerated(EnumType.STRING)
-    private Status status = Status.OPEN;
+    private ReservationStatus status;
 
     public Reservation()
     {
@@ -128,16 +129,13 @@ public class Reservation extends EntityId implements Serializable
         this.room = room;
     }
 
-	public Status getStatus() {
-		if(this.status == null) {
-			return Status.OPEN;
-		}
-		return status;
-	}
+    public ReservationStatus getStatus()
+    {
+        return status;
+    }
 
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-    
-    
+    public void setStatus(final ReservationStatus status)
+    {
+        this.status = status;
+    }
 }

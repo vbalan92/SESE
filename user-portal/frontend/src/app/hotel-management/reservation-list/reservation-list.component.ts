@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ReservationDTO, Status} from '../room-list/models/reservation';
+import {ReservationDTO} from '../room-list/models/reservation';
 import {ReservationService} from '../../services/reservation.service';
-import {ReservationDetailDTO} from "./reservation-list-item/models/reservation.dto";
 
 @Component({
   selector: 'app-reservation-list',
@@ -10,15 +9,15 @@ import {ReservationDetailDTO} from "./reservation-list-item/models/reservation.d
 })
 export class ReservationListComponent implements OnInit {
 
-  reservations: ReservationDetailDTO[];
+  reservations: ReservationDTO[];
 
-  searchReservationDetailDTO: ReservationDetailDTO;
-  status = Status;
-  keys: Status[];
-
-  constructor() {
-   this.keys = Object.keys(this.status);
-  }
+  // searchReservationDetailDTO: ReservationDetailDTO;
+  // status = Status;
+  // keys: Status[];
+  // TODO Abbas 2nd constructor ?!
+  // constructor() {
+  //  this.keys = Object.keys(this.status);
+  // }
   constructor(private reservationService: ReservationService) {
   }
 
@@ -31,9 +30,9 @@ export class ReservationListComponent implements OnInit {
   }
 
   searchReservations() {
-    this.reservations.filter(item => item.roomName === this.searchReservationDetailDTO.roomName ||
-      item.roomName === this.searchReservationDetailDTO.roomName ||
-      item.status === this.searchReservationDetailDTO.status ||
-      item.fromDate === this.searchReservationDetailDTO.fromDate);
+    // this.reservations.filter(item => item.roomName === this.searchReservationDetailDTO.roomName ||
+    //   item.roomName === this.searchReservationDetailDTO.roomName ||
+    //   item.status === this.searchReservationDetailDTO.status ||
+    //   item.fromDate === this.searchReservationDetailDTO.fromDate);
   }
 }
