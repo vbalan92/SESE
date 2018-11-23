@@ -61,8 +61,8 @@ public class ReservationController {
      */
     @PutMapping(path = {"/{id}"})
     @PreAuthorize("hasRole('ADMIN')")
-    public Reservation update(@PathVariable("id") Long id, @RequestBody ReservationDTO reservation){
-        reservation.setId(id);
+    public ReservationDetailDTO update(@PathVariable("id") Long id, @RequestBody ReservationDTO reservation)
+    {
         return reservationService.update(reservation);
     }
 

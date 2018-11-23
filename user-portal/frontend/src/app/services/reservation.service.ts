@@ -29,8 +29,8 @@ export class ReservationService {
     return date2.getTime();
   }
 
-  findAll(): Observable<ReservationDTO[]> {
-    return this.http.get<ReservationDTO[]>(this.reservationUrl, httpOptions);
+  findAll(): Observable<ReservationDetailDTO[]> {
+    return this.http.get<ReservationDetailDTO[]>(this.reservationUrl, httpOptions);
   }
 
   update(reservation: ReservationDetailDTO): Observable<ReservationDetailDTO> {

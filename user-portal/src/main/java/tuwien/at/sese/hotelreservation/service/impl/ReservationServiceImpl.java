@@ -1,5 +1,7 @@
 package tuwien.at.sese.hotelreservation.service.impl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +19,8 @@ import tuwien.at.sese.hotelreservation.repository.ReservationRepository;
 import tuwien.at.sese.hotelreservation.repository.RoomRepository;
 import tuwien.at.sese.hotelreservation.service.CustomerService;
 import tuwien.at.sese.hotelreservation.service.ReservationService;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  * @author Abbas ULUSOY
@@ -42,6 +46,8 @@ public class ReservationServiceImpl implements ReservationService
     @Override
     public ReservationDTO create(final ReservationDTO reservationDTO)
     {
+        validateReservation(reservationDTO);
+
         final Optional<Customer> existingCustomer = customerRepository.findByEmail(reservationDTO.getCustomerEmail());
         final Customer customer = existingCustomer.isPresent()
             ? existingCustomer.get() : createNewCustomer(reservationDTO);
@@ -52,9 +58,27 @@ public class ReservationServiceImpl implements ReservationService
         reservation.setCustomer(customer);
         reservation.setRoom(room);
         reservation.setStatus(ReservationStatus.CREATED);
+        reservation.setPrice(calculateReservationPrice(room.getPricePerNight(), reservationDTO.getFromDate(),
+            reservationDTO.getToDate()));
 
         final Reservation reservationEntity = repository.save(reservation);
         return new ReservationDetailDTO(reservationEntity);
+    }
+
+    private void validateReservation(final ReservationDTO reservationDTO)
+    {
+        if(reservationDTO.getToDate().isBefore(LocalDate.now())
+            || reservationDTO.getToDate().isBefore(reservationDTO.getFromDate()))
+        {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private BigDecimal calculateReservationPrice(final BigDecimal pricePerNight, final LocalDate fromDate,
+        final LocalDate toDate)
+    {
+        final long totalDaysCount = DAYS.between(fromDate, toDate);
+        return totalDaysCount == 0 ? pricePerNight : pricePerNight.multiply(BigDecimal.valueOf(totalDaysCount));
     }
 
     private Customer createNewCustomer(final ReservationDTO reservationDTO)
@@ -100,7 +124,7 @@ public class ReservationServiceImpl implements ReservationService
      * {@inheritDoc}
      */
     @Override
-    public Reservation update(ReservationDTO reservationDTO)
+    public ReservationDetailDTO update(ReservationDTO reservationDTO)
     {
         final Reservation reservation = repository.findById(reservationDTO.getId());
         if (reservation == null)
@@ -109,6 +133,6 @@ public class ReservationServiceImpl implements ReservationService
         }
         reservation.setStatus(reservationDTO.getStatus());
 
-        return repository.save(reservation);
+        return new ReservationDetailDTO(repository.save(reservation));
     }
 }

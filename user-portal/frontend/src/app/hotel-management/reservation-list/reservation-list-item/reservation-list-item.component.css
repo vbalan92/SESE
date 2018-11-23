@@ -26,3 +26,12 @@
   right: 0;
   bottom: 0;
 }
+.created {
+  color: #000066;
+}
+.confirmed {
+  color: #006600;
+}
+.cancelled {
+  color: #880000;
+}

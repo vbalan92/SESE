@@ -4,27 +4,38 @@
   </div>
   <div class="col-lg-3 room-list-item-details">
     <h4>{{reservation.roomName}}</h4>
-    <h5>{{reservation.roomName}}</h5>
-    <h5>{{reservation.roomNumber}}</h5>
+    <h5>{{reservation.roomType}}</h5>
+    <br/>
+    <br/>
+    <br/>
+    <div>Zimmernummer: {{reservation.roomNumber}}</div>
   </div>
   <div class="col-lg-4">
-    {{reservation.customerName}}
-    {{reservation.customerEmail}}
-    {{reservation.customerDateOfBirth | date}}
+    <h4>Kunde</h4>
+    <div>Vorname und Nachname: {{reservation.customerName}}</div>
+    <div>E-Mail: {{reservation.customerEmail}} </div>
+    <div>Geburtsdatum: {{reservation.customerDateOfBirth | date}}</div>
   </div>
   <div class="col-lg-2 room-list-item-details">
     <h5 class="room-list-item-price">{{reservation.price | currency:'EUR'}}</h5>
-    <button type="button" class="btn btn-danger room-list-item-reserve" style="right: 110px;"
+    <button *ngIf="reservation.status == 'CREATED'" type="button" class="btn btn-danger room-list-item-reserve"
+            style="right: 110px;"
             (click)="$event.stopPropagation();cancelReservation()">
       Stornieren
     </button>
-    <button type="button" class="btn btn-success room-list-item-reserve"
+    <button *ngIf="reservation.status == 'CREATED'" type="button" class="btn btn-success room-list-item-reserve"
             (click)="$event.stopPropagation();approveReservation()">
       Bestätigen
     </button>
+    <h5 *ngIf="reservation.status !== 'CREATED'" class="room-list-item-reserve"
+        [ngClass]="{'created': reservation.status === 'CREATED',
+                    'confirmed': reservation.status === 'CONFIRMED',
+                    'cancelled': reservation.status === 'CANCELLED'}">
+      {{reservationStatus}}
+    </h5>
     <!--<button type="button" class="btn btn-danger room-list-item-reserve"-->
-            <!--(click)="$event.stopPropagation();deleteReservation()">-->
-      <!--Löschen-->
+    <!--(click)="$event.stopPropagation();deleteReservation()">-->
+    <!--Löschen-->
     <!--</button>-->
     <!--<span class="col-lg-2"></span>-->
   </div>

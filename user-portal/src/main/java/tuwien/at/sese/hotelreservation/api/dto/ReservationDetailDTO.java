@@ -18,8 +18,7 @@ public class ReservationDetailDTO extends ReservationDTO
     private String roomMainPicture;
 
     public ReservationDetailDTO(final Date fromDate, final Date toDate, final BigDecimal price, final Long roomId,
-        final Long id,
-        final String customerName, final String customerEmail, final Date customerDateOfBirth,
+        final Long id, final String customerName, final String customerEmail, final Date customerDateOfBirth,
         final String roomNumber, final String roomName, final RoomType roomType, final String roomMainPicture,
         final ReservationStatus status)
     {

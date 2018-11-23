@@ -35,6 +35,15 @@ export class ReservationListItemComponent implements OnInit {
     });
   }
 
+  get reservationStatus(): string {
+    if (this.reservation.status === ReservationStatus.CONFIRMED) {
+      return 'Bestätigt';
+    } else if (this.reservation.status === ReservationStatus.CANCELLED) {
+      return 'Storniert';
+    }
+    return 'Neu';
+  }
+
   // detailReservation(): void {
   //   console.log('reservation approved!');
   //   this.reservation.status = Status.DELETED;
