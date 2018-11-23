@@ -16,7 +16,7 @@ export class ContactComponent implements OnInit {
   constructor(private contactService: ContactService, private router: Router) {
   }
 
-  createContact(){
+  createContact() {
     this.contactService.createContact(this.contact)
       .subscribe(data => {
         this.goToContacts();
@@ -24,10 +24,11 @@ export class ContactComponent implements OnInit {
         this.isContactSend = true;
       });
   }
+
   ngOnInit() {
   }
 
   private goToContacts() {
-   // this.router.navigate(['contact']);
+    // this.router.navigate(['contact']);
   }
 }
