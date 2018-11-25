@@ -1,5 +1,7 @@
 package tuwien.at.sese.hotelreservation.service.impl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -71,5 +73,13 @@ public class RoomServiceImpl implements RoomService
     public Room update(Room room)
     {
         return repository.save(room);
+    }
+
+    @Override
+    public List<RoomDTO> searchRooms(final LocalDate fromDate, final LocalDate toDate, final Long capacity,
+        BigDecimal fromPrice, BigDecimal toPrice)
+    {
+        //TODO implement according to params
+        return findAll();
     }
 }

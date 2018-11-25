@@ -1,5 +1,7 @@
 package tuwien.at.sese.hotelreservation.service;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import tuwien.at.sese.hotelreservation.api.dto.RoomDTO;
@@ -49,4 +51,6 @@ public interface RoomService {
      * @return the room
      */
     Room update(Room room);
+
+    List<RoomDTO> searchRooms(LocalDate fromDate, LocalDate toDate, Long capacity, BigDecimal fromPrice, BigDecimal toPrice);
 }

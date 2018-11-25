@@ -2,42 +2,114 @@
   Zimmer hinzufügen
 </button>
 <div *ngIf="showSearch">
-  <h2>Suche</h2>
-  <form>
-    <div class="form-group">
-      <div class="col-md-3 pull-left">
-        <label for="name">Name:</label>
+  <h2>Finde passendes Zimmer</h2>
+  <!--<form>-->
+    <!--<div class="form-group">-->
+      <!--<div class="col-md-3 pull-left">-->
+        <!--<label for="name">Name:</label>-->
+      <!--</div>-->
+      <!--<div class="col-md-3 pull-left">-->
+        <!--<input [(ngModel)]="searchRoom.name" placeholder="name" name="name" class="form-control"-->
+               <!--id="name">-->
+      <!--</div>-->
+      <!--<div class="col-md-2 pull-left">-->
+        <!--<label for="capacity">Anzahl von Personen:</label>-->
+      <!--</div>-->
+      <!--<div class="col-md-3 pull-left">-->
+        <!--<input type="number" [(ngModel)]="searchRoom.capacity" placeholder="anzahl" name="capacity"-->
+               <!--class="form-control"-->
+               <!--id="capacity">-->
+      <!--</div>-->
+      <!--<div class="col-md-2 pull-left">-->
+        <!--<label for="capacity">Preis:</label>-->
+      <!--</div>-->
+      <!--<div class="col-md-3 pull-left">-->
+        <!--<input type="number" [(ngModel)]="searchRoom.pricePerNight" placeholder="preis" name="price"-->
+               <!--class="form-control"-->
+               <!--id="price">-->
+      <!--</div>-->
+    <!--</div>-->
+<!---->
+    <!--<button class="btn btn-success pull-left" (click)="search()">Suchen</button>-->
+    <!--<span class="col-md-2"></span>-->
+    <!--<button class="btn btn-success  pull-right" (click)="resetSearch()">Zurücksetzen</button>-->
+  <!--</form>-->
+
+  <form [formGroup]="searchRoomForm" >
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <div>
+          <label for="from">Von</label>
+        </div>
+        <div class="input-group">
+          <input formControlName="from"
+                 placeholder="yyyy-mm-dd"
+                 name="from"
+                 class="form-control"
+                 id="from"
+                 ngbDatepicker
+                 #from="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="from.toggle()" type="button"></button>
+          </div>
+        </div>
       </div>
-      <div class="col-md-3 pull-left">
-        <input [(ngModel)]="searchRoom.name" placeholder="name" name="name" class="form-control"
-               id="name">
+      <div class="form-group col-md-3">
+        <div>
+          <label for="to">Bis</label>
+        </div>
+        <div class="input-group">
+          <input formControlName="to"
+                 placeholder="yyyy-mm-dd"
+                 name="from"
+                 class="form-control"
+                 id="to"
+                 ngbDatepicker
+                 #to="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="to.toggle()" type="button"></button>
+          </div>
+        </div>
       </div>
-      <div class="col-md-2 pull-left">
-        <label for="capacity">Anzahl von Personen:</label>
+      <div class="form-group col-md-2">
+        <div>
+          <label for="capacity">Personen</label>
+        </div>
+        <div>
+          <input type="number" formControlName="capacity" placeholder="Personen" name="capacity"
+                 class="form-control"
+                 id="capacity">
+        </div>
       </div>
-      <div class="col-md-3 pull-left">
-        <input type="number" [(ngModel)]="searchRoom.capacity" placeholder="anzahl" name="capacity"
-               class="form-control"
-               id="capacity">
+      <div class="form-group col-md-2">
+        <div>
+          <label for="capacity">Preis von</label>
+        </div>
+        <div>
+          <input type="number" formControlName="fromPrice" placeholder="Preis von" name="fromPrice"
+                 class="form-control"
+                 id="fromPrice">
+        </div>
       </div>
-      <div class="col-md-2 pull-left">
-        <label for="capacity">Preis:</label>
-      </div>
-      <div class="col-md-3 pull-left">
-        <input type="number" [(ngModel)]="searchRoom.pricePerNight" placeholder="preis" name="price"
-               class="form-control"
-               id="price">
+      <div class="form-group col-md-2">
+        <div>
+          <label for="capacity">Preis bis</label>
+        </div>
+        <div>
+          <input type="number" formControlName="toPrice" placeholder="Preis bis" name="toPrice"
+                 class="form-control"
+                 id="toPrice">
+        </div>
       </div>
     </div>
-
-    <button class="btn btn-success pull-left" (click)="search()">Suchen</button>
-    <span class="col-md-2"></span>
-    <button class="btn btn-success  pull-right" (click)="resetSearch()">Zurücksetzen</button>
+    <div class="row">
+        <button class="btn btn-outline-primary offset-8 col-md-2" (click)="resetSearch()">Zurücksetzen</button>
+        <button class="btn btn-primary col-md-2" (click)="search()"
+                [attr.disabled]="searchRoomForm.invalid ? '' : null">Suchen</button>
+    </div>
   </form>
 
-  <h3>Ergebnisse</h3>
-  <div *ngFor="let room of availableRooms">
-
+  <div *ngFor="let room of availableRooms" style="margin-top: 20px;">
     <room-list-item [room]="room"></room-list-item>
   </div>
 </div>

@@ -1,4 +1,5 @@
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
+import {NgbDate} from "@ng-bootstrap/ng-bootstrap/datepicker/ngb-date";
 
 export enum RoomType {
   EZ = 'EZ',
@@ -37,5 +38,29 @@ export class CreateRoomForm {
     this.description = this.fb.control(this.auction.description, Validators.required);
     //this.createdAt = this.fb.control(this.auction.createdAt); // todo maybe validate
     //this.createFrom = this.fb.control(this.auction.createdFrom); // todo maybe validate
+  }
+}
+
+export class SearchRoom {
+  from: NgbDate;
+  to: NgbDate;
+  capacity: number;
+  fromPrice: number;
+  toPrice: number;
+}
+
+export class SearchRoomForm {
+  from: FormControl;
+  to: FormControl;
+  capacity: FormControl;
+  fromPrice: FormControl;
+  toPrice: FormControl;
+
+  constructor(private fb: FormBuilder) {
+    this.from = this.fb.control('', Validators.required);
+    this.to = this.fb.control('', Validators.required);
+    this.capacity = this.fb.control('', Validators.required);
+    this.fromPrice = this.fb.control('');
+    this.toPrice = this.fb.control('');
   }
 }

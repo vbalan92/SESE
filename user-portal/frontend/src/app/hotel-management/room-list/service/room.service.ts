@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import {Observable} from 'rxjs/index';
-import {Room} from '../models/room';
+import {Room, SearchRoom} from '../models/room';
 
 
 const httpOptions = {
@@ -40,4 +40,18 @@ export class RoomService {
   public updateRoom(room): Observable<any> {
     return this.http.put<Room>(this.roomUrl + '/' + room.id , room);
   }
-}
+
+  searchRooms(searchRoom: SearchRoom): Observable<Room[]> {
+    const fromDate = this.getDateInMillis(searchRoom.from);
+    const toDate = this.getDateInMillis(searchRoom.to);
+
+    const url = `${this.roomUrl}?from=${fromDate}&to=${toDate}&capacity=${searchRoom.capacity}&fromPrice=${searchRoom.fromPrice}&toPrice=${searchRoom.toPrice}`;
+
+    return this.http.get<Room[]>(url);
+  }
+
+  private getDateInMillis(date: any) {
+    let date2 = new Date(Date.UTC(date.year, date.month - 1, date.day));
+    return date2.getTime();
+  }
+  }

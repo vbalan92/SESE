@@ -1,10 +1,7 @@
 package tuwien.at.sese.hotelreservation.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,11 +9,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import tuwien.at.sese.hotelreservation.api.dto.RoomDTO;
 import tuwien.at.sese.hotelreservation.model.Room;
 import tuwien.at.sese.hotelreservation.service.RoomService;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
 
 /**
  * The Class RoomController.
@@ -77,13 +80,26 @@ public class RoomController {
         return roomService.delete(id);
     }
 
-    /**
-     * Find all.
-     *
-     * @return the list
-     */
     @GetMapping
-    public List<RoomDTO> findAll() {
-        return roomService.findAll();
+    public List<RoomDTO> searchRooms(
+         @RequestParam final Long from,
+         @RequestParam final Long to,
+         @RequestParam(required = false) final BigDecimal fromPrice,
+         @RequestParam(required = false) final BigDecimal toPrice,
+         @RequestParam final Long capacity)
+    {
+        LocalDate fromDate = null;
+        LocalDate toDate = null;
+
+        if (from != null)
+        {
+            fromDate = new Date(from).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        }
+        if (to != null)
+        {
+            toDate = new Date(to).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        }
+
+        return roomService.searchRooms(fromDate, toDate, capacity, fromPrice, toPrice);
     }
 }
