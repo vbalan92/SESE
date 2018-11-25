@@ -1,10 +1,9 @@
 package tuwien.at.sese.hotelreservation.repository;
 
-import java.util.List;
-
 import org.springframework.data.repository.Repository;
-
 import tuwien.at.sese.hotelreservation.model.Room;
+
+import java.util.List;
 
 /**
  * The Interface RoomRepository.
@@ -40,4 +39,6 @@ public interface RoomRepository extends Repository<Room, Long> {
      * @return the room
      */
     Room save(Room room);
+
+    List<Room> findByCapacityGreaterThanEqual(Integer capacity);
 }

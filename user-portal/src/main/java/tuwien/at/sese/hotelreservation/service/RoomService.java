@@ -52,5 +52,5 @@ public interface RoomService {
      */
     Room update(Room room);
 
-    List<RoomDTO> searchRooms(LocalDate fromDate, LocalDate toDate, Long capacity, BigDecimal fromPrice, BigDecimal toPrice);
+    List<RoomDTO> searchRooms(LocalDate fromDate, LocalDate toDate, Integer capacity, BigDecimal fromPrice, BigDecimal toPrice);
 }

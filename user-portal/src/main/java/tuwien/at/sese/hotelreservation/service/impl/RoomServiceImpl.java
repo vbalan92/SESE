@@ -1,17 +1,17 @@
 package tuwien.at.sese.hotelreservation.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import tuwien.at.sese.hotelreservation.api.dto.RoomDTO;
+import tuwien.at.sese.hotelreservation.model.Reservation;
+import tuwien.at.sese.hotelreservation.model.Room;
+import tuwien.at.sese.hotelreservation.repository.RoomRepository;
+import tuwien.at.sese.hotelreservation.service.RoomService;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import tuwien.at.sese.hotelreservation.api.dto.RoomDTO;
-import tuwien.at.sese.hotelreservation.model.Room;
-import tuwien.at.sese.hotelreservation.repository.RoomRepository;
-import tuwien.at.sese.hotelreservation.service.RoomService;
 
 /**
  * @author Abbas ULUSOY
@@ -76,10 +76,41 @@ public class RoomServiceImpl implements RoomService
     }
 
     @Override
-    public List<RoomDTO> searchRooms(final LocalDate fromDate, final LocalDate toDate, final Long capacity,
+    public List<RoomDTO> searchRooms(final LocalDate fromDate, final LocalDate toDate, final Integer capacity,
         BigDecimal fromPrice, BigDecimal toPrice)
     {
-        //TODO implement according to params
-        return findAll();
+        final List<Room> byCapacityGreaterThanEqual = repository.findByCapacityGreaterThanEqual(capacity);
+        return byCapacityGreaterThanEqual.stream()
+            .filter(room -> isInPriceRange(room, fromPrice, toPrice) && isAvailable(room, fromDate, toDate))
+            .map(RoomDTO::new)
+            .collect(Collectors.toList());
+    }
+
+    private boolean isInPriceRange(final Room room, final BigDecimal fromPrice, final BigDecimal toPrice)
+    {
+        final BigDecimal from = fromPrice == null ? BigDecimal.ZERO : fromPrice;
+        final BigDecimal pricePerNight = room.getPricePerNight();
+
+        return pricePerNight.compareTo(from) >= 0 && (toPrice == null || pricePerNight.compareTo(toPrice) >= 0);
+    }
+
+    private boolean isAvailable(final Room room, final LocalDate fromDate, final LocalDate toDate)
+    {
+        return room.getReservations().stream()
+        .noneMatch(reservation -> isReservedInPeriod(reservation, fromDate, toDate));
+    }
+
+    private boolean isReservedInPeriod(final Reservation reservation, final LocalDate fromDate, final LocalDate toDate)
+    {
+        final LocalDate reservationFromDate = reservation.getFromDate();
+        final LocalDate reservationToDate = reservation.getToDate();
+
+        final boolean startsInRequestedPeriod =
+            (reservationFromDate.isAfter(fromDate) || reservationFromDate.isEqual(fromDate))
+                && reservationFromDate.isBefore(toDate);
+        final boolean endsInRequestedPeriod =
+            reservationToDate.isAfter(fromDate)
+                && (reservationToDate.isBefore(toDate) || reservationToDate.isEqual(toDate));
+        return startsInRequestedPeriod || endsInRequestedPeriod;
     }
 }

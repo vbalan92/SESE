@@ -86,7 +86,7 @@ public class RoomController {
          @RequestParam final Long to,
          @RequestParam(required = false) final BigDecimal fromPrice,
          @RequestParam(required = false) final BigDecimal toPrice,
-         @RequestParam final Long capacity)
+         @RequestParam final Integer capacity)
     {
         LocalDate fromDate = null;
         LocalDate toDate = null;
