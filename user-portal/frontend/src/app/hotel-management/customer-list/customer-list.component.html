@@ -1,71 +1,68 @@
-
 <div class="pull-right" *ngIf="!showDetail">
   <button type="button" class="btn btn-success" routerLink="/add">
     Kunde hinzufügen
   </button>
 </div>
-<div>
-  <div *ngIf="!showDetail">
-    <h2>Suche</h2>
-    <form>
-      <div class="form-group">
-        <div class="col-md-3 pull-left">
-          <label for="lastName">Name oder Email:</label>
-        </div>
-        <div class="col-md-3 pull-left">
+<div *ngIf="!showDetail">
+  <h2>Suche</h2>
+  <form>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="lastName">Name :</label>
           <input [(ngModel)]="searchCustomer.lastName" placeholder="Nachname" name="lastName"
                  class="form-control"
                  id="lastName">
         </div>
-        <div class="col-md-2 pull-left">
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
           <label for="email">Email :</label>
-        </div>
-        <div class="col-md-3 pull-left">
           <input type="email" [(ngModel)]="searchCustomer.email" placeholder="Email" name="email" class="form-control"
                  id="email">
         </div>
       </div>
-
+    </div>
+    <div>
       <button class="btn btn-success pull-left" (click)="search()">Suchen</button>
 
       <span class="col-md-3"></span>
       <button class="btn btn-success  pull-right" (click)="resetSearch()">Zurücksetzen</button>
-
-    </form>
-
-    <h3>Ergebnisse</h3>
-
-    <table id="customerTable" class="table table-striped" *ngIf="!showDetail">
-      <thead>
-      <tr>
-        <th class="hidden">Id</th>
-        <th>Name</th>
-        <th>Addresse</th>
-        <th>Email</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let customer of customers">
-        <td class="hidden">{{customer.id}}</td>
-        <td>{{customer.firstName}} {{customer.lastName}}</td>
-        <td>{{customer.billAddress.strasse}} / {{customer.billAddress.hausnr}} / {{customer.billAddress.postleitzahl}}
-          {{customer.billAddress.ort}}
-        </td>
-        <td>{{customer.email}}</td>
-        <td>
-          <button type="button" class="btn btn-info" (click)="deleteCustomer(customer)">
-            <span class="glyphicon glyphicon-info"></span> Löschen
-          </button>
-        </td>
-        <td>
-          <button type="button" class="btn btn-info" (click)="detailCustomer(customer)">
-            <span class="glyphicon glyphicon-info"></span> Details
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+    </div>
+  </form>
 </div>
+
+<h3>Ergebnisse</h3>
+
+<table id="customerTable" class="table table-striped" *ngIf="!showDetail">
+  <thead>
+  <tr>
+    <th class="hidden">Id</th>
+    <th>Name</th>
+    <th>Addresse</th>
+    <th>Email</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let customer of customers">
+    <td class="hidden">{{customer.id}}</td>
+    <td>{{customer.firstName}} {{customer.lastName}}</td>
+    <td>{{customer.billAddress.strasse}} / {{customer.billAddress.hausnr}} / {{customer.billAddress.postleitzahl}}
+      {{customer.billAddress.ort}}
+    </td>
+    <td>{{customer.email}}</td>
+    <td>
+      <button type="button" class="btn btn-info" (click)="deleteCustomer(customer)">
+        <span class="glyphicon glyphicon-info"></span> Löschen
+      </button>
+    </td>
+    <td>
+      <button type="button" class="btn btn-info" (click)="detailCustomer(customer)">
+        <span class="glyphicon glyphicon-info"></span> Details
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
 <app-details-customer-component *ngIf="showDetail" [model]="selectedCustomer"></app-details-customer-component>
 
