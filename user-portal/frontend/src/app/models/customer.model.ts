@@ -17,4 +17,13 @@ export class Customer {
   billAddress: Address = new Address();
   room: Room;
   reservations: Reservation[];
+
+
+  get _billAddress(): Address {
+    return this.billAddress;
+  }
+
+  set _billAddress(value: Address) {
+    this.billAddress = value;
+  }
 }

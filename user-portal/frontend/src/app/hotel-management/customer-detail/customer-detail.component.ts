@@ -13,7 +13,6 @@ import {Customer} from '../../models/customer.model';
 })
 
 export class CustomerDetailComponent implements OnInit {
-  selectedId: number;
   @Input() model: Customer;
   showReservationBlock: boolean;
   showRoomBlock: boolean;
@@ -25,6 +24,7 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.model._billAddress = this.model.billAddress;
   }
 
   change($event) {
@@ -42,7 +42,6 @@ export class CustomerDetailComponent implements OnInit {
   goToCustomers() {
     this.router.navigate(['/customers']);
   }
-
 
 
   show() {

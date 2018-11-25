@@ -3,7 +3,6 @@
 </button>
 <div class="col-md-6">
   <h2 class="text-center">Add Customer</h2>
-  <p>TODO add Address component</p>
   <form>
     <div class="form-group">
       <label for="email">Email address:</label>
@@ -35,12 +34,12 @@
       </div>
     </div>
     <div class="form-group">
-      <label >postleitzahl / ort</label>
+      <label >PLZ / ORT</label>
       <div class="col-md-6">
-        <input [(ngModel)]="customer.billAddress.postleitzahl" placeholder="003" name="PLZ" class="form-control" id="plz">
+        <input [(ngModel)]="customer.billAddress.postleitzahl" placeholder="PLZ" name="PLZ" class="form-control" id="plz">
       </div>
       <div class="col-md-6">
-        <input [(ngModel)]="customer.billAddress.ort" placeholder="003" name="ort" class="form-control" id="ort">
+        <input [(ngModel)]="customer.billAddress.ort" placeholder="ORT" name="ort" class="form-control" id="ort">
       </div>
     </div>
 

@@ -24,7 +24,7 @@ export class CustomerListComponent implements OnInit {
   ngOnInit() {
     this.showDetail = false;
     this.customerService.getCustomers()
-      .subscribe(data => {
+      .subscribe((data: Customer[]) => {
         this.customers = data;
         this.cachedCustomers = this.customers;
       });
@@ -53,5 +53,6 @@ export class CustomerListComponent implements OnInit {
   detailCustomer(customer: Customer): void {
     this.showDetail = true;
     this.selectedCustomer = customer;
+    this.selectedCustomer.billAddress = customer.billAddress;
   }
 }

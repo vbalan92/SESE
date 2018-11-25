@@ -33,30 +33,28 @@
         <label for="geburtsdatum">Geburtdatum:</label>
       </div>
       <div class="col-lg-3 pull-left">
-        <input [(ngModel)]="model.birtdate" placeholder="Geburts - Datum" name="geburtsdatum" class="form-control"
+        <input [(ngModel)]="model.birtdate" placeholder="yyyy-MM-dd" name="geburtsdatum" class="form-control"
                id="geburtsdatum">
       </div>
     </div>
-    <!-- todo
       <div class="form-group">
-        <label >Street / House Nr</label>
-        <div class="col-lg-6">
-          <input [(ngModel)]="customer.billAddress.strasse" placeholder="Street Str" name="street" class="form-control" id="street">
+        <label >Straße / Hause Nr</label>
+        <div class="col-lg-3">
+          <input [(ngModel)]="model.billAddress.strasse" placeholder="Street Str" name="street" class="form-control" id="street">
         </div>
-        <div class="col-lg-6">
-          <input [(ngModel)]="customer.billAddress.hausnr" placeholder="003" name="hausnr" class="form-control" id="hausnr">
+        <div class="col-lg-3">
+          <input [(ngModel)]="model.billAddress.hausnr" placeholder="003" name="hausnr" class="form-control" id="hausnr">
         </div>
       </div>
       <div class="form-group">
-        <label >postleitzahl / ort</label>
+        <label >PLZ / ORT</label>
         <div class="col-lg-6">
-          <input [(ngModel)]="customer.billAddress.postleitzahl" placeholder="003" name="PLZ" class="form-control" id="plz">
+          <input [(ngModel)]="model.billAddress.postleitzahl" placeholder="plz" name="PLZ" class="form-control" id="plz">
         </div>
         <div class="col-lg-6">
-          <input [(ngModel)]="customer.billAddress.ort" placeholder="003" name="ort" class="form-control" id="ort">
+          <input [(ngModel)]="model.billAddress.ort" placeholder="ort" name="ort" class="form-control" id="ort">
         </div>
       </div>
-    -->
     <div class="form-group">
       <div class="col-lg-3 pull-left">
         <label for="firmenname">Firmenname:</label>

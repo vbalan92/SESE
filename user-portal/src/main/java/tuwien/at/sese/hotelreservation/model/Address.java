@@ -25,6 +25,7 @@ public class Address implements Serializable {
     private String strasse;
     private String hausnr;
     private String tuerNr;
+    private String ort;
 
     /**
      * @return postlandschl
@@ -112,6 +113,15 @@ public class Address implements Serializable {
 		this.tuerNr = tuerNr;
 	}
 
+	
+	public String getOrt() {
+		return ort;
+	}
+
+	public void setOrt(String ort) {
+		this.ort = ort;
+	}
+
 	/**
      * {@inheritDoc}
      *
@@ -127,4 +137,6 @@ public class Address implements Serializable {
         sb.append(tuerNr).append(",");
         return sb.toString();
     }
+    
+    
 }
