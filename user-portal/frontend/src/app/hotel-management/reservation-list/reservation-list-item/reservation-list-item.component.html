@@ -15,6 +15,8 @@
     <div>Vorname und Nachname: {{reservation.customerName}}</div>
     <div>E-Mail: {{reservation.customerEmail}} </div>
     <div>Geburtsdatum: {{reservation.customerDateOfBirth | date}}</div>
+    <div>Reserviert von: {{reservation.fromDate | date}} </div>
+    <div>Reserviert bis: {{reservation.toDate | date}}</div>
   </div>
   <div class="col-lg-2 room-list-item-details">
     <h5 class="room-list-item-price">{{reservation.price | currency:'EUR'}}</h5>

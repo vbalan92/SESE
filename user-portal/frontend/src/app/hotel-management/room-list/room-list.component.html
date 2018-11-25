@@ -110,7 +110,10 @@
   </form>
 
   <div *ngFor="let room of availableRooms" style="margin-top: 20px;">
-    <room-list-item [room]="room"></room-list-item>
+    <room-list-item [room]="room"
+                    [fromDate]="searchRoomForm.get('from')"
+                    [toDate]="searchRoomForm.get('to')">
+    </room-list-item>
   </div>
 </div>
 

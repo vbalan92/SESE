@@ -16,6 +16,10 @@ export class RoomListItemComponent implements OnInit, OnDestroy {
 
   @Input()
   private room: Room;
+  @Input()
+  private fromDate: any;
+  @Input()
+  private toDate: any;
 
   private reservation: ReservationDTO;
   private reservationForm: FormGroup;
@@ -58,6 +62,8 @@ export class RoomListItemComponent implements OnInit, OnDestroy {
     console.warn(this.reservationForm.value);
     this.reservation = this.reservationForm.value;
     this.reservation.roomId = selectedRoom.id;
+    this.reservation.fromDate = this.fromDate.value;
+    this.reservation.toDate = this.toDate.value;
     this.reservationService.reserveRoom(this.reservation).subscribe(reservation => {
       this.reservation = reservation;
       console.log('Reservation ksuccessfully created');
