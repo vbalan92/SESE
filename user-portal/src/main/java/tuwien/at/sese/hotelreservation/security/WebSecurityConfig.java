@@ -76,6 +76,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
             .authorizeRequests().antMatchers(staticAssets).permitAll()
             .and().authorizeRequests().antMatchers(H2_CONSOLE).permitAll()
             .and().authorizeRequests().antMatchers("/api/rooms/**").permitAll()
+            .and().authorizeRequests().antMatchers("/api/contacts/**").permitAll()
+            .and().authorizeRequests().antMatchers("/api/contact/**").permitAll()
             .and().authorizeRequests().antMatchers(HttpMethod.POST,"/api/reservations/**").permitAll()
             .and().headers().frameOptions().sameOrigin()
             .and().authorizeRequests().antMatchers("/api/auth/**").permitAll()
