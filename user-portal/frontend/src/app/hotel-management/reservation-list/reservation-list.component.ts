@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ReservationDTO} from '../room-list/models/reservation';
+import {ReservationDTO, ReservationStatus} from '../room-list/models/reservation';
 import {ReservationService} from '../../services/reservation.service';
+import {ReservationDetailDTO} from './reservation-list-item/models/reservation.dto';
 
 @Component({
   selector: 'app-reservation-list',
@@ -9,30 +10,34 @@ import {ReservationService} from '../../services/reservation.service';
 })
 export class ReservationListComponent implements OnInit {
 
-  reservations: ReservationDTO[];
+  reservations: ReservationDetailDTO[];
+  searchReservationDetailDTO: ReservationDetailDTO = new ReservationDetailDTO();
+  cachedReservations: ReservationDetailDTO[];
 
-  // searchReservationDetailDTO: ReservationDetailDTO;
-  // status = Status;
-  // keys: Status[];
-  // TODO Abbas 2nd constructor ?!
-  // constructor() {
-  //  this.keys = Object.keys(this.status);
-  // }
   constructor(private reservationService: ReservationService) {
   }
 
   ngOnInit() {
     this.reservationService.findAll().subscribe(
-      reservations => {
+      (reservations: ReservationDetailDTO[]) => {
         this.reservations = reservations;
+        this.cachedReservations = this.reservations;
       }
     );
   }
 
-  searchReservations() {
-    // this.reservations.filter(item => item.roomName === this.searchReservationDetailDTO.roomName ||
-    //   item.roomName === this.searchReservationDetailDTO.roomName ||
-    //   item.status === this.searchReservationDetailDTO.status ||
-    //   item.fromDate === this.searchReservationDetailDTO.fromDate);
+  search() {
+    this.reservations.filter(item => item.roomName === this.searchReservationDetailDTO.roomName ||
+      item.customerName === this.searchReservationDetailDTO.customerName ||
+      item.customerEmail === this.searchReservationDetailDTO.customerName ||
+      item.status === this.searchReservationDetailDTO.status);
+  }
+
+  resetSearch() {
+    this.reservations = this.cachedReservations;
+    this.searchReservationDetailDTO.customerEmail = null;
+    this.searchReservationDetailDTO.customerName = null;
+    this.searchReservationDetailDTO.roomName = null;
+    this.searchReservationDetailDTO.status = null;
   }
 }

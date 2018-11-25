@@ -1,5 +1,46 @@
 <h2>Reservierungen</h2>
 
+<div>
+  <h2>Suche</h2>
+  <form>
+
+    <div class="form-group row">
+
+      <label for="cname" class="col-sm-2 col-form-label">Kunde:</label>
+      <div class="col-sm-3">
+        <input [(ngModel)]="searchReservationDetailDTO.customerName" placeholder="name oder email" name="cname" class="form-control"
+               id="cname">
+      </div>
+    </div>
+
+    <div class="form-group row">
+
+      <label for="name" class="col-sm-2 col-form-label">Room-name:</label>
+      <div class="col-sm-3">
+        <input [(ngModel)]="searchReservationDetailDTO.roomName" placeholder="name" name="roomName" class="form-control"
+               id="name">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="status" class="col-sm-2 col-form-label">Status:</label>
+      <div class="col-sm-3">
+        <select id="status" class="form-control"
+                [(ngModel)]="searchReservationDetailDTO.status" name="status">
+          <option value="" disabled selected>select a status</option>
+          <option value="CREATED">Erstellt</option>
+          <option value="CANCELED">Storniert</option>
+          <option value="CONFIRMED">Bestätigt</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <button class="btn btn-success pull-left" (click)="search()">Suchen</button>
+      <span class="col-md-2"></span>
+      <button class="btn btn-success  pull-right" (click)="resetSearch()">Zurücksetzen</button>
+    </div>
+  </form>
+</div>
 <div *ngFor="let reservation of reservations">
   <app-reservation-list-item [reservation]="reservation"></app-reservation-list-item>
 </div>
