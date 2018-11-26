@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import tuwien.at.sese.hotelreservation.api.dto.CustomerDTO;
 import tuwien.at.sese.hotelreservation.model.Customer;
 import tuwien.at.sese.hotelreservation.service.CustomerService;
 
@@ -98,7 +99,7 @@ public class CustomerController {
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('ADMIN')")
-    public List<Customer> findAll(){
+    public List<CustomerDTO> findAll(){
         return customerService.findAll();
     }
 }

@@ -3,6 +3,7 @@ package tuwien.at.sese.hotelreservation.service;
 import java.util.List;
 import java.util.Optional;
 
+import tuwien.at.sese.hotelreservation.api.dto.CustomerDTO;
 import tuwien.at.sese.hotelreservation.model.Customer;
 
 /**
@@ -27,7 +28,7 @@ public interface CustomerService {
     /**
      * @return list of customer 
      */
-    List<Customer> findAll();
+    List<CustomerDTO> findAll();
 
     /**
      * @param id
