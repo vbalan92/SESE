@@ -30,7 +30,7 @@ export class RoomListComponent implements OnInit {
     this.isLoggedIn = this.token.isLoggedIn.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
     });
-    this.isLoggedIn = this.token.getToken() !== undefined;
+    this.isLoggedIn = this.token.getToken() !== null;
     this.loodRooms();
     this.showSearch = true;
     this.searchRoomForm = this.fb.group(new SearchRoomForm(this.fb));
