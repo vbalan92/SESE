@@ -1,5 +1,6 @@
 package tuwien.at.sese.hotelreservation.api.dto;
 
+import tuwien.at.sese.hotelreservation.model.Address;
 import tuwien.at.sese.hotelreservation.model.Customer;
 
 /**
@@ -9,6 +10,9 @@ public class CustomerDTO
 {
     private Long id;
     private String customerNumber;
+    private String email;
+    private String firstName;
+    private String lastName;
     private String firmenname;
     private String webadresse;
     private String fax;
@@ -23,21 +27,31 @@ public class CustomerDTO
     public CustomerDTO(Customer customer)
     {
         this.id = customer.getId();
+        this.email = customer.getEmail();
+        this.firstName = customer.getFirstName();
+        this.lastName  =customer.getLastName();
         this.customerNumber = customer.getCustomerNumber();
         this.firmenname = customer.getFirmenname();
         this.webadresse = customer.getWebadresse();
         this.fax = customer.getFax();
         if (customer.getBillAddress() != null)
         {
-            this.postlandschl = customer.getBillAddress().getPostlandschl();
-            this.postleitzahl = customer.getBillAddress().getPostleitzahl();
-            this.bezirk = customer.getBillAddress().getBezirk();
-            this.strasse = customer.getBillAddress().getStrasse();
-            this.hausnr = customer.getBillAddress().getHausnr();
-            this.tuerNr = customer.getBillAddress().getTuerNr();
-            this.ort = customer.getBillAddress().getOrt();
+            createAddresse(customer);
+        } else {
+        	customer.setBillAddress(new Address());
+        	createAddresse(customer);
         }
     }
+
+	private void createAddresse(Customer customer) {
+		this.postlandschl = customer.getBillAddress().getPostlandschl();
+		this.postleitzahl = customer.getBillAddress().getPostleitzahl();
+		this.bezirk = customer.getBillAddress().getBezirk();
+		this.strasse = customer.getBillAddress().getStrasse();
+		this.hausnr = customer.getBillAddress().getHausnr();
+		this.tuerNr = customer.getBillAddress().getTuerNr();
+		this.ort = customer.getBillAddress().getOrt();
+	}
 
     public Long getId()
     {
@@ -158,4 +172,29 @@ public class CustomerDTO
     {
         this.ort = ort;
     }
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+    
 }

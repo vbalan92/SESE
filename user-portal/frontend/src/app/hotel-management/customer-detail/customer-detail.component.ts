@@ -5,6 +5,7 @@ import {
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {CustomerService} from '../../services/customer.service';
 import {Customer} from '../../models/customer.model';
+import {Address} from "../../models/address.model";
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,7 +25,9 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.model._billAddress = this.model.billAddress;
+    if (!this.model.billAddress) {
+      this.model.billAddress = new Address();
+    }
   }
 
   change($event) {
