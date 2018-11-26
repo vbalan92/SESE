@@ -20,7 +20,6 @@ export class ContactComponent implements OnInit {
     this.contactService.createContact(this.contact)
       .subscribe(data => {
         this.goToContacts();
-        alert('Contact has been created successfully.');
         this.isContactSend = true;
       });
   }
