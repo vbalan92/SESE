@@ -2,8 +2,6 @@ package tuwien.at.sese.hotelreservation.api.dto;
 
 import tuwien.at.sese.hotelreservation.model.Customer;
 
-import javax.persistence.Column;
-
 /**
  * @author xsk
  */
@@ -24,18 +22,21 @@ public class CustomerDTO
 
     public CustomerDTO(Customer customer)
     {
-        this.id = getId();
-        this.customerNumber = getCustomerNumber();
-        this.firmenname = getFirmenname();
-        this.webadresse = getWebadresse();
-        this.fax = getFax();
-        this.postlandschl = getPostlandschl();
-        this.postleitzahl = getPostleitzahl();
-        this.bezirk = getBezirk();
-        this.strasse = getStrasse();
-        this.hausnr = getHausnr();
-        this.tuerNr = getTuerNr();
-        this.ort = getOrt();
+        this.id = customer.getId();
+        this.customerNumber = customer.getCustomerNumber();
+        this.firmenname = customer.getFirmenname();
+        this.webadresse = customer.getWebadresse();
+        this.fax = customer.getFax();
+        if (customer.getBillAddress() != null)
+        {
+            this.postlandschl = customer.getBillAddress().getPostlandschl();
+            this.postleitzahl = customer.getBillAddress().getPostleitzahl();
+            this.bezirk = customer.getBillAddress().getBezirk();
+            this.strasse = customer.getBillAddress().getStrasse();
+            this.hausnr = customer.getBillAddress().getHausnr();
+            this.tuerNr = customer.getBillAddress().getTuerNr();
+            this.ort = customer.getBillAddress().getOrt();
+        }
     }
 
     public Long getId()
