@@ -16,13 +16,8 @@ public class CustomerDTO
     private String firmenname;
     private String webadresse;
     private String fax;
-    private String postlandschl;
-    private String postleitzahl;
-    private String bezirk;
-    private String strasse;
-    private String hausnr;
-    private String tuerNr;
-    private String ort;
+    private Address billAddress;
+    private String rabatt;
 
     public CustomerDTO(Customer customer)
     {
@@ -34,24 +29,17 @@ public class CustomerDTO
         this.firmenname = customer.getFirmenname();
         this.webadresse = customer.getWebadresse();
         this.fax = customer.getFax();
+        this.rabatt = customer.getRabatt();
+
         if (customer.getBillAddress() != null)
         {
-            createAddresse(customer);
+            this.billAddress = customer.getBillAddress();
         } else {
-        	customer.setBillAddress(new Address());
-        	createAddresse(customer);
+            this.billAddress = new Address();
         }
     }
 
-	private void createAddresse(Customer customer) {
-		this.postlandschl = customer.getBillAddress().getPostlandschl();
-		this.postleitzahl = customer.getBillAddress().getPostleitzahl();
-		this.bezirk = customer.getBillAddress().getBezirk();
-		this.strasse = customer.getBillAddress().getStrasse();
-		this.hausnr = customer.getBillAddress().getHausnr();
-		this.tuerNr = customer.getBillAddress().getTuerNr();
-		this.ort = customer.getBillAddress().getOrt();
-	}
+
 
     public Long getId()
     {
@@ -103,76 +91,6 @@ public class CustomerDTO
         this.fax = fax;
     }
 
-    public String getPostlandschl()
-    {
-        return postlandschl;
-    }
-
-    public void setPostlandschl(final String postlandschl)
-    {
-        this.postlandschl = postlandschl;
-    }
-
-    public String getPostleitzahl()
-    {
-        return postleitzahl;
-    }
-
-    public void setPostleitzahl(final String postleitzahl)
-    {
-        this.postleitzahl = postleitzahl;
-    }
-
-    public String getBezirk()
-    {
-        return bezirk;
-    }
-
-    public void setBezirk(final String bezirk)
-    {
-        this.bezirk = bezirk;
-    }
-
-    public String getStrasse()
-    {
-        return strasse;
-    }
-
-    public void setStrasse(final String strasse)
-    {
-        this.strasse = strasse;
-    }
-
-    public String getHausnr()
-    {
-        return hausnr;
-    }
-
-    public void setHausnr(final String hausnr)
-    {
-        this.hausnr = hausnr;
-    }
-
-    public String getTuerNr()
-    {
-        return tuerNr;
-    }
-
-    public void setTuerNr(final String tuerNr)
-    {
-        this.tuerNr = tuerNr;
-    }
-
-    public String getOrt()
-    {
-        return ort;
-    }
-
-    public void setOrt(final String ort)
-    {
-        this.ort = ort;
-    }
-
 	public String getEmail() {
 		return email;
 	}
@@ -196,5 +114,21 @@ public class CustomerDTO
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-    
+
+    public Address getBillAddress() {
+        return billAddress;
+    }
+
+    public String getRabatt() {
+        return rabatt;
+    }
+
+    public void setBillAddress(Address billAddress) {
+        this.billAddress = billAddress;
+    }
+
+    public void setRabatt(String rabatt) {
+        this.rabatt = rabatt;
+    }
+
 }
