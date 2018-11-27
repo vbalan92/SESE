@@ -32,9 +32,10 @@
   </form>
 </div>
 
-<h3>Ergebnisse</h3>
 
+<h3 *ngIf="!showDetail">Ergebnisse</h3>
 <table id="customerTable" class="table table-striped" *ngIf="!showDetail">
+
   <thead>
   <tr>
     <th class="hidden">Id</th>

@@ -130,6 +130,15 @@
           <td>{{reservation.toDate}}</td>
           <td>{{reservation.status}}</td>
           <td>{{reservation.roomName}}</td>
+          <td>
+            <button type="button" class="close" aria-label="Close" (click)="deleteReservation(reservation)">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <span ></span>
+            <button type="button" class="btn btn-info" (click)="detailReservation(reservation)">
+              <span class="glyphicon glyphicon-info"></span> details
+            </button>
+          </td>
         </tr>
         </tbody>
       </table>
