@@ -5,9 +5,10 @@ import {
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {CustomerService} from '../../services/customer.service';
 import {Customer} from '../../models/customer.model';
-import {Address} from "../../models/address.model";
+import {Address} from '../../models/address.model';
 import {ReservationService} from '../../services/reservation.service';
 import {ReservationDTO} from '../room-list/models/reservation';
+
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -19,8 +20,9 @@ export class CustomerDetailComponent implements OnInit {
   @Input() model: Customer;
   showReservationBlock: boolean;
   showRoomBlock: boolean;
-  reservationDTO: ReservationDTO;
+  reservations: ReservationDTO[];
   @Output() showDetail: EventEmitter<any> = new EventEmitter();
+
 
   constructor(private route: ActivatedRoute, private router: Router, private customerService: CustomerService, private  reservationService: ReservationService) {
     this.showReservationBlock = false;
@@ -51,9 +53,14 @@ export class CustomerDetailComponent implements OnInit {
 
 
   show() {
-    this.reservationService.findAll().subscribe( data => {
-          this.
+    this.reservationService.findAll().subscribe((data: ReservationDTO[]) => {
+      this.reservations = data;
+    }, (err) => {
+
+    }, () => { // <----
+      this.reservations = this.reservations.filter(item => item.customerEmail === this.model.email);
     });
+
     this.showRoomBlock = true;
     this.showReservationBlock = true;
   }

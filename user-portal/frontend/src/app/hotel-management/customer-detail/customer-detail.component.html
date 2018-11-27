@@ -109,84 +109,27 @@
     <div class="form-group m-lg4">
       <button class="btn btn-success" (click)="show()" *ngIf="!showReservationBlock">More Details</button>
     </div>
-    <div id="roomBlock" *ngIf="showRoomBlock">
-      <h2 class="text-center">Room Details TODO</h2>
-      <div class="form-group">
-        <div class="col-lg-3 pull-left">
-          <label for="roomName">Roomname :</label>
-        </div>
-        <div class="col-lg-3 pull-left">
-          <input type="text" [(ngModel)]="model.room.name" placeholder="Name" name="roomName" class="form-control"
-                 id="roomName" disabled="disabled">
-        </div>
 
-
-        <div class="col-lg-3 pull-left">
-          <label for="roomName">Id :</label>
-        </div>
-        <div class="col-lg-3 pull-left">
-          <input type="text" [(ngModel)]="model.room.id" placeholder="id" name="id" class="form-control" id="id"
-                 disabled="disabled">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-lg-3 pull-left">
-          <label for="roomPrice">Price:</label>
-        </div>
-        <div class="col-lg-3 pull-left">
-          <input type="text" [(ngModel)]="model.room.pricePerNight" placeholder="price" name="roomPrice" class="form-control"
-                 id="roomPrice" disabled="disabled">
-        </div>
-        <div class="col-lg-3 pull-left">
-          <label for="roomCapacity">Capacity:</label>
-        </div>
-        <div class="col-lg-3 pull-left">
-          <input type="text" [(ngModel)]="model.room.capacity" placeholder="capacity" name="capacity" class="form-control"
-                 id="roomCapacity" disabled="disabled">
-        </div>
-      </div>
-
-      <div class="form-group clearfix">
-        <div class="col-lg-3 pull-left">
-          <label for="roomDescription">Description:</label>
-        </div>
-        <div class="col-lg-9 pull-left">
-        <textarea type="text" [(ngModel)]="model.room.description" placeholder="description" name="capacity"
-                  class="form-control" id="roomDescription" disabled="disabled"></textarea>
-        </div>
-      </div>
-    </div>
     <div id="reservation" *ngIf="showReservationBlock">
-      <h2 class="text-center">TODO List Reservation</h2>
+      <h2 class="text-center">List Reservation</h2>
       <table class="table table-striped">
         <thead>
         <tr>
           <th class="hidden">Id</th>
           <th>Beginndate</th>
           <th>EndDate</th>
-          <th>Duration</th>
-          <th>Rabatt</th>
+          <th>status</th>
+          <th>roomName</th>
           <th>Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let reservation of model.reservations">
+        <tr *ngFor="let reservation of reservations">
           <td class="hidden">{{reservation.id}}</td>
-          <td>{{reservation.beginnDate}}</td>
-          <td>{{reservation.endDate}}</td>
-          <td>{{reservation.duration}}</td>
-          <td>{{reservation.rabatt}}</td>
-          <td>
-            <button type="button" class="close" aria-label="Close" (click)="deleteReservation(reservation)">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </td>
-          <td>
-            <button type="button" class="btn btn-info" (click)="detailReservation(reservation)">
-              <span class="glyphicon glyphicon-info"></span> details
-            </button>
-          </td>
+          <td>{{reservation.fromDate}}</td>
+          <td>{{reservation.toDate}}</td>
+          <td>{{reservation.status}}</td>
+          <td>{{reservation.roomName}}</td>
         </tr>
         </tbody>
       </table>
