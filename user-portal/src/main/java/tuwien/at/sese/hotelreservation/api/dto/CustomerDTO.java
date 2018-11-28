@@ -1,5 +1,7 @@
 package tuwien.at.sese.hotelreservation.api.dto;
 
+import java.time.LocalDate;
+
 import tuwien.at.sese.hotelreservation.model.Address;
 import tuwien.at.sese.hotelreservation.model.Customer;
 
@@ -12,6 +14,8 @@ public class CustomerDTO
     private String customerNumber;
     private String email;
     private String firstName;
+    private LocalDate birtdate;
+    private String phone;
     private String lastName;
     private String firmenname;
     private String webadresse;
@@ -30,6 +34,8 @@ public class CustomerDTO
         this.webadresse = customer.getWebadresse();
         this.fax = customer.getFax();
         this.rabatt = customer.getRabatt();
+        this.birtdate = customer.getBirtdate();
+        this.phone = customer.getPhone();
 
         if (customer.getBillAddress() != null)
         {
@@ -129,6 +135,22 @@ public class CustomerDTO
 
     public void setRabatt(String rabatt) {
         this.rabatt = rabatt;
+    }
+
+    public LocalDate getBirtdate() {
+        return birtdate;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setBirtdate(LocalDate birtdate) {
+        this.birtdate = birtdate;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
 }
