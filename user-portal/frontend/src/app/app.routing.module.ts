@@ -8,8 +8,14 @@ import {AuthGuard} from './auth/auth.guard';
 import {CustomerListComponent} from './hotel-management/customer-list/customer-list.component';
 import {CustomerAddComponent} from './hotel-management/customer-add/customer-add.component';
 import {CustomerDetailComponent} from './hotel-management/customer-detail/customer-detail.component';
+import {HolidayComponent} from './hotel-management/holiday-management/holiday-component';
 
 const routes: Routes = [
+  {
+    path: 'holidays',
+    component: HolidayComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: 'customers',
     component: CustomerListComponent,
