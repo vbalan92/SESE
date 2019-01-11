@@ -38,6 +38,10 @@ public class Event extends EntityId {
 		this.toDate = eventDTO.getTo();
 		this.eventName = eventDTO.getEventName();
 	}
+	
+	public Event(){
+		
+	}
 
 	public String getEventName() {
 		return eventName;

@@ -22,6 +22,7 @@ import tuwien.at.sese.hotelreservation.application.utils.ITUtil;
 import tuwien.at.sese.hotelreservation.message.request.SignUpForm;
 import tuwien.at.sese.hotelreservation.model.Contact;
 import tuwien.at.sese.hotelreservation.model.Customer;
+import tuwien.at.sese.hotelreservation.model.Event;
 import tuwien.at.sese.hotelreservation.model.Reservation;
 import tuwien.at.sese.hotelreservation.model.Role;
 import tuwien.at.sese.hotelreservation.model.RoleName;
@@ -29,6 +30,7 @@ import tuwien.at.sese.hotelreservation.model.Room;
 import tuwien.at.sese.hotelreservation.model.User;
 import tuwien.at.sese.hotelreservation.repository.ContactRepository;
 import tuwien.at.sese.hotelreservation.repository.CustomerRepository;
+import tuwien.at.sese.hotelreservation.repository.EventRepository;
 import tuwien.at.sese.hotelreservation.repository.ReservationRepository;
 import tuwien.at.sese.hotelreservation.repository.RoleRepository;
 import tuwien.at.sese.hotelreservation.repository.RoomRepository;
@@ -52,6 +54,9 @@ public class CustomerPortalApplicationTests {
 
     @Autowired
     private ContactRepository contactRepository;
+    
+    @Autowired
+    private EventRepository eventRepository;
 
 	@Autowired
 	private PasswordEncoder encoder;
@@ -135,6 +140,15 @@ public class CustomerPortalApplicationTests {
 
 	}
 
+	@Test
+	public void createEvent() {
+		User user = createSampleUser("holidayUser");
+		
+		Event event = ITUtil.createDummyEvent(user);
+		event = eventRepository.save(event);
+		Assert.assertNotNull(event.getId());
+	}
+	
     @Test
     public void createContact() {
         Contact contact = ITUtil.createDummyContact();
@@ -158,15 +172,19 @@ public class CustomerPortalApplicationTests {
 		admin.setRole(new HashSet<String>(){{add("admin");}});
 		createUser(admin);
 
+		createSampleUser("user");
+	}
+
+	private User createSampleUser(String username) {
 		final @Valid SignUpForm user = new SignUpForm();
 		user.setName("User");
-		user.setUsername("user");
-		user.setEmail("user@mail.com");
+		user.setUsername(username);
+		user.setEmail(username+"@mail.com");
 		user.setPassword("password");
 		user.setRole(new HashSet<String>(){{add("user");}});
-		createUser(user);
+		return createUser(user);
 	}
-	void createUser(SignUpForm signUpRequest){
+	User createUser(SignUpForm signUpRequest){
 		User user = new User(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail(),
 			encoder.encode(signUpRequest.getPassword()));
 
@@ -196,7 +214,7 @@ public class CustomerPortalApplicationTests {
 		});
 
 		user.setRoles(roles);
-		userRepository.save(user);
+		return userRepository.save(user);
 	}
 
 

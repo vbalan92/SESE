@@ -8,9 +8,11 @@ import java.util.List;
 import tuwien.at.sese.hotelreservation.model.Address;
 import tuwien.at.sese.hotelreservation.model.Contact;
 import tuwien.at.sese.hotelreservation.model.Customer;
+import tuwien.at.sese.hotelreservation.model.Event;
 import tuwien.at.sese.hotelreservation.model.Reservation;
 import tuwien.at.sese.hotelreservation.model.Room;
 import tuwien.at.sese.hotelreservation.model.RoomType;
+import tuwien.at.sese.hotelreservation.model.User;
 
 /**
  * The Class ITUTIL.
@@ -65,6 +67,23 @@ public class ITUtil {
         reservation.setRoom(room);
         
         return reservation;
+    }
+    
+    /**
+     * Creates the dummy event.
+     *
+     * @return the event
+     */
+    public static Event createDummyEvent(User user) {
+        Event event = new Event();
+        LocalDate date = LocalDate.now();
+
+        event.setFromDate(date);
+        event.setToDate(date.plusDays(10));
+        event.setEventName("URLAUB");
+        event.setUser(user);
+        
+        return event;
     }
 
     /**
