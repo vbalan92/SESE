@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.google.common.net.MediaType;
-
 import tuwien.at.sese.hotelreservation.api.dto.ReservationDTO;
 import tuwien.at.sese.hotelreservation.api.dto.ReservationDetailDTO;
 import tuwien.at.sese.hotelreservation.model.Reservation;
