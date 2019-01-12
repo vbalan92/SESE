@@ -1,6 +1,8 @@
 package tuwien.at.sese.hotelreservation.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tuwien.at.sese.hotelreservation.model.Event;
 import tuwien.at.sese.hotelreservation.model.Room;
@@ -24,8 +26,11 @@ public class EventDTO {
 	private Long userId;
 
 	@JsonCreator
-	public EventDTO(final Long id, final String eventName, final String name, final String username, final Long userId, final String email,
-			final LocalDate from, final LocalDate to) {
+	public EventDTO(@JsonProperty("id") final Long id, @JsonProperty("eventName")final String eventName,@JsonProperty("name") final String name,
+			@JsonProperty("username") final String username, @JsonProperty("userId") final Long userId,@JsonProperty("email") final String email,
+			@JsonProperty("from") @JsonFormat(shape = JsonFormat.Shape.STRING,
+			pattern = "yyyy-MM-dd") final LocalDate from, @JsonProperty("to") @JsonFormat(shape = JsonFormat.Shape.STRING,
+			pattern = "yyyy-MM-dd") final LocalDate to) {
 		this.id = id;
 		this.eventName = eventName;
 		this.userId = userId;

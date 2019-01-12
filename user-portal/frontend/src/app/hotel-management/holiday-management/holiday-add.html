@@ -109,7 +109,7 @@
   Edit events
   <button
     class="btn btn-primary pull-right"
-    (click)="addEvent()">
+    (click)="addEvent(createNew())">
     Add new
   </button>
   <div class="clearfix"></div>
@@ -121,9 +121,9 @@
   <tr>
     <th>Title</th>
     <th>Primary color</th>
-    <th>Secondary color</th>
     <th>Starts at</th>
     <th>Ends at</th>
+    <th>Save</th>
     <th>Remove</th>
   </tr>
   </thead>
@@ -145,19 +145,12 @@
     </td>
     <td>
       <input
-        type="color"
-        [(ngModel)]="event.color.secondary"
-        (change)="refresh.next()">
-    </td>
-    <td>
-      <input
         class="form-control"
         type="text"
         mwlFlatpickr
         [(ngModel)]="event.start"
         (ngModelChange)="refresh.next()"
-        dateFormat="Y-m-dTH:i"
-        altFormat="F j, Y H:i"
+        dateFormat="Y-m-d"
         placeholder="Not set">
     </td>
     <td>
@@ -167,16 +160,23 @@
         mwlFlatpickr
         [(ngModel)]="event.end"
         (ngModelChange)="refresh.next()"
-        dateFormat="Y-m-dTH:i"
-        altFormat="F j, Y H:i"
+        dateFormat="Y-m-d"
         placeholder="Not set">
     </td>
     <td>
       <button
+        class="btn btn-info"
+        (click)="save(event)" routerLink="/holidays">
+        Save
+      </button>
+    </td>
+    <td>
+      <button
         class="btn btn-danger"
-        (click)="events.splice(index, 1); refresh.next()">
+        (click)="events.splice(index, 1);  delete(event)" routerLink="/holidays">
         Delete
       </button>
+
     </td>
   </tr>
   </tbody>

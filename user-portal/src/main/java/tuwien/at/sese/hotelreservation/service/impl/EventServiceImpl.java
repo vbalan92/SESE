@@ -51,7 +51,7 @@ public class EventServiceImpl implements EventService
         event.setUser(user);
         event.setEventName(eventDTO.getEventName());
         event.setFromDate(eventDTO.getFrom());
-        event.setFromDate(eventDTO.getTo());
+        event.setToDate(eventDTO.getTo());
         final Event eventEntity = repository.save(event);
         return new EventDTO(eventEntity);
     }
