@@ -44,8 +44,19 @@ export class RoomService {
   searchRooms(searchRoom: SearchRoom): Observable<Room[]> {
     const fromDate = this.getDateInMillis(searchRoom.from);
     const toDate = this.getDateInMillis(searchRoom.to);
-
-    const url = `${this.roomUrl}?from=${fromDate}&to=${toDate}&capacity=${searchRoom.capacity}&fromPrice=${searchRoom.fromPrice}&toPrice=${searchRoom.toPrice}`;
+    let url;
+    if(searchRoom.fromPrice != null && searchRoom.toPrice!= null){
+      url = `${this.roomUrl}?from=${fromDate}&to=${toDate}&capacity=${searchRoom.capacity}&fromPrice=${searchRoom.fromPrice}&toPrice=${searchRoom.toPrice}`
+    }
+    else if(searchRoom.fromPrice != null){
+      url = `${this.roomUrl}?from=${fromDate}&to=${toDate}&capacity=${searchRoom.capacity}&fromPrice=${searchRoom.fromPrice}&toPrice=`
+    }
+    else if(searchRoom.toPrice!= null){
+      url = `${this.roomUrl}?from=${fromDate}&to=${toDate}&capacity=${searchRoom.capacity}&fromPrice=&toPrice=${searchRoom.toPrice}`
+    }
+    else{
+      url = `${this.roomUrl}?from=${fromDate}&to=${toDate}&capacity=${searchRoom.capacity}&fromPrice=&toPrice=`
+    }
 
     return this.http.get<Room[]>(url);
   }

@@ -91,7 +91,7 @@ public class RoomServiceImpl implements RoomService
         final BigDecimal from = fromPrice == null ? BigDecimal.ZERO : fromPrice;
         final BigDecimal pricePerNight = room.getPricePerNight();
 
-        return pricePerNight.compareTo(from) >= 0 && (toPrice == null || pricePerNight.compareTo(toPrice) >= 0);
+        return pricePerNight.compareTo(from) >= 0 && (toPrice == null || pricePerNight.compareTo(toPrice) <= 0);
     }
 
     private boolean isAvailable(final Room room, final LocalDate fromDate, final LocalDate toDate)

@@ -58,7 +58,8 @@
                  name="dp"
                  ngbDatepicker
                  #dp="ngbDatepicker"
-                 formControlName="customerDateOfBirth">
+                 formControlName="customerDateOfBirth"
+                 [maxDate]="{year: 2000, month: 12, day: 31}">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
           </div>

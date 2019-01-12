@@ -51,6 +51,7 @@ export class RoomListComponent implements OnInit {
 
   resetSearch() {
     this.searchRoomForm.reset();
+    this.availableRooms = null;
   }
 
   searchAdmin() {
