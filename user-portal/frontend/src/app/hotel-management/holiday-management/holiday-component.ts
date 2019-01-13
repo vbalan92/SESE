@@ -25,6 +25,7 @@ import {
 import {EventService} from '../../services/event.service';
 import {EventDTO} from './models/event-dto';
 import {DatePipe} from '@angular/common';
+import {TokenStorageService} from "../../auth/token-storage.service";
 
 const colors: any = {
   red: {
@@ -100,7 +101,10 @@ export class HolidayComponent implements OnInit {
 
   activeDayIsOpen: Boolean = true;
 
-  constructor(private modal: NgbModal, private  service: EventService, private datepipe: DatePipe) {
+  constructor(private modal: NgbModal,
+              private  service: EventService,
+              private datepipe: DatePipe,
+              private tokenStorage: TokenStorageService) {
   }
 
   createNew(): EventDTO {
@@ -171,8 +175,8 @@ export class HolidayComponent implements OnInit {
     this.eventDTO.to = this.datepipe.transform(event.end, 'yyyy-MM-dd');
     this.eventDTO.eventName = event.title;
     this.eventDTO.userId = 1;
-    this.eventDTO.username = 'user';
-    this.eventDTO.name = 'user';
+    this.eventDTO.username = this.tokenStorage.getUsername();
+    this.eventDTO.name = this.tokenStorage.getUsername();
     this.eventDTO.email = 'user@user.com';
     this.service.createHoliday(this.eventDTO).subscribe(
       (created: EventDTO) => {
