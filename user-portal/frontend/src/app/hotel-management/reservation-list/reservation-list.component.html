@@ -1,6 +1,6 @@
 <h2>Reservierungen</h2>
 
-<div>
+<!--<div>
   <h2>Suche</h2>
   <form>
 
@@ -40,7 +40,7 @@
       <button class="btn btn-success  pull-right" (click)="resetSearch()">Zurücksetzen</button>
     </div>
   </form>
-</div>
+</div>-->
 <div *ngFor="let reservation of reservations">
   <app-reservation-list-item [reservation]="reservation"></app-reservation-list-item>
 </div>
