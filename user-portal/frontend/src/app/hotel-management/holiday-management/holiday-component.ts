@@ -88,7 +88,7 @@ export class HolidayComponent implements OnInit {
     {
       start: subDays(startOfDay(new Date()), 1),
       end: addDays(new Date(), 1),
-      title: 'Dummy Holidays to Create',
+      title: 'Dummy Holiday Request',
       color: colors.red,
       actions: this.actions,
       allDay: true,
@@ -110,7 +110,9 @@ export class HolidayComponent implements OnInit {
   createNew(): EventDTO {
     this.eventDTO.from = subDays(startOfDay(new Date()), 1);
     this.eventDTO.to = addDays(new Date(), 1);
-    this.eventDTO.eventName = 'Urlaub von TODO Mitarbeitername';
+    this.eventDTO.eventName = 'New Holiday Request';
+    this.eventDTO.username = this.tokenStorage.getUsername();
+    this.refresh.next();
     return this.eventDTO;
   }
 
@@ -161,7 +163,7 @@ export class HolidayComponent implements OnInit {
       end: new Date(eventDTO.to),
       color: colors.red,
       id: eventDTO.id,
-      draggable: true,
+      draggable: eventDTO.username === this.tokenStorage.getUsername(),
       resizable: {
         beforeStart: true,
         afterEnd: true
@@ -183,8 +185,13 @@ export class HolidayComponent implements OnInit {
         console.log('created event:: ' + created.id);
       }
     );
+    this.refresh.next();
+    this.refreshPage();
   }
 
+  refreshPage(): void {
+    window.location.reload();
+  }
   delete(event): void {
     this.eventDTO.from = this.datepipe.transform(event.start, 'yyyy-MM-dd');
     this.eventDTO.to = this.datepipe.transform(event.end, 'yyyy-MM-dd');

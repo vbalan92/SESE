@@ -131,11 +131,12 @@
   <tbody>
   <tr *ngFor="let event of events; let index = index">
     <td>
-      <input
+      <textarea
         type="text"
         class="form-control"
         [(ngModel)]="event.title"
-        (keyup)="refresh.next()">
+        (keyup)="refresh.next()" >
+      </textarea>
     </td>
     <td>
       <input
@@ -164,16 +165,16 @@
         placeholder="Not set">
     </td>
     <td>
-      <button
+      <button *ngIf="event.draggable"
         class="btn btn-info"
-        (click)="save(event)" routerLink="holidays">
+        (click)="save(event)" routerLink="/holidays">
         Save
       </button>
     </td>
     <td>
-      <button
+      <button *ngIf="event.draggable"
         class="btn btn-danger"
-        (click)="events.splice(index, 1);  delete(event)" routerLink="holidays">
+        (click)="events.splice(index, 1);  delete(event)" routerLink="/holidays">
         Delete
       </button>
 
