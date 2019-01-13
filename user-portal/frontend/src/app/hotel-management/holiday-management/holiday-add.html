@@ -29,13 +29,13 @@
         [view]="view"
         [(viewDate)]="viewDate"
         (viewDateChange)="activeDayIsOpen = false">
-        Previous
+        Voriger Monat
       </div>
       <div
         class="btn btn-outline-secondary"
         mwlCalendarToday
         [(viewDate)]="viewDate">
-        Today
+        Heute
       </div>
       <div
         class="btn btn-primary"
@@ -43,7 +43,7 @@
         [view]="view"
         [(viewDate)]="viewDate"
         (viewDateChange)="activeDayIsOpen = false">
-        Next
+        Nächster Monat
       </div>
     </div>
   </div>
@@ -56,19 +56,19 @@
         class="btn btn-primary"
         (click)="view = CalendarView.Month"
         [class.active]="view === CalendarView.Month">
-        Month
+        Monat
       </div>
       <div
         class="btn btn-primary"
         (click)="view = CalendarView.Week"
         [class.active]="view === CalendarView.Week">
-        Week
+        Woche
       </div>
       <div
         class="btn btn-primary"
         (click)="view = CalendarView.Day"
         [class.active]="view === CalendarView.Day">
-        Day
+        Tag
       </div>
     </div>
   </div>
@@ -106,11 +106,11 @@
 <br><br><br>
 
 <h3>
-  Edit events
+  Urlaub bearbeiten
   <button
     class="btn btn-primary pull-right"
     (click)="addEvent(createNew())">
-    Add new
+    Neuer Urlaub beantragen
   </button>
   <div class="clearfix"></div>
 </h3>
@@ -119,12 +119,12 @@
 
   <thead>
   <tr>
-    <th>Title</th>
-    <th>Primary color</th>
-    <th>Starts at</th>
-    <th>Ends at</th>
-    <th>Save</th>
-    <th>Remove</th>
+    <th>Beschreibung</th>
+    <th>Farbe</th>
+    <th>Beginnt am</th>
+    <th>Endet am</th>
+    <th>Speichern</th>
+    <th>Löschen</th>
   </tr>
   </thead>
 
