@@ -173,8 +173,8 @@ export class HolidayComponent implements OnInit {
   }
 
   save(event): void {
-    this.eventDTO.from = this.datepipe.transform(event.start, 'yyyy-MM-dd');
-    this.eventDTO.to = this.datepipe.transform(event.end, 'yyyy-MM-dd');
+    this.eventDTO.from =  new Date(this.getDateInMillis(event.start));
+    this.eventDTO.to =  new Date(this.getDateInMillis(event.end));
     this.eventDTO.eventName = event.title;
     this.eventDTO.userId = 1;
     this.eventDTO.username = this.tokenStorage.getUsername();
@@ -192,9 +192,15 @@ export class HolidayComponent implements OnInit {
   refreshPage(): void {
     window.location.reload();
   }
+
+  private getDateInMillis(date: any) {
+    let date2 = new Date(Date.UTC(date.year, date.month - 1, date.day));
+    return date2.getTime();
+  }
+
   delete(event): void {
-    this.eventDTO.from = this.datepipe.transform(event.start, 'yyyy-MM-dd');
-    this.eventDTO.to = this.datepipe.transform(event.end, 'yyyy-MM-dd');
+    this.eventDTO.from = new Date(this.getDateInMillis(event.start));
+    this.eventDTO.to = new Date(this.getDateInMillis(event.end));
     this.eventDTO.eventName = event.title;
     this.eventDTO.id = event.id;
     this.service.deleteHoliday(this.eventDTO).subscribe(

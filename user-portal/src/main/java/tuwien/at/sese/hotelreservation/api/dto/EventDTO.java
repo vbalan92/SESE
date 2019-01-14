@@ -3,14 +3,12 @@ package tuwien.at.sese.hotelreservation.api.dto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import tuwien.at.sese.hotelreservation.model.Event;
-import tuwien.at.sese.hotelreservation.model.Room;
-import tuwien.at.sese.hotelreservation.model.RoomType;
 import tuwien.at.sese.hotelreservation.model.User;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 /**
  * @author xsk
@@ -29,16 +27,16 @@ public class EventDTO {
 	public EventDTO(@JsonProperty("id") final Long id, @JsonProperty("eventName")final String eventName,@JsonProperty("name") final String name,
 			@JsonProperty("username") final String username, @JsonProperty("userId") final Long userId,@JsonProperty("email") final String email,
 			@JsonProperty("from") @JsonFormat(shape = JsonFormat.Shape.STRING,
-			pattern = "yyyy-MM-dd") final LocalDate from, @JsonProperty("to") @JsonFormat(shape = JsonFormat.Shape.STRING,
-			pattern = "yyyy-MM-dd") final LocalDate to) {
+			pattern = "yyyy-MM-dd") final Date from, @JsonProperty("to") @JsonFormat(shape = JsonFormat.Shape.STRING,
+			pattern = "yyyy-MM-dd") final Date to) {
 		this.id = id;
 		this.eventName = eventName;
 		this.userId = userId;
 		this.name = name;
 		this.username = username;
 		this.email = email;
-		this.from = from;
-		this.to = to;
+		this.from = from.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;
+		this.to = to.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;
 	}
 
 	public EventDTO(final Event event) {

@@ -1,8 +1,8 @@
 
 export class EventDTO  {
   eventName: string;
-  from: any;
-  to: any;
+  from: Date;
+  to: Date;
   username: string;
   name: string;
   email: string;

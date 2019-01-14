@@ -145,24 +145,29 @@
         (change)="refresh.next()">
     </td>
     <td>
-      <input
-        class="form-control"
-        type="text"
-        mwlFlatpickr
-        [(ngModel)]="event.start"
-        (ngModelChange)="refresh.next()"
-        dateFormat="Y-m-d"
-        placeholder="Not set">
+      <input [(ngModel)]="event.start"
+             placeholder="yyyy-mm-dd"
+             name="from"
+             class="form-control"
+             id="from"
+             ngbDatepicker
+             #from="ngbDatepicker">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary calendar" (click)="from.toggle()" type="button"></button>
+      </div>
+
     </td>
     <td>
-      <input
-        class="form-control"
-        type="text"
-        mwlFlatpickr
-        [(ngModel)]="event.end"
-        (ngModelChange)="refresh.next()"
-        dateFormat="Y-m-d"
-        placeholder="Not set">
+      <input [(ngModel)]="event.end"
+             placeholder="yyyy-mm-dd"
+             name="from"
+             class="form-control"
+             id="to"
+             ngbDatepicker
+             #to="ngbDatepicker">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary calendar" (click)="to.toggle()" type="button"></button>
+      </div>
     </td>
     <td>
       <button *ngIf="event.draggable"
