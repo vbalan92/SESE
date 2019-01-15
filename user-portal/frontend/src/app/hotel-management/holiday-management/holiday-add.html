@@ -145,6 +145,7 @@
         (change)="refresh.next()">
     </td>
     <td>
+      <div class="input-group">
       <input [(ngModel)]="event.start"
              placeholder="yyyy-mm-dd"
              name="from"
@@ -152,12 +153,14 @@
              id="from"
              ngbDatepicker
              #from="ngbDatepicker">
-      <div class="input-group-append">
+
+        <div class="input-group-append">
         <button class="btn btn-outline-secondary calendar" (click)="from.toggle()" type="button"></button>
       </div>
-
+      </div>
     </td>
     <td>
+      <div class="input-group">
       <input [(ngModel)]="event.end"
              placeholder="yyyy-mm-dd"
              name="from"
@@ -165,14 +168,16 @@
              id="to"
              ngbDatepicker
              #to="ngbDatepicker">
-      <div class="input-group-append">
+        <div class="input-group-append">
         <button class="btn btn-outline-secondary calendar" (click)="to.toggle()" type="button"></button>
       </div>
+      </div>
+
     </td>
     <td>
       <button *ngIf="event.draggable"
         class="btn btn-info"
-        (click)="save(event)" routerLink="/holidays">
+        (click)="save(event)" routerLink="/home">
         Save
       </button>
     </td>

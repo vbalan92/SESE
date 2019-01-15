@@ -25,7 +25,7 @@ import {
 import {EventService} from '../../services/event.service';
 import {EventDTO} from './models/event-dto';
 import {DatePipe} from '@angular/common';
-import {TokenStorageService} from "../../auth/token-storage.service";
+import {TokenStorageService} from '../../auth/token-storage.service';
 
 const colors: any = {
   red: {
@@ -186,11 +186,6 @@ export class HolidayComponent implements OnInit {
       }
     );
     this.refresh.next();
-    this.refreshPage();
-  }
-
-  refreshPage(): void {
-    window.location.reload();
   }
 
   private getDateInMillis(date: any) {
